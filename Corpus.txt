@@ -1,0 +1,28 @@
+Admin Login
+Find a Location
+Get Directions
+Switch Floor
+Request a Service
+Help
+Select Language
+Hey Kiosk
+Get Directions to Bathroom
+Get Directions to Exit
+Get Directions to Neuroscience
+Orthopedics
+Rhemutology
+Parking Garage
+Elevator
+Dentistry
+Oral Medicine
+Dentist
+Plastic Surgery
+Radiology
+Nuclear Medicine
+Hello
+Stairs
+Enable
+Disable
+Weather Today
+Where
+Rap

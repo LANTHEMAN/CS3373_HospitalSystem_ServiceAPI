@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.github.CS3733_D18_Team_F_Project_0</OriginalElement>
+  <nodes>
+    <node x="1059.8530616181647" y="1554.5">com.github.CS3733_D18_Team_F_Project_0.controller.ObservableResourceFactory</node>
+    <node x="3912.69918626898" y="3114.5">com.github.CS3733_D18_Team_F_Project_0.sr.LanguageInterpreter</node>
+    <node x="1729.6984017332984" y="2895.0">com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController</node>
+    <node x="4051.9789773690804" y="1577.0">com.github.CS3733_D18_Team_F_Project_0.graph.AStar</node>
+    <node x="3074.715869527846" y="2490.0">com.github.CS3733_D18_Team_F_Project_0.MapSingleton</node>
+    <node x="547.0" y="3137.5">com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController</node>
+    <node x="2142.554863924658" y="1565.5">com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton</node>
+    <node x="838.6309523809518" y="2535.0">com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController</node>
+    <node x="2215.112006781801" y="2074.5">com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.loginHelper</node>
+    <node x="0.0" y="3872.0">com.github.CS3733_D18_Team_F_Project_0.controller.BW2D Maps</node>
+    <node x="6112.853977369081" y="2458.0">com.github.CS3733_D18_Team_F_Project_0.db.DummyNode</node>
+    <node x="189.0" y="3872.0">com.github.CS3733_D18_Team_F_Project_0.controller.Wireframes</node>
+    <node x="520.0" y="3872.0">com.github.CS3733_D18_Team_F_Project_0.out</node>
+    <node x="4665.019440956417" y="2052.5">com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar</node>
+    <node x="879.0197282848308" y="1974.0">com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher</node>
+    <node x="5273.82418626898" y="1195.5">com.github.CS3733_D18_Team_F_Project_0.graph.NodeBuilder</node>
+    <node x="373.0" y="3872.0">com.github.CS3733_D18_Team_F_Project_0.db.map</node>
+    <node x="781.0" y="3137.0">com.github.CS3733_D18_Team_F_Project_0.controller.Screens.Screen</node>
+    <node x="5774.95397736908" y="3070.5">com.github.CS3733_D18_Team_F_Project_0.db.DummyGraph</node>
+    <node x="4016.5194409564174" y="1239.5">com.github.CS3733_D18_Team_F_Project_0.graph.AStar.AStarNode</node>
+    <node x="3581.69918626898" y="3136.5">com.github.CS3733_D18_Team_F_Project_0.sr.ReligiousServices</node>
+    <node x="5625.853977369081" y="2074.5">com.github.CS3733_D18_Team_F_Project_0.graph.TestNewNodeBuilder</node>
+    <node x="3609.69918626898" y="2446.0">com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest</node>
+    <node x="5885.853977369081" y="2074.5">com.github.CS3733_D18_Team_F_Project_0.graph.TestNode</node>
+    <node x="234.0" y="3093.0">com.github.CS3733_D18_Team_F_Project_0.controller.page.ServiceRequestController</node>
+    <node x="1750.3333333333335" y="2007.0">com.github.CS3733_D18_Team_F_Project_0.controller.PermissionManager</node>
+    <node x="0.0" y="3126.5">com.github.CS3733_D18_Team_F_Project_0.controller.page.LanguageInterpreterController</node>
+    <node x="1875.7491862689803" y="2446.0">com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton</node>
+    <node x="2160.7491862689803" y="2535.0">com.github.CS3733_D18_Team_F_Project_0.controller.UTF8Control</node>
+    <node x="5179.94918626898" y="1531.5">com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder</node>
+    <node x="5534.644440956417" y="3587.0">com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest</node>
+    <node x="728.7158695278463" y="3565.0">com.github.CS3733_D18_Team_F_Project_0.controller.Screens</node>
+    <node x="2863.69918626898" y="1919.5">com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton</node>
+    <node x="4642.508722681643" y="0.0">com.github.CS3733_D18_Team_F_Project_0.graph.Node</node>
+    <node x="5411.57418626898" y="1521.0">com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder</node>
+    <node x="4607.022485982383" y="710.0">com.github.CS3733_D18_Team_F_Project_0.graph.Graph</node>
+    <node x="4403.908722681644" y="467.0">com.github.CS3733_D18_Team_F_Project_0.graph.Edge</node>
+    <node x="3018.348008395929" y="1129.0">com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler</node>
+    <node x="2087.2870067818008" y="1239.5">com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton.LazyInitializer</node>
+    <node x="3011.348008395929" y="820.5">com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem</node>
+    <node x="1557.3333333333335" y="2052.5">com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.Privilege</node>
+    <node x="3244.69918626898" y="1864.0">com.github.CS3733_D18_Team_F_Project_0.Map</node>
+    <node x="1169.4363949514982" y="3754.0">com.github.CS3733_D18_Team_F_Project_0.Main</node>
+    <node x="2629.7491862689803" y="2524.0">com.github.CS3733_D18_Team_F_Project_0.ImageCacheSingleton</node>
+    <node x="5349.408722681644" y="2019.5">com.github.CS3733_D18_Team_F_Project_0.graph.TestExistingNodeBuilder</node>
+    <node x="5021.408722681644" y="2074.5">com.github.CS3733_D18_Team_F_Project_0.graph.TestGraph</node>
+    <node x="1730.0494047619045" y="1543.5">com.github.CS3733_D18_Team_F_Project_0.controller.User</node>
+    <node x="4319.978977369081" y="1205.5">com.github.CS3733_D18_Team_F_Project_0.graph.Path</node>
+    <node x="1159.0" y="3126.5">com.github.CS3733_D18_Team_F_Project_0.controller.page.ReligiousServicesController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher" target="com.github.CS3733_D18_Team_F_Project_0.controller.ObservableResourceFactory">
+      <point x="77.5" y="-126.0" />
+      <point x="1111.5197282848308" y="1844.0" />
+      <point x="1194.1030616181647" y="1844.0" />
+      <point x="-44.75" y="48.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.db.DummyNode">
+      <point x="46.36363636363603" y="-47.5" />
+      <point x="5666.008077320053" y="3525.0" />
+      <point x="6254.55397736908" y="3525.0" />
+      <point x="6254.55397736908" y="2875.0" />
+      <point x="6225.55397736908" y="2875.0" />
+      <point x="32.19999999999982" y="102.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.Edge">
+      <point x="28.72727272727252" y="-236.0" />
+      <point x="3431.4264589962527" y="1744.0" />
+      <point x="4309.478977369081" y="1744.0" />
+      <point x="4309.478977369081" y="690.0" />
+      <point x="4420.283722681644" y="690.0" />
+      <point x="-114.625" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="-95.25" y="-290.0" />
+      <point x="1761.4484017332984" y="2735.0" />
+      <point x="1405.5000000000005" y="2735.0" />
+      <point x="1405.5000000000005" y="2376.0" />
+      <point x="1158.0197282848308" y="2376.0" />
+      <point x="124.0" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionManager" target="com.github.CS3733_D18_Team_F_Project_0.controller.User">
+      <point x="-112.40000000000009" y="-93.0" />
+      <point x="1778.4333333333334" y="1834.0" />
+      <point x="1834.0494047619045" y="1834.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.page.ReligiousServicesController">
+      <point x="49.61538461538464" y="-69.5" />
+      <point x="885.831254143231" y="3515.0" />
+      <point x="1212.5" y="3515.0" />
+      <point x="-53.5" y="58.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton">
+      <point x="-61.81818181818198" y="-47.5" />
+      <point x="5557.826259138235" y="3535.0" />
+      <point x="2843.0616862689803" y="3535.0" />
+      <point x="2843.0616862689803" y="2426.0" />
+      <point x="2908.82418626898" y="2426.0" />
+      <point x="-135.375" y="180.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Path" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="92.80000000000018" y="-59.5" />
+      <point x="4528.77897736908" y="1099.0" />
+      <point x="4659.68915264905" y="1099.0" />
+      <point x="-105.33333333333326" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Main" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="-55.0" y="-36.5" />
+      <point x="1196.9363949514982" y="3734.0" />
+      <point x="836.2158695278463" y="3734.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="136.0" y="-114.5" />
+      <point x="3915.69918626898" y="2416.0" />
+      <point x="5864.353977369081" y="2416.0" />
+      <point x="5864.353977369081" y="377.0" />
+      <point x="5021.133722681643" y="377.0" />
+      <point x="145.625" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.MapSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton">
+      <point x="-87.19999999999982" y="-70.5" />
+      <point x="3096.515869527846" y="2416.0" />
+      <point x="2576.240068399965" y="2416.0" />
+      <point x="2576.240068399965" y="1844.0" />
+      <point x="2232.179863924658" y="1844.0" />
+      <point x="-29.875" y="37.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController">
+      <point x="-33.076923076923094" y="-69.5" />
+      <point x="803.1389464509234" y="3505.0" />
+      <point x="600.5" y="3505.0" />
+      <point x="-53.5" y="47.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.AStar">
+      <point x="-91.0" y="-47.5" />
+      <point x="4678.019440956417" y="1734.0" />
+      <point x="4237.228977369081" y="1734.0" />
+      <point x="61.75" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="26.75" y="-47.5" />
+      <point x="680.75" y="2755.0" />
+      <point x="915.0595238095234" y="2755.0" />
+      <point x="-30.571428571428555" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem">
+      <point x="-72.19999999999982" y="-180.5" />
+      <point x="2971.9991862689803" y="1844.0" />
+      <point x="2918.0991862689802" y="1844.0" />
+      <point x="2918.0991862689802" y="1099.0" />
+      <point x="3071.562294110214" y="1099.0" />
+      <point x="-80.28571428571468" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.Privilege" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton">
+      <point x="40.25" y="47.5" />
+      <point x="1678.0833333333335" y="2416.0" />
+      <point x="1906.3261093459032" y="2416.0" />
+      <point x="-101.92307692307713" y="-114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Graph" target="com.github.CS3733_D18_Team_F_Project_0.graph.Edge">
+      <point x="-126.40000000000009" y="-169.5" />
+      <point x="4638.622485982383" y="670.0" />
+      <point x="4584.033722681644" y="670.0" />
+      <point x="49.125" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem">
+      <point x="0.0" y="-136.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.db.DummyGraph">
+      <point x="30.90909090909099" y="-47.5" />
+      <point x="5650.553531865508" y="3515.0" />
+      <point x="6122.20397736908" y="3515.0" />
+      <point x="115.75" y="114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestGraph" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="-38.5" y="-25.5" />
+      <point x="5136.908722681644" y="1784.0" />
+      <point x="4892.1001221001225" y="1784.0" />
+      <point x="4892.1001221001225" y="1109.0" />
+      <point x="4905.466930426827" y="1109.0" />
+      <point x="140.44444444444434" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestGraph" target="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder">
+      <point x="38.5" y="-25.5" />
+      <point x="5213.908722681644" y="1834.0" />
+      <point x="5474.94918626898" y="1834.0" />
+      <point x="-21.125" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Main" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="55.0" y="-36.5" />
+      <point x="1306.9363949514982" y="3734.0" />
+      <point x="1394.5000000000005" y="3734.0" />
+      <point x="1394.5000000000005" y="2386.0" />
+      <point x="1137.3530616181638" y="2386.0" />
+      <point x="103.33333333333303" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ReligiousServicesController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="0.0" y="-58.5" />
+      <point x="1266.0" y="2765.0" />
+      <point x="1296.166666666667" y="2765.0" />
+      <point x="1296.166666666667" y="2416.0" />
+      <point x="1075.3530616181638" y="2416.0" />
+      <point x="41.33333333333303" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.ObservableResourceFactory">
+      <point x="-52.91666666666697" y="-290.0" />
+      <point x="1803.7817350666314" y="2715.0" />
+      <point x="1427.9658695278463" y="2715.0" />
+      <point x="1427.9658695278463" y="1844.0" />
+      <point x="1283.6030616181647" y="1844.0" />
+      <point x="44.75" y="48.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DummyGraph" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem">
+      <point x="-92.60000000000036" y="-114.5" />
+      <point x="5913.85397736908" y="2785.0" />
+      <point x="3985.2337266707027" y="2785.0" />
+      <point x="3985.2337266707027" y="1089.0" />
+      <point x="3272.2765798245005" y="1089.0" />
+      <point x="120.42857142857156" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="65.0" y="-47.5" />
+      <point x="4834.019440956417" y="1804.0" />
+      <point x="4933.522485982383" y="1804.0" />
+      <point x="4933.522485982383" y="447.0" />
+      <point x="4885.217056014977" y="447.0" />
+      <point x="9.708333333333485" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ReligiousServicesController" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="-71.33333333333326" y="-58.5" />
+      <point x="1194.6666666666665" y="2755.0" />
+      <point x="1006.7738095238087" y="2755.0" />
+      <point x="61.14285714285711" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestExistingNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder">
+      <point x="0.0" y="-80.5" />
+      <point x="5463.408722681644" y="1814.0" />
+      <point x="5272.94918626898" y="1814.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionManager" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="112.40000000000009" y="-93.0" />
+      <point x="2003.2333333333336" y="1844.0" />
+      <point x="2087.7870067818008" y="1844.0" />
+      <point x="2087.7870067818008" y="1431.0" />
+      <point x="3027.8837226816436" y="1431.0" />
+      <point x="-123.96428571428532" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ReligiousServicesController" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="53.5" y="58.5" />
+      <point x="1319.5" y="3525.0" />
+      <point x="902.3697156816925" y="3525.0" />
+      <point x="66.15384615384619" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton.LazyInitializer">
+      <point x="-102.42857142857156" y="-37.0" />
+      <point x="2159.6262924960865" y="1421.0" />
+      <point x="2115.4120067818008" y="1421.0" />
+      <point x="-84.375" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Path" target="com.github.CS3733_D18_Team_F_Project_0.graph.Edge">
+      <point x="0.0" y="-59.5" />
+      <point x="4435.978977369081" y="1079.0" />
+      <point x="4452.019440956417" y="1079.0" />
+      <point x="4452.019440956417" y="690.0" />
+      <point x="4453.033722681644" y="690.0" />
+      <point x="-81.875" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar.AStarNode" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="78.75" y="-25.5" />
+      <point x="4200.269440956417" y="1089.0" />
+      <point x="4624.578041537939" y="1089.0" />
+      <point x="-140.44444444444434" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ReligiousServices" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="103.66666666666697" y="-48.5" />
+      <point x="3840.865852935647" y="2845.0" />
+      <point x="4895.739010989011" y="2845.0" />
+      <point x="4895.739010989011" y="2426.0" />
+      <point x="5875.353977369081" y="2426.0" />
+      <point x="5875.353977369081" y="367.0" />
+      <point x="5040.55038934831" y="367.0" />
+      <point x="165.04166666666652" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton.LazyInitializer" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton">
+      <point x="-28.125" y="25.5" />
+      <point x="2171.6620067818008" y="1421.0" />
+      <point x="2193.7691496389434" y="1421.0" />
+      <point x="-68.28571428571422" y="-37.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="86.18181818181802" y="-236.0" />
+      <point x="3488.881004450798" y="1764.0" />
+      <point x="4775.478977369081" y="1764.0" />
+      <point x="4775.478977369081" y="1109.0" />
+      <point x="4729.911374871272" y="1109.0" />
+      <point x="-35.111111111111086" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.LanguageInterpreter" target="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest">
+      <point x="-128.33333333333303" y="-70.5" />
+      <point x="3976.865852935647" y="2815.0" />
+      <point x="3822.19918626898" y="2815.0" />
+      <point x="42.5" y="114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Graph" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="63.19999999999982" y="-169.5" />
+      <point x="4828.222485982383" y="690.0" />
+      <point x="4843.458722681644" y="690.0" />
+      <point x="4843.458722681644" y="447.0" />
+      <point x="4846.383722681643" y="447.0" />
+      <point x="-29.125" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem">
+      <point x="-28.72727272727252" y="-236.0" />
+      <point x="3373.9719135417076" y="1724.0" />
+      <point x="3974.2337266707027" y="1724.0" />
+      <point x="3974.2337266707027" y="1099.0" />
+      <point x="3232.1337226816436" y="1099.0" />
+      <point x="80.28571428571468" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="-77.27272727272702" y="-47.5" />
+      <point x="5542.37171368369" y="3545.0" />
+      <point x="2804.2491862689803" y="3545.0" />
+      <point x="2804.2491862689803" y="1481.0" />
+      <point x="3123.240865538786" y="1481.0" />
+      <point x="-28.607142857143117" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="40.14285714285688" y="59.0" />
+      <point x="3191.990865538786" y="1109.0" />
+      <point x="3240.848008395929" y="1109.0" />
+      <point x="89.0" y="-136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-23.25" y="-71.0" />
+      <point x="5249.69918626898" y="1501.0" />
+      <point x="5231.94918626898" y="1501.0" />
+      <point x="5231.94918626898" y="417.0" />
+      <point x="4943.467056014977" y="417.0" />
+      <point x="67.95833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens.Screen">
+      <point x="0.0" y="-69.5" />
+      <point x="836.2158695278463" y="3545.0" />
+      <point x="840.6666666666665" y="3545.0" />
+      <point x="-119.33333333333333" y="48.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-10.583333333333485" y="-290.0" />
+      <point x="1846.115068399965" y="2695.0" />
+      <point x="1546.8333333333335" y="2695.0" />
+      <point x="1546.8333333333335" y="357.0" />
+      <point x="4652.217056014977" y="357.0" />
+      <point x="-223.29166666666652" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder">
+      <point x="0.0" y="-47.5" />
+      <point x="5619.644440956417" y="3495.0" />
+      <point x="5587.908722681644" y="3495.0" />
+      <point x="5587.908722681644" y="1804.0" />
+      <point x="5334.94918626898" y="1804.0" />
+      <point x="62.0" y="71.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.NodeBuilder">
+      <point x="-21.125" y="-81.5" />
+      <point x="5474.94918626898" y="1501.0" />
+      <point x="5483.82418626898" y="1501.0" />
+      <point x="90.0" y="69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton">
+      <point x="-114.90909090909099" y="-236.0" />
+      <point x="3287.790095359889" y="1814.0" />
+      <point x="2351.679863924658" y="1814.0" />
+      <point x="89.625" y="37.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-105.85714285714266" y="-25.5" />
+      <point x="4069.621834511938" y="1501.0" />
+      <point x="4006.0194409564174" y="1501.0" />
+      <point x="4006.0194409564174" y="377.0" />
+      <point x="4691.05038934831" y="377.0" />
+      <point x="-184.45833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestNode" target="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder">
+      <point x="-51.5" y="-25.5" />
+      <point x="5937.353977369081" y="1784.0" />
+      <point x="5559.44918626898" y="1784.0" />
+      <point x="63.375" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestGraph" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="115.5" y="-25.5" />
+      <point x="5290.908722681644" y="1844.0" />
+      <point x="5591.07418626898" y="1844.0" />
+      <point x="5591.07418626898" y="387.0" />
+      <point x="5001.717056014977" y="387.0" />
+      <point x="126.20833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton">
+      <point x="-144.39999999999964" y="-180.5" />
+      <point x="2899.7991862689805" y="1834.0" />
+      <point x="2291.929863924658" y="1834.0" />
+      <point x="29.875" y="37.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.MapSingleton">
+      <point x="74.08333333333348" y="-290.0" />
+      <point x="1930.7817350666319" y="2815.0" />
+      <point x="3183.715869527846" y="2815.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ReligiousServices" target="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest">
+      <point x="-103.66666666666697" y="-48.5" />
+      <point x="3633.532519602313" y="2815.0" />
+      <point x="3652.19918626898" y="2815.0" />
+      <point x="-127.5" y="114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="53.5" y="47.5" />
+      <point x="707.5" y="3495.0" />
+      <point x="819.6774079893848" y="3495.0" />
+      <point x="-16.538461538461434" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="-53.5" y="-25.5" />
+      <point x="892.1309523809518" y="2416.0" />
+      <point x="1013.3530616181638" y="2416.0" />
+      <point x="-20.666666666666742" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton" target="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest">
+      <point x="45.125" y="180.5" />
+      <point x="3089.32418626898" y="2386.0" />
+      <point x="3711.69918626898" y="2386.0" />
+      <point x="-68.0" y="-114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ServiceRequestController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="-97.66666666666652" y="-92.0" />
+      <point x="282.8333333333335" y="2725.0" />
+      <point x="259.93639495149773" y="2725.0" />
+      <point x="259.93639495149773" y="2376.0" />
+      <point x="930.6863949514973" y="2376.0" />
+      <point x="-103.33333333333348" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="144.39999999999964" y="-180.5" />
+      <point x="3188.59918626898" y="1844.0" />
+      <point x="3183.3837226816436" y="1844.0" />
+      <point x="3183.3837226816436" y="1501.0" />
+      <point x="3199.5265798245005" y="1501.0" />
+      <point x="47.67857142857156" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Path">
+      <point x="-65.0" y="-47.5" />
+      <point x="4704.019440956417" y="1724.0" />
+      <point x="4498.419440956417" y="1724.0" />
+      <point x="4498.419440956417" y="1491.0" />
+      <point x="4482.3789773690805" y="1491.0" />
+      <point x="46.40000000000009" y="59.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.MapSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="-43.59999999999991" y="-70.5" />
+      <point x="3140.1158695278455" y="2406.0" />
+      <point x="2853.19918626898" y="2406.0" />
+      <point x="2853.19918626898" y="1491.0" />
+      <point x="3142.312294110214" y="1491.0" />
+      <point x="-9.535714285714675" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Path">
+      <point x="35.28571428571422" y="-25.5" />
+      <point x="4210.764691654795" y="1481.0" />
+      <point x="4343.17897736908" y="1481.0" />
+      <point x="-92.80000000000018" y="59.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.loginHelper">
+      <point x="40.769230769230944" y="-114.5" />
+      <point x="2049.0184170382113" y="2386.0" />
+      <point x="2244.362006781801" y="2386.0" />
+      <point x="-87.75" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LanguageInterpreterController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="-71.33333333333348" y="-58.5" />
+      <point x="35.666666666666515" y="2875.0" />
+      <point x="96.0" y="2875.0" />
+      <point x="96.0" y="2356.0" />
+      <point x="889.3530616181638" y="2356.0" />
+      <point x="-144.66666666666697" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder">
+      <point x="143.6363636363635" y="-236.0" />
+      <point x="3546.3355499053437" y="1814.0" />
+      <point x="5210.94918626898" y="1814.0" />
+      <point x="-62.0" y="71.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="-86.18181818181802" y="-236.0" />
+      <point x="3316.517368087162" y="1844.0" />
+      <point x="3314.3780054629024" y="1844.0" />
+      <point x="3314.3780054629024" y="1501.0" />
+      <point x="3218.598008395929" y="1501.0" />
+      <point x="66.75" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.controller.User">
+      <point x="-61.15384615384619" y="-114.5" />
+      <point x="1947.0953401151341" y="2396.0" />
+      <point x="1739.8333333333335" y="2396.0" />
+      <point x="1739.8333333333335" y="1824.0" />
+      <point x="1792.4494047619046" y="1824.0" />
+      <point x="-41.59999999999991" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.UTF8Control">
+      <point x="31.75" y="-290.0" />
+      <point x="1888.4484017332984" y="2795.0" />
+      <point x="2385.2491862689803" y="2795.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.graph.Edge">
+      <point x="116.41666666666652" y="-290.0" />
+      <point x="1973.115068399965" y="2835.0" />
+      <point x="4573.478977369081" y="2835.0" />
+      <point x="4573.478977369081" y="690.0" />
+      <point x="4518.533722681644" y="690.0" />
+      <point x="-16.375" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens.Screen" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="119.33333333333348" y="48.0" />
+      <point x="1079.3333333333335" y="3505.0" />
+      <point x="869.2927926047691" y="3505.0" />
+      <point x="33.07692307692287" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Edge" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-65.5" y="-81.5" />
+      <point x="4469.408722681644" y="437.0" />
+      <point x="4807.55038934831" y="437.0" />
+      <point x="-67.95833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton">
+      <point x="80.25" y="-47.5" />
+      <point x="734.25" y="2775.0" />
+      <point x="1941.9991862689803" y="2775.0" />
+      <point x="-66.25" y="114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.MapSingleton" target="com.github.CS3733_D18_Team_F_Project_0.Map">
+      <point x="87.19999999999982" y="-70.5" />
+      <point x="3270.9158695278456" y="2426.0" />
+      <point x="3442.19918626898" y="2426.0" />
+      <point x="39.5" y="236.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LanguageInterpreterController" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="71.33333333333337" y="-58.5" />
+      <point x="178.33333333333348" y="2735.0" />
+      <point x="853.9166666666661" y="2735.0" />
+      <point x="-91.71428571428572" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequest" target="com.github.CS3733_D18_Team_F_Project_0.sr.ServiceRequestSingleton">
+      <point x="-136.0" y="-114.5" />
+      <point x="3643.69918626898" y="2396.0" />
+      <point x="2999.07418626898" y="2396.0" />
+      <point x="-45.125" y="180.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="77.27272727272702" y="-47.5" />
+      <point x="5696.917168229144" y="3545.0" />
+      <point x="6284.353977369081" y="3545.0" />
+      <point x="6284.353977369081" y="337.0" />
+      <point x="5098.80038934831" y="337.0" />
+      <point x="223.29166666666697" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton">
+      <point x="20.384615384615245" y="-114.5" />
+      <point x="2028.6338016535956" y="2376.0" />
+      <point x="2204.612006781801" y="2376.0" />
+      <point x="2204.612006781801" y="1844.0" />
+      <point x="2172.429863924658" y="1844.0" />
+      <point x="-89.625" y="37.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest" target="com.github.CS3733_D18_Team_F_Project_0.sr.LanguageInterpreter">
+      <point x="-15.454545454545041" y="-47.5" />
+      <point x="5604.189895501872" y="3505.0" />
+      <point x="4201.44918626898" y="3505.0" />
+      <point x="96.25" y="70.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DummyGraph" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="-185.19999999999982" y="-114.5" />
+      <point x="5821.2539773690805" y="2795.0" />
+      <point x="3960.19918626898" y="2795.0" />
+      <point x="3960.19918626898" y="1471.0" />
+      <point x="3275.812294110214" y="1471.0" />
+      <point x="123.96428571428532" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.Map">
+      <point x="95.25" y="-290.0" />
+      <point x="1951.9484017332984" y="2825.0" />
+      <point x="4281.405677655678" y="2825.0" />
+      <point x="4281.405677655678" y="2366.0" />
+      <point x="3521.19918626898" y="2366.0" />
+      <point x="118.5" y="236.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DummyGraph" target="com.github.CS3733_D18_Team_F_Project_0.db.DummyNode">
+      <point x="92.60000000000036" y="-114.5" />
+      <point x="6099.053977369081" y="2875.0" />
+      <point x="6161.15397736908" y="2875.0" />
+      <point x="-32.19999999999982" y="102.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.page.ServiceRequestController">
+      <point x="-66.15384615384619" y="-69.5" />
+      <point x="770.0620233740001" y="3525.0" />
+      <point x="307.25" y="3525.0" />
+      <point x="-73.25" y="92.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestNode" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="51.5" y="-25.5" />
+      <point x="6040.353977369081" y="357.0" />
+      <point x="5059.967056014977" y="357.0" />
+      <point x="184.45833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.AStar.AStarNode">
+      <point x="-70.57142857142844" y="-25.5" />
+      <point x="4104.9075487976515" y="1491.0" />
+      <point x="4051.5194409564174" y="1491.0" />
+      <point x="-70.0" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestNewNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder">
+      <point x="0.0" y="-25.5" />
+      <point x="5739.853977369081" y="1794.0" />
+      <point x="5517.19918626898" y="1794.0" />
+      <point x="21.125" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-143.6363636363635" y="-236.0" />
+      <point x="3259.0628226326166" y="1824.0" />
+      <point x="2076.7870067818008" y="1824.0" />
+      <point x="2076.7870067818008" y="367.0" />
+      <point x="4671.633722681643" y="367.0" />
+      <point x="-203.875" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="102.42857142857156" y="-37.0" />
+      <point x="2364.4834353532297" y="1461.0" />
+      <point x="3085.098008395929" y="1461.0" />
+      <point x="-66.75" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LanguageInterpreterController" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="53.5" y="58.5" />
+      <point x="160.5" y="3535.0" />
+      <point x="753.5235618355387" y="3535.0" />
+      <point x="-82.69230769230762" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar.AStarNode" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="26.25" y="-25.5" />
+      <point x="4147.769440956417" y="1109.0" />
+      <point x="4127.019440956417" y="1109.0" />
+      <point x="4127.019440956417" y="407.0" />
+      <point x="4749.30038934831" y="407.0" />
+      <point x="-126.20833333333348" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.LoginController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher">
+      <point x="-80.25" y="-47.5" />
+      <point x="573.75" y="2725.0" />
+      <point x="506.68639495149773" y="2725.0" />
+      <point x="506.68639495149773" y="2396.0" />
+      <point x="972.0197282848308" y="2396.0" />
+      <point x="-62.0" y="126.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.ImageCacheSingleton">
+      <point x="52.916666666666515" y="-290.0" />
+      <point x="1909.615068399965" y="2805.0" />
+      <point x="2711.7491862689803" y="2805.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens.Screen">
+      <point x="20.66666666666697" y="126.0" />
+      <point x="1054.6863949514977" y="2426.0" />
+      <point x="1146.5134885754655" y="2426.0" />
+      <point x="1146.5134885754655" y="2765.0" />
+      <point x="1079.3333333333335" y="2765.0" />
+      <point x="119.33333333333348" y="-48.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens.Screen" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="0.0" y="-48.0" />
+      <point x="960.0" y="2765.0" />
+      <point x="976.2023809523803" y="2765.0" />
+      <point x="30.571428571428555" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.ExistingNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.NodeBuilder">
+      <point x="69.75" y="-71.0" />
+      <point x="5342.69918626898" y="1501.0" />
+      <point x="5363.82418626898" y="1501.0" />
+      <point x="-30.0" y="69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="21.125" y="-81.5" />
+      <point x="5517.19918626898" y="1501.0" />
+      <point x="5524.32418626898" y="1501.0" />
+      <point x="5524.32418626898" y="407.0" />
+      <point x="4962.883722681643" y="407.0" />
+      <point x="87.375" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.AStar">
+      <point x="0.0" y="-236.0" />
+      <point x="3402.69918626898" y="1734.0" />
+      <point x="4113.728977369081" y="1734.0" />
+      <point x="-61.75" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.Map" target="com.github.CS3733_D18_Team_F_Project_0.graph.Path">
+      <point x="57.454545454545496" y="-236.0" />
+      <point x="3460.1537317235257" y="1754.0" />
+      <point x="4441.155677655678" y="1754.0" />
+      <point x="4441.155677655678" y="1491.0" />
+      <point x="4435.978977369081" y="1491.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ServiceRequestController" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="73.25" y="92.0" />
+      <point x="453.75" y="3515.0" />
+      <point x="786.6004849124615" y="3515.0" />
+      <point x="-49.615384615384755" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="13.0" y="-47.5" />
+      <point x="4782.019440956417" y="1784.0" />
+      <point x="4846.713885400862" y="1784.0" />
+      <point x="4846.713885400862" y="1089.0" />
+      <point x="4800.133597093494" y="1089.0" />
+      <point x="35.11111111111131" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.ServiceRequestController" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="97.66666666666669" y="-92.0" />
+      <point x="478.1666666666665" y="2745.0" />
+      <point x="884.4880952380945" y="2745.0" />
+      <point x="-61.14285714285717" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Edge">
+      <point x="-13.0" y="-47.5" />
+      <point x="4756.019440956417" y="1704.0" />
+      <point x="4596.522485982383" y="1704.0" />
+      <point x="4596.522485982383" y="680.0" />
+      <point x="4551.283722681644" y="680.0" />
+      <point x="16.375" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar.AStarNode" target="com.github.CS3733_D18_Team_F_Project_0.graph.AStar">
+      <point x="70.0" y="25.5" />
+      <point x="4191.519440956417" y="1501.0" />
+      <point x="4175.478977369081" y="1501.0" />
+      <point x="0.0" y="-25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.Privilege">
+      <point x="-122.30769230769238" y="-114.5" />
+      <point x="1885.941493961288" y="2426.0" />
+      <point x="1597.5833333333335" y="2426.0" />
+      <point x="-40.25" y="47.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PaneSwitcher" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="0.0" y="126.0" />
+      <point x="1034.0197282848308" y="2426.0" />
+      <point x="999.1309523809518" y="2426.0" />
+      <point x="53.5" y="-25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.Screens">
+      <point x="63.5" y="290.0" />
+      <point x="1920.1984017332984" y="3545.0" />
+      <point x="935.4466387586158" y="3545.0" />
+      <point x="99.23076923076951" y="-69.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionManager" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseItem">
+      <point x="56.19999999999982" y="-93.0" />
+      <point x="1947.0333333333333" y="1834.0" />
+      <point x="2065.7870067818008" y="1834.0" />
+      <point x="2065.7870067818008" y="1089.0" />
+      <point x="3031.4194369673573" y="1089.0" />
+      <point x="-120.42857142857156" y="59.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.sr.LanguageInterpreter" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="128.33333333333303" y="-70.5" />
+      <point x="4233.532519602313" y="2855.0" />
+      <point x="6102.353977369081" y="2855.0" />
+      <point x="6102.353977369081" y="347.0" />
+      <point x="5079.383722681643" y="347.0" />
+      <point x="203.875" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController">
+      <point x="82.69230769230774" y="-69.5" />
+      <point x="918.9081772201539" y="3535.0" />
+      <point x="1793.1984017332984" y="3535.0" />
+      <point x="-63.5" y="290.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton.loginHelper" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton">
+      <point x="29.25" y="25.5" />
+      <point x="2361.362006781801" y="2406.0" />
+      <point x="2089.7876478074418" y="2406.0" />
+      <point x="81.53846153846143" y="-114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton">
+      <point x="10.583333333333485" y="-290.0" />
+      <point x="1867.2817350666319" y="2785.0" />
+      <point x="2074.4991862689803" y="2785.0" />
+      <point x="66.25" y="114.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandler">
+      <point x="122.30769230769238" y="-114.5" />
+      <point x="2130.5568785766727" y="2426.0" />
+      <point x="2459.612006781801" y="2426.0" />
+      <point x="2459.612006781801" y="1471.0" />
+      <point x="3104.1694369673573" y="1471.0" />
+      <point x="-47.67857142857156" y="136.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionSingleton" target="com.github.CS3733_D18_Team_F_Project_0.controller.PermissionManager">
+      <point x="-40.769230769230944" y="-114.5" />
+      <point x="1967.4799554997494" y="2386.0" />
+      <point x="1797.166666666667" y="2386.0" />
+      <point x="-93.66666666666652" y="93.0" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.Path" target="com.github.CS3733_D18_Team_F_Project_0.graph.Node">
+      <point x="-92.80000000000018" y="-59.5" />
+      <point x="4343.17897736908" y="1079.0" />
+      <point x="4199.530677655678" y="1079.0" />
+      <point x="4199.530677655678" y="417.0" />
+      <point x="4768.717056014977" y="417.0" />
+      <point x="-106.79166666666652" y="158.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.TestAStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.NewNodeBuilder">
+      <point x="91.0" y="-47.5" />
+      <point x="4860.019440956417" y="1824.0" />
+      <point x="5432.69918626898" y="1824.0" />
+      <point x="-63.375" y="81.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.page.HomeController" target="com.github.CS3733_D18_Team_F_Project_0.controller.SwitchableController">
+      <point x="-116.41666666666697" y="-290.0" />
+      <point x="1740.2817350666314" y="2745.0" />
+      <point x="1037.3452380952376" y="2745.0" />
+      <point x="91.71428571428578" y="25.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.graph.AStar" target="com.github.CS3733_D18_Team_F_Project_0.graph.Graph">
+      <point x="105.85714285714266" y="-25.5" />
+      <point x="4281.336120226223" y="1501.0" />
+      <point x="4562.478977369081" y="1501.0" />
+      <point x="4562.478977369081" y="1109.0" />
+      <point x="4694.80026376016" y="1109.0" />
+      <point x="-70.22222222222217" y="169.5" />
+    </edge>
+    <edge source="com.github.CS3733_D18_Team_F_Project_0.controller.Screens" target="com.github.CS3733_D18_Team_F_Project_0.controller.page.LanguageInterpreterController">
+      <point x="-99.23076923076928" y="-69.5" />
+      <point x="736.9851002970768" y="3545.0" />
+      <point x="53.5" y="3545.0" />
+      <point x="-53.5" y="58.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="4659.0" y="306.0" />
+  <SelectedNodes>
+    <node>com.github.CS3733_D18_Team_F_Project_0.db.DatabaseHandlerTest</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>packageLocal</VISIBILITY>
+</Diagram>
+
