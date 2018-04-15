@@ -1,9 +1,13 @@
 package edu.wpi.cs3733d18.teamF.controller.page;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733d18.teamF.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.controller.SwitchableController;
+import edu.wpi.cs3733d18.teamF.sr.LanguageInterpreter;
+import edu.wpi.cs3733d18.teamF.sr.ServiceRequest;
+import edu.wpi.cs3733d18.teamF.sr.ServiceRequestSingleton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
@@ -30,17 +34,35 @@ public class MainPage implements SwitchableController {
     Label firstNameRequiredLI;
     @FXML
     Label locationRequiredLI;
-
-
     @FXML
     ToggleGroup securityToggle;
     @FXML
     JFXTextField securityLocationField;
     @FXML
     JFXTextArea securityTextArea;
+    @FXML
+    AnchorPane securityPane;
+
+    @FXML
+    JFXButton selectLanguage;
+    @FXML
+    JFXButton selectSecurity;
 
     @Override
     public void initialize(PaneSwitcher switcher) {
+    }
 
+    public void onLanguage(){
+        languageInterpreterPane.setVisible(true);
+        securityPane.setVisible(false);
+        selectLanguage.setVisible(false);
+        selectSecurity.setVisible(false);
+    }
+
+    public void onSecurity(){
+        languageInterpreterPane.setVisible(false);
+        securityPane.setVisible(true);
+        selectLanguage.setVisible(false);
+        selectSecurity.setVisible(false);
     }
 }

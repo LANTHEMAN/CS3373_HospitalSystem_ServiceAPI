@@ -2,6 +2,8 @@ package edu.wpi.cs3733d18.teamF;
 
 import edu.wpi.cs3733d18.teamF.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.controller.Screens;
+import edu.wpi.cs3733d18.teamF.db.DatabaseSingleton;
+import edu.wpi.cs3733d18.teamF.sr.ServiceRequestSingleton;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,7 +19,8 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 
 public class ServiceRequest extends Application{
-    public ServiceRequest(){}
+    public ServiceRequest(){
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
