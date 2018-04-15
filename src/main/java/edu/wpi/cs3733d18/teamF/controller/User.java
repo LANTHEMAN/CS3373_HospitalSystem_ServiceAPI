@@ -33,7 +33,7 @@ public class User {
     }
 
     public void setPsword(String psword) {
-        this.psword = Encryption.encryptSHA256(psword);
+        this.psword = psword;
     }
 
     public void setAlreadyEncryptedPassword(String password){

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?scenebuilder-preview-i18n-resource LanguageBundle.properties?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXNodesList?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.controller.page.MainPage">
+    <AnchorPane fx:id="languageInterpreterPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="393.0" prefWidth="629.0" style="-fx-background-color: WHITE;" visible="false" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+        <children>
+            <Text layoutX="70.0" layoutY="47.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LanguageInterpreter" />
+            <JFXTextField fx:id="languageField" layoutX="80.0" layoutY="75.0" />
+            <Label layoutX="21.0" layoutY="79.0" text="Language" />
+            <Label layoutX="27.0" layoutY="128.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="PatientInformation" />
+            <JFXTextField fx:id="firstNameLanguage" layoutX="80.0" layoutY="159.0" />
+            <Label layoutX="12.0" layoutY="163.0" text="FirstName" />
+            <JFXTextField fx:id="lastNameLanguage" layoutX="80.0" layoutY="199.0" />
+            <JFXTextField fx:id="destinationLanguage" layoutX="364.0" layoutY="159.0" />
+            <Label layoutX="287.0" layoutY="163.0" text="Location" />
+            <Label layoutX="16.0" layoutY="203.0" text="LastName" />
+            <Label layoutX="28.0" layoutY="249.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="SpecialInstructions" />
+            <JFXTextArea fx:id="instructionsLanguage" layoutX="21.0" layoutY="270.0" prefHeight="62.0" prefWidth="601.0" />
+            <JFXButton buttonType="RAISED" layoutX="502.0" layoutY="348.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="SubmitRequest" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="348.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Cancel" textFill="WHITE" />
+            <Label fx:id="languageRequiredLI" layoutX="223.0" layoutY="79.0" text="RequiredField" textFill="RED" visible="false" />
+            <Label fx:id="lastNameRequiredLI" layoutX="526.0" layoutY="163.0" text="RequiredField" textFill="RED" visible="false" />
+            <Label fx:id="firstNameRequiredLI" layoutX="223.0" layoutY="163.0" text="RequiredField" textFill="RED" visible="false" />
+            <Label fx:id="locationRequiredLI" layoutX="223.0" layoutY="203.0" text="RequiredField" textFill="RED" visible="false" />
+        </children>
+    </AnchorPane>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" visible="false">
+        <children>
+            <Text layoutX="62.0" layoutY="48.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Request" />
+            <Label layoutX="18.0" layoutY="66.0" text="Priority" />
+            <Label layoutX="18.0" layoutY="133.0" text="Location" />
+            <Label layoutX="28.0" layoutY="179.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Special Instructions" />
+            <JFXButton buttonType="RAISED" layoutX="27.0" layoutY="347.0" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #042e58;" text="Cancel" textFill="#f5f2f2" />
+            <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="347.0" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #042e58;" text="Submit Request" textFill="#fff2f2" />
+            <RadioButton layoutX="61.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="1">
+                <toggleGroup>
+                    <ToggleGroup fx:id="securityToggle" />
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="151.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="3" toggleGroup="$securityToggle" />
+            <RadioButton layoutX="248.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="5" toggleGroup="$securityToggle" />
+            <RadioButton layoutX="200.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="4" toggleGroup="$securityToggle" />
+            <RadioButton layoutX="106.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="2" toggleGroup="$securityToggle" />
+            <RadioButton layoutX="20.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="0" toggleGroup="$securityToggle" />
+            <JFXTextField fx:id="securityLocationField" layoutX="85.0" layoutY="128.0" />
+            <JFXTextArea fx:id="securityTextArea" layoutX="30.0" layoutY="202.0" prefHeight="132.0" prefWidth="580.0" />
+        </children>
+    </AnchorPane>
+</GridPane>

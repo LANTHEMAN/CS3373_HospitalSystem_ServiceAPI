@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PaneSwitcher {
-    public ObservableResourceFactory resFac = new ObservableResourceFactory();
     private HashMap<String, Pane> panes;
     private Scene scene;
     private Stage popup = new Stage();
@@ -22,7 +21,6 @@ public class PaneSwitcher {
     public PaneSwitcher(Scene scene) {
         this.scene = scene;
         panes = new HashMap<>();
-        resFac.setResources(ResourceBundle.getBundle("LanguageBundle", new Locale("en", "US")));
 
         popup.initModality(Modality.APPLICATION_MODAL);
     }
@@ -38,7 +36,7 @@ public class PaneSwitcher {
     // loads the screen into memory from the file
     public void load(Screens.Screen screen) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(screen.fxmlFile), resFac.getResources());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(screen.fxmlFile));
             Pane pane = loader.load();
 
             panes.put(screen.fxmlFile, pane);
@@ -71,8 +69,6 @@ public class PaneSwitcher {
     }
 
     public void switchResource(ResourceBundle resource, Screens.Screen screen) {
-        // reset the resource package
-        resFac.setResources(resource);
         // reload the given screen
         panes.clear();
         load(screen);
@@ -95,7 +91,7 @@ public class PaneSwitcher {
 
     public <Element> Pair<Element, Pane> loadElement(String fxmlFile){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("element/" + fxmlFile), resFac.getResources());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("element/" + fxmlFile));
             Pane pane = loader.load();
             Object controller = loader.getController();
             return new Pair(controller, pane);
