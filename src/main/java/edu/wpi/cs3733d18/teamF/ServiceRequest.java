@@ -18,12 +18,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-public class ServiceRequest extends Application{
+public class ServiceRequest {
     public ServiceRequest(){
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start() {
+        Stage primaryStage = new Stage();
+
         Group root = new Group();
 
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -64,7 +65,6 @@ public class ServiceRequest extends Application{
             }
         } catch (IOException e) {}
 
-        String[] args = {};
-        launch(args);
+        start();
     }
 }
