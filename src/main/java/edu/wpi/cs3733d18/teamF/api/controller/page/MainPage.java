@@ -9,8 +9,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 public class MainPage implements SwitchableController {
+    PaneSwitcher switcher;
     @FXML
     AnchorPane languageInterpreterPane;
     @FXML
@@ -44,22 +46,29 @@ public class MainPage implements SwitchableController {
     JFXButton selectLanguage;
     @FXML
     JFXButton selectSecurity;
+    @FXML
+    GridPane serviceRequestPane;
 
     @Override
     public void initialize(PaneSwitcher switcher) {
+        this.switcher = switcher;
     }
 
-    public void onLanguage(){
+    void onLanguage(){
         languageInterpreterPane.setVisible(true);
         securityPane.setVisible(false);
         selectLanguage.setVisible(false);
         selectSecurity.setVisible(false);
     }
 
-    public void onSecurity(){
+    void onSecurity(){
         languageInterpreterPane.setVisible(false);
         securityPane.setVisible(true);
         selectLanguage.setVisible(false);
         selectSecurity.setVisible(false);
+    }
+
+    void setGridPaneDimensions(int windowWidth, int windowLength){
+        serviceRequestPane.setPrefSize(windowWidth, windowLength);
     }
 }
