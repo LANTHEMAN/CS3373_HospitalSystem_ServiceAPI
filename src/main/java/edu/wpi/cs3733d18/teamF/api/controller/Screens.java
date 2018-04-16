@@ -5,7 +5,7 @@ import edu.wpi.cs3733d18.teamF.api.controller.page.*;
 
 public class Screens {
 
-    public static final Screen Home = new Screen("MainPage.fxml", MainPage.class);
+    public static final Screen Home = new Screen("mainPage.fxml", MainPage.class);
 
 
     static class Screen {
