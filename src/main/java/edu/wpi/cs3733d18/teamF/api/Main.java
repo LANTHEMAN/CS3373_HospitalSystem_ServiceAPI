@@ -1,4 +1,4 @@
-package edu.wpi.cs3733d18.teamF;
+package edu.wpi.cs3733d18.teamF.api;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

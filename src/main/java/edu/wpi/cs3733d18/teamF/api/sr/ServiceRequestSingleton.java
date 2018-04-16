@@ -1,8 +1,8 @@
-package edu.wpi.cs3733d18.teamF.sr;
+package edu.wpi.cs3733d18.teamF.api.sr;
 
-import edu.wpi.cs3733d18.teamF.db.DatabaseHandler;
-import edu.wpi.cs3733d18.teamF.db.DatabaseItem;
-import edu.wpi.cs3733d18.teamF.db.DatabaseSingleton;
+import edu.wpi.cs3733d18.teamF.api.db.DatabaseHandler;
+import edu.wpi.cs3733d18.teamF.api.db.DatabaseItem;
+import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

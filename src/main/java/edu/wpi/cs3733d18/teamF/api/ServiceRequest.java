@@ -1,15 +1,11 @@
-package edu.wpi.cs3733d18.teamF;
+package edu.wpi.cs3733d18.teamF.api;
 
-import edu.wpi.cs3733d18.teamF.controller.PaneSwitcher;
-import edu.wpi.cs3733d18.teamF.controller.Screens;
-import edu.wpi.cs3733d18.teamF.db.DatabaseSingleton;
-import edu.wpi.cs3733d18.teamF.sr.ServiceRequestSingleton;
-import javafx.application.Application;
+import edu.wpi.cs3733d18.teamF.api.controller.Screens;
+import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;

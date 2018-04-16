@@ -1,4 +1,4 @@
-package edu.wpi.cs3733d18.teamF.sr;
+package edu.wpi.cs3733d18.teamF.api.sr;
 
 public class ReligiousServices extends ServiceRequest{
     private String religion;
