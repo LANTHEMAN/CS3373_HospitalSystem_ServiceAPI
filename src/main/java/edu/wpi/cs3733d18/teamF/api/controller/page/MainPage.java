@@ -1,13 +1,10 @@
-package edu.wpi.cs3733d18.teamF.controller.page;
+package edu.wpi.cs3733d18.teamF.api.controller.page;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import edu.wpi.cs3733d18.teamF.controller.PaneSwitcher;
-import edu.wpi.cs3733d18.teamF.controller.SwitchableController;
-import edu.wpi.cs3733d18.teamF.sr.LanguageInterpreter;
-import edu.wpi.cs3733d18.teamF.sr.ServiceRequest;
-import edu.wpi.cs3733d18.teamF.sr.ServiceRequestSingleton;
+import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
+import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;

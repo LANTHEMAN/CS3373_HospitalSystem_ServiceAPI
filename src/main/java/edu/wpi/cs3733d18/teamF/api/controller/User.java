@@ -1,4 +1,4 @@
-package edu.wpi.cs3733d18.teamF.controller;
+package edu.wpi.cs3733d18.teamF.api.controller;
 
 
 public class User {

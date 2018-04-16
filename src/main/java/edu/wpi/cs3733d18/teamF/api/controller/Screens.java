@@ -1,6 +1,7 @@
-package edu.wpi.cs3733d18.teamF.controller;
+package edu.wpi.cs3733d18.teamF.api.controller;
 
-import edu.wpi.cs3733d18.teamF.controller.page.*;
+import edu.wpi.cs3733d18.teamF.api.controller.page.MainPage;
+import edu.wpi.cs3733d18.teamF.api.controller.page.*;
 
 public class Screens {
 

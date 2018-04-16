@@ -1,8 +1,7 @@
-package edu.wpi.cs3733d18.teamF.controller;
+package edu.wpi.cs3733d18.teamF.api.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -10,7 +9,6 @@ import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PaneSwitcher {

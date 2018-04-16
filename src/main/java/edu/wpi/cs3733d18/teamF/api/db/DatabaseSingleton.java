@@ -1,4 +1,4 @@
-package edu.wpi.cs3733d18.teamF.db;
+package edu.wpi.cs3733d18.teamF.api.db;
 
 public class DatabaseSingleton {
     private DatabaseHandler dbHandler;
