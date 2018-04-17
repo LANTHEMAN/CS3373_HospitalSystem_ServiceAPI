@@ -21,6 +21,9 @@ public class ServiceRequestSingleton implements DatabaseItem {
     private ServiceRequest popUpRequest;
     private String lastFilter;
     private String lastSearch;
+    private String currUser = "admin";
+    private int prefWidth;
+    private int prefLength;
 
     private ServiceRequestSingleton() {
         // initialize this class with the database
@@ -118,10 +121,10 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     @Override
     public void initDatabase(DatabaseHandler dbHandler) {
-        dbHandler.runSQLScript("init_sr_db.sql");
-        dbHandler.runSQLScript("init_sr_li_db.sql");
-        dbHandler.runSQLScript("init_sr_rs_db.sql");
-        dbHandler.runSQLScript("init_sr_sr_db.sql");
+        dbHandler.runVerboseSQLScript("init_sr_db.sql");
+        dbHandler.runVerboseSQLScript("init_sr_li_db.sql");
+        dbHandler.runVerboseSQLScript("init_sr_rs_db.sql");
+        dbHandler.runVerboseSQLScript("init_sr_sr_db.sql");
         if (dbHandler != DatabaseSingleton.getInstance().getDbHandler()) {
             initDatabase(DatabaseSingleton.getInstance().getDbHandler());
         }
@@ -470,5 +473,26 @@ public class ServiceRequestSingleton implements DatabaseItem {
             updateStatus(sr);
             String sql = "INSERT INTO Inbox VALUES ('" + username + "', " + sr.getId() + ")";
         }
+    }
+
+    public void setCurrUser(String currUser) {
+        this.currUser = currUser;
+    }
+
+    public String getCurrUser() {
+        return currUser;
+    }
+
+    public void setGridPaneDimensions(int windowWidth, int windowLength){
+        this.prefWidth = windowWidth;
+        this.prefLength = windowLength;
+    }
+
+    public int getPrefWidth() {
+        return prefWidth;
+    }
+
+    public int getPrefLength() {
+        return prefLength;
     }
 }

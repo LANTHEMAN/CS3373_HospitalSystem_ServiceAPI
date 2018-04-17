@@ -6,7 +6,6 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
@@ -67,13 +66,7 @@
             <JFXTextArea fx:id="securityTextArea" layoutX="30.0" layoutY="202.0" prefHeight="132.0" prefWidth="580.0" />
         </children>
     </AnchorPane>
-   <JFXButton fx:id="selectLanguage" mnemonicParsing="false" onAction="#onLanguage" prefHeight="87.0" prefWidth="234.0" text="Language Interpreter">
-      <GridPane.margin>
-         <Insets left="200.0" />
-      </GridPane.margin>
-   </JFXButton>
-   <JFXButton fx:id="selectSecurity" mnemonicParsing="false" onAction="#onSecurity" prefHeight="81.0" prefWidth="186.0" text="Security Request" GridPane.valignment="CENTER" />
-   <JFXTabPane style="-fx-background-color: #042E58;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+   <JFXTabPane fx:id="serviceRequestTabPane" style="-fx-background-color: #042E58;" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
       <tabs>
          <Tab closable="false" text="Search Service Request">
             <content>
@@ -97,7 +90,6 @@
                                  <JFXComboBox fx:id="availableTypes" onAction="#onAvailableTypes" prefHeight="25.0" prefWidth="153.0" />
                                  <JFXButton buttonType="RAISED" onAction="#onClear" prefHeight="26.0" prefWidth="52.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Clear" textFill="WHITE" />
                                  <JFXButton buttonType="RAISED" onAction="#onSearch" prefHeight="84.0" prefWidth="149.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Search" textFill="WHITE" />
-                                 <JFXButton buttonType="RAISED" onAction="#onCancelSearch" prefHeight="60.0" prefWidth="119.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Cancel" textFill="WHITE" />
                               </children>
                            </VBox>
                            <TableView fx:id="searchResultTable" prefHeight="540.0" prefWidth="755.0">

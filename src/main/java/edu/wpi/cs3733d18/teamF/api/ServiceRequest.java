@@ -2,6 +2,7 @@ package edu.wpi.cs3733d18.teamF.api;
 
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
+import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -23,9 +24,9 @@ public class ServiceRequest {
 
         Group root = new Group();
 
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth();
-        int height = gd.getDisplayMode().getHeight();
+        //GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = ServiceRequestSingleton.getInstance().getPrefWidth();
+        int height = ServiceRequestSingleton.getInstance().getPrefLength();
 
         Scene scene = new Scene(root, width, height);
         PaneSwitcher paneSwitcher = new PaneSwitcher(scene);
@@ -37,9 +38,11 @@ public class ServiceRequest {
         paneSwitcher.switchTo(Screens.Home);
 
         primaryStage.setTitle("Brigham and Women's Hospital");
+        primaryStage.setMaxWidth(width);
+        primaryStage.setMaxHeight(height);
         primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
+        //primaryStage.setMaximized(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
@@ -61,6 +64,12 @@ public class ServiceRequest {
             }
         } catch (IOException e) {}
 
+        ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
+
         start();
+    }
+
+    public void setCurrUser(String username){
+        ServiceRequestSingleton.getInstance().setCurrUser(username);
     }
 }

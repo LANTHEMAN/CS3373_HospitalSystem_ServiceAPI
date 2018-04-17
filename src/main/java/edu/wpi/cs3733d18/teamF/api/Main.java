@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         ServiceRequest sr = new ServiceRequest();
         try{
-            sr.run(0,0,1900,1000, null, null, null);
+            sr.run(0,0,1280,720, null, null, null);
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Failure to start service requests");
