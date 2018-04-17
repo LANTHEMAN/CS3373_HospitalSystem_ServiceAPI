@@ -7,7 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,6 @@ public class ServiceRequest {
 
         Group root = new Group();
 
-        //GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = ServiceRequestSingleton.getInstance().getPrefWidth();
         int height = ServiceRequestSingleton.getInstance().getPrefLength();
 

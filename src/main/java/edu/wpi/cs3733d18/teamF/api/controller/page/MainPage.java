@@ -8,7 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
@@ -20,8 +24,7 @@ import java.util.ArrayList;
 public class MainPage implements SwitchableController {
     private final ObservableList<String> priority = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5");
     private final ObservableList<String> status = FXCollections.observableArrayList("Incomplete", "In Progress", "Complete");
-    private final ObservableList<String> type = FXCollections.observableArrayList("Language Interpreter", "Religious Services");
-    private final ObservableList<String> privilegeOptions = FXCollections.observableArrayList("Staff", "Admin");
+    private final ObservableList<String> type = FXCollections.observableArrayList("Language Interpreter", "Religious Services", "Security Request");
     private final ObservableList<String> filterOptions = FXCollections.observableArrayList("Priority", "Status", "Type");
     @FXML
     public ComboBox filterType, availableTypes;
@@ -80,6 +83,8 @@ public class MainPage implements SwitchableController {
     TextArea instructionsRS;
     @FXML
     Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS;
+    String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
+    String lastFilter = ServiceRequestSingleton.getInstance().getLastFilter();
     /////////////////////////////////////////
     //                                     //
     //           Service Request           //
@@ -89,7 +94,7 @@ public class MainPage implements SwitchableController {
     @FXML
     private AnchorPane editRequestPane;
     @FXML
-    private JFXButton LI, RS, SR;
+    private JFXRadioButton defaultToggle;
     /////////////////////////////////
     //       Search Services       //
     /////////////////////////////////
@@ -100,17 +105,14 @@ public class MainPage implements SwitchableController {
     @FXML
     private JFXTextField usernameSearch;
     @FXML
-    private JFXListView usernameList;
-    @FXML
     private JFXCheckBox completeCheck;
-    @FXML
-    private JFXNodesList serviceRequestList;
-    @FXML
-    private JFXButton newServiceRequest;
     @FXML
     private AnchorPane religiousServicesPane;
     @FXML
+    private JFXMasonryPane masonPane;
+    @FXML
     private Label securityLocationRequired;
+
 
     @Override
     public void initialize(PaneSwitcher switcher) {
@@ -119,35 +121,46 @@ public class MainPage implements SwitchableController {
         serviceRequestPane.setPrefSize(ServiceRequestSingleton.getInstance().getPrefWidth(), ServiceRequestSingleton.getInstance().getPrefLength());
 
         if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "LanguageInterpreter")) {
-            Tab languageTab = new Tab();
-            languageTab.setContent(languageInterpreterPane);
-            serviceRequestTabPane.getTabs().add(languageTab);
+            JFXButton languageInterpreterBtn = new JFXButton();
+            languageInterpreterBtn.setText("Language Interpreter");
+            languageInterpreterBtn.setStyle("-fx-background-color: RED;");
+            languageInterpreterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                languageInterpreterPane.toFront();
+            });
+            masonPane.getChildren().add(languageInterpreterBtn);
         }
-        /*
-        if (ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "ReligiousServices")) {
-            Tab religionTab = new Tab();
-            religionTab.setContent(securityPane);
-            serviceRequestTabPane.getTabs().add(religionTab);
+
+        if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "ReligiousServices")) {
+            JFXButton religiousServicesBtn = new JFXButton();
+            religiousServicesBtn.setText("Religious Services");
+            religiousServicesBtn.setStyle("-fx-background-color: RED;");
+            religiousServicesBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+                religiousServicesPane.toFront();
+            });
+            masonPane.getChildren().add(religiousServicesBtn);
         }
-        */
-        Tab securityTab = new Tab();
-        securityTab.setContent(securityPane);
-        serviceRequestTabPane.getTabs().add(securityTab);
+
+        if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "SecurityRequest")) {
+            JFXButton securityRequestBtn = new JFXButton();
+            securityRequestBtn.setText("Security Request");
+            securityRequestBtn.setStyle("-fx-background-color: RED;");
+            securityRequestBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+                securityPane.toFront();
+            });
+            masonPane.getChildren().add(securityRequestBtn);
+        }
 
         filter = "none";
         searchType = "none";
-
-        filterType.getItems().addAll(filterOptions);
-
-        String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
-        String lastFilter = ServiceRequestSingleton.getInstance().getLastFilter();
         if (lastSearch != null && lastFilter != null) {
             searchType = lastSearch;
             filter = lastFilter;
         }
+
+        filterType.getItems().addAll(filterOptions);
+
         onSearch();
     }
-
 
     @FXML
     void onSearch() {
@@ -317,6 +330,34 @@ public class MainPage implements SwitchableController {
         ServiceRequestSingleton.getInstance().setSearchNull();
     }
 
+    @FXML
+    public void onCancelEdit() {
+        editRequestPane.setVisible(false);
+        searchPane.setVisible(true);
+    }
+
+    @FXML
+    public void onSubmitEdit() {
+        if (completeCheck.isSelected() && !serviceRequestPopUp.getStatus().equalsIgnoreCase("Complete")) {
+            serviceRequestPopUp.setStatus("Complete");
+            serviceRequestPopUp.setCompletedBy(ServiceRequestSingleton.getInstance().getCurrUser());
+            ServiceRequestSingleton.getInstance().updateCompletedBy(serviceRequestPopUp);
+            ServiceRequestSingleton.getInstance().updateStatus(serviceRequestPopUp);
+        }
+        if (usernameSearch.getText() != null && !usernameSearch.getText().trim().isEmpty()) {
+            ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestPopUp);
+        }
+        usernameSearch.setText("");
+        editRequestPane.setVisible(false);
+        searchPane.setVisible(true);
+        onSearch();
+    }
+
+    ////////////////////////
+    //                    //
+    //       LI           //
+    //                    //
+    ////////////////////////
 
     @FXML
     void onSubmitLI() {
@@ -359,16 +400,42 @@ public class MainPage implements SwitchableController {
         ServiceRequest request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
-        languageInterpreterPane.setVisible(false);
-
+        languageInterpreterPane.toBack();
+        clearLanguage();
     }
 
     @FXML
     void onCancelLI() {
-        languageInterpreterPane.setVisible(false);
+        languageInterpreterPane.toBack();
+        clearLanguage();
+    }
+
+    private void clearLanguage(){
+        languageField.clear();
+        if(languageRequiredLI.isVisible()) {
+            languageRequiredLI.setVisible(false);
+        }
+        firstNameLanguage.clear();
+        if(firstNameRequiredLI.isVisible()) {
+            firstNameRequiredLI.setVisible(false);
+        }
+        lastNameLanguage.clear();
+        if(lastNameRequiredLI.isVisible()){
+            lastNameRequiredLI.setVisible(false);
+        }
+        destinationLanguage.clear();
+        if(locationRequiredLI.isVisible()){
+            locationRequiredLI.setVisible(false);
+        }
+        instructionsLanguage.clear();
     }
 
 
+    ////////////////////////
+    //                    //
+    //       RS           //
+    //                    //
+    ////////////////////////
     @FXML
     void onSubmitRS() {
         int requiredFieldsEmpty = 0;
@@ -410,14 +477,41 @@ public class MainPage implements SwitchableController {
         ServiceRequest request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
-        religiousServicesPane.setVisible(false);
+        religiousServicesPane.toBack();
+        clearReligious();
     }
 
     @FXML
     void onCancelRS() {
-        religiousServicesPane.setVisible(false);
+        religiousServicesPane.toBack();
+        clearReligious();
     }
 
+    private void clearReligious(){
+        religionField.clear();
+        if(religionRequiredRS.isVisible()) {
+            religionRequiredRS.setVisible(false);
+        }
+        firstNameRS.clear();
+        if(firstNameRequiredRS.isVisible()) {
+            firstNameRequiredRS.setVisible(false);
+        }
+        lastNameRS.clear();
+        if(lastNameRequiredRS.isVisible()){
+            lastNameRequiredRS.setVisible(false);
+        }
+        destinationRS.clear();
+        if(locationRequiredRS.isVisible()){
+            locationRequiredRS.setVisible(false);
+        }
+        instructionsRS.clear();
+    }
+
+    ////////////////////////
+    //                    //
+    //       SR           //
+    //                    //
+    ////////////////////////
 
     @FXML
     private void onSubmitSecurity() {
@@ -434,12 +528,21 @@ public class MainPage implements SwitchableController {
 
         ServiceRequestSingleton.getInstance().sendServiceRequest(sec);
         ServiceRequestSingleton.getInstance().addServiceRequest(sec);
-        securityPane.setVisible(false);
+        securityPane.toBack();
+        clearSecurity();
     }
 
     @FXML
     private void onCancelSecurity() {
-        securityPane.setVisible(false);
+        securityPane.toBack();
+        clearSecurity();
     }
 
+    private void clearSecurity(){
+        securityLocationField.clear();
+        securityTextArea.clear();
+        if(securityLocationRequired.isVisible()){
+            securityLocationRequired.setVisible(false);
+        }
+    }
 }
