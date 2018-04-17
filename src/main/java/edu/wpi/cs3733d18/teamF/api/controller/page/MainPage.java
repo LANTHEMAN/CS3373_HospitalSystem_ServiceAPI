@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -152,6 +153,7 @@ public class MainPage implements SwitchableController {
         }
 
         closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+            VoiceLauncher.getInstance().terminate();
             System.exit(0);
         });
 
