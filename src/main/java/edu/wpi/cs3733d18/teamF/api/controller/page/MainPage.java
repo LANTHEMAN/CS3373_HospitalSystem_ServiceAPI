@@ -93,8 +93,6 @@ public class MainPage implements SwitchableController {
     private ServiceRequest serviceRequestPopUp;
     @FXML
     private AnchorPane editRequestPane;
-    @FXML
-    private JFXRadioButton defaultToggle;
     /////////////////////////////////
     //       Search Services       //
     /////////////////////////////////
