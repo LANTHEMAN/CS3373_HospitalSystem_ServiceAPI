@@ -1,6 +1,7 @@
 package edu.wpi.cs3733d18.teamF.api.controller.page;
 
 import com.jfoenix.controls.*;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
@@ -111,6 +112,8 @@ public class MainPage implements SwitchableController {
     @FXML
     private Label securityLocationRequired;
 
+    @FXML
+    private FontAwesomeIconView closeBtn;
 
     @Override
     public void initialize(PaneSwitcher switcher) {
@@ -147,6 +150,10 @@ public class MainPage implements SwitchableController {
             });
             masonPane.getChildren().add(securityRequestBtn);
         }
+
+        closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+            System.exit(0);
+        });
 
         filter = "none";
         searchType = "none";
@@ -542,5 +549,16 @@ public class MainPage implements SwitchableController {
         if(securityLocationRequired.isVisible()){
             securityLocationRequired.setVisible(false);
         }
+    }
+
+
+    @FXML
+    private void onCreateNewServiceRequest(){
+
+    }
+
+    @FXML
+    private void onSearchServiceRequest(){
+
     }
 }

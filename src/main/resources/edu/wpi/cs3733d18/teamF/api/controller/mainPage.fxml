@@ -9,6 +9,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -29,10 +30,32 @@
 <GridPane fx:id="serviceRequestPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.api.controller.page.MainPage">
    <JFXTabPane fx:id="serviceRequestTabPane" style="-fx-background-color: #042E58;" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
       <tabs>
-         <Tab closable="false" text="Create Service Request">
+         <Tab closable="false" onSelectionChanged="#onCreateNewServiceRequest" text="Create Service Request">
             <content>
                <StackPane>
                   <children>
+                      <AnchorPane fx:id="languageInterpreterPane" style="-fx-background-color: WHITE;">
+                          <children>
+                              <Text layoutX="70.0" layoutY="47.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language Interpreter" />
+                              <JFXTextField fx:id="languageField" layoutX="80.0" layoutY="75.0" />
+                              <Label layoutX="21.0" layoutY="79.0" text="Language" />
+                              <Label layoutX="27.0" layoutY="128.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Patient Information" />
+                              <JFXTextField fx:id="firstNameLanguage" layoutX="80.0" layoutY="159.0" />
+                              <Label layoutX="12.0" layoutY="163.0" text="First Name" />
+                              <JFXTextField fx:id="lastNameLanguage" layoutX="80.0" layoutY="199.0" />
+                              <JFXTextField fx:id="destinationLanguage" layoutX="364.0" layoutY="159.0" />
+                              <Label layoutX="306.0" layoutY="163.0" text="Location" />
+                              <Label layoutX="16.0" layoutY="203.0" text="Last Name" />
+                              <Label layoutX="28.0" layoutY="249.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Special Instructions" />
+                              <JFXTextArea fx:id="instructionsLanguage" layoutX="21.0" layoutY="270.0" prefHeight="62.0" prefWidth="601.0" />
+                              <JFXButton buttonType="RAISED" layoutX="502.0" layoutY="348.0" onAction="#onSubmitLI" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Submit Request" textFill="WHITE" />
+                              <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="348.0" onAction="#onCancelLI" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Cancel" textFill="WHITE" />
+                              <Label fx:id="languageRequiredLI" layoutX="223.0" layoutY="79.0" text="Required Field" textFill="RED" visible="false" />
+                              <Label fx:id="lastNameRequiredLI" layoutX="526.0" layoutY="163.0" text="Required Field" textFill="RED" visible="false" />
+                              <Label fx:id="firstNameRequiredLI" layoutX="223.0" layoutY="163.0" text="Required Field" textFill="RED" visible="false" />
+                              <Label fx:id="locationRequiredLI" layoutX="223.0" layoutY="203.0" text="Required Field" textFill="RED" visible="false" />
+                          </children>
+                      </AnchorPane>
                      <AnchorPane fx:id="religiousServicesPane" style="-fx-background-color: WHITE;">
                         <children>
                            <Text layoutX="70.0" layoutY="47.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Religious Services" />
@@ -83,33 +106,11 @@
                            <JFXMasonryPane fx:id="masonPane" prefHeight="542.0" prefWidth="983.0" />
                         </children>
                      </AnchorPane>
-                      <AnchorPane fx:id="languageInterpreterPane" style="-fx-background-color: WHITE;">
-                          <children>
-                              <Text layoutX="70.0" layoutY="47.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language Interpreter" />
-                              <JFXTextField fx:id="languageField" layoutX="80.0" layoutY="75.0" />
-                              <Label layoutX="21.0" layoutY="79.0" text="Language" />
-                              <Label layoutX="27.0" layoutY="128.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Patient Information" />
-                              <JFXTextField fx:id="firstNameLanguage" layoutX="80.0" layoutY="159.0" />
-                              <Label layoutX="12.0" layoutY="163.0" text="First Name" />
-                              <JFXTextField fx:id="lastNameLanguage" layoutX="80.0" layoutY="199.0" />
-                              <JFXTextField fx:id="destinationLanguage" layoutX="364.0" layoutY="159.0" />
-                              <Label layoutX="306.0" layoutY="163.0" text="Location" />
-                              <Label layoutX="16.0" layoutY="203.0" text="Last Name" />
-                              <Label layoutX="28.0" layoutY="249.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Special Instructions" />
-                              <JFXTextArea fx:id="instructionsLanguage" layoutX="21.0" layoutY="270.0" prefHeight="62.0" prefWidth="601.0" />
-                              <JFXButton buttonType="RAISED" layoutX="502.0" layoutY="348.0" onAction="#onSubmitLI" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Submit Request" textFill="WHITE" />
-                              <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="348.0" onAction="#onCancelLI" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Cancel" textFill="WHITE" />
-                              <Label fx:id="languageRequiredLI" layoutX="223.0" layoutY="79.0" text="Required Field" textFill="RED" visible="false" />
-                              <Label fx:id="lastNameRequiredLI" layoutX="526.0" layoutY="163.0" text="Required Field" textFill="RED" visible="false" />
-                              <Label fx:id="firstNameRequiredLI" layoutX="223.0" layoutY="163.0" text="Required Field" textFill="RED" visible="false" />
-                              <Label fx:id="locationRequiredLI" layoutX="223.0" layoutY="203.0" text="Required Field" textFill="RED" visible="false" />
-                          </children>
-                      </AnchorPane>
                   </children>
                </StackPane>
             </content>
          </Tab>
-         <Tab closable="false" text="Search Service Request">
+         <Tab closable="false" onSelectionChanged="#onSearchServiceRequest" text="Search Service Request">
             <content>
                <StackPane>
                   <children>
@@ -258,6 +259,11 @@
          </Tab>
       </tabs>
    </JFXTabPane>
+   <FontAwesomeIconView fx:id="closeBtn" glyphName="TIMES" size="25" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <GridPane.margin>
+         <Insets right="7.5" top="5.0" />
+      </GridPane.margin>
+   </FontAwesomeIconView>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
