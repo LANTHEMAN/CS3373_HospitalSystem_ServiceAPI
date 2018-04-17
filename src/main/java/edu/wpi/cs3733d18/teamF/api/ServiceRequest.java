@@ -3,6 +3,7 @@ package edu.wpi.cs3733d18.teamF.api;
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,10 +17,9 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 
 public class ServiceRequest {
-    public ServiceRequest(){
-    }
+    public ServiceRequest(){}
 
-    public void start() {
+    public void start() throws InterruptedException {
         Stage primaryStage = new Stage();
 
         Group root = new Group();
@@ -43,9 +43,11 @@ public class ServiceRequest {
         //primaryStage.setMaximized(true);
         //primaryStage.setFullScreen(true);
         primaryStage.show();
+
+        initVoice();
     }
 
-    public void run(int xcoord, int ycoord, int windowWidth, int windowLength, String cssPath, String destNodeID, String originNodeID){
+    public void run(int xcoord, int ycoord, int windowWidth, int windowLength, String cssPath, String destNodeID, String originNodeID) throws InterruptedException {
         long fileSize = 0;
         // get rid of the database folder if its empty
         try {
@@ -66,6 +68,13 @@ public class ServiceRequest {
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
 
         start();
+    }
+
+    public void initVoice() {
+        System.out.println("Initializing voice command");
+
+        Thread t = new Thread(VoiceLauncher.getInstance());
+        t.start();
     }
 
     public void setCurrUser(String username){
