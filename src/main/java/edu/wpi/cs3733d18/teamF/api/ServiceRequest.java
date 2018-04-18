@@ -5,6 +5,7 @@ import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ public class ServiceRequest {
         o.addObserver(VoiceLauncher.getInstance());
     }
 
-    public void start() {
+    public void start(String cssPath) {
         Stage primaryStage = new Stage();
 
         Group root = new Group();
@@ -34,7 +35,14 @@ public class ServiceRequest {
         int width = ServiceRequestSingleton.getInstance().getPrefWidth();
         int height = ServiceRequestSingleton.getInstance().getPrefLength();
 
+        Application.setUserAgentStylesheet(null);
         Scene scene = new Scene(root, width, height);
+        if(cssPath!= null) {
+            scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
+        }
+        else{
+            scene.getStylesheets().add(Main.class.getResource("controller/default.css").toExternalForm());
+        }
         PaneSwitcher paneSwitcher = new PaneSwitcher(scene, primaryStage);
 
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("BWHIcon.png").toExternalForm());
@@ -55,6 +63,7 @@ public class ServiceRequest {
 
     public void run(int xcoord, int ycoord, int windowWidth, int windowLength, String cssPath, String destNodeID, String originNodeID) {
         long fileSize = 0;
+
         // get rid of the database folder if its empty
         try {
             fileSize = Files.find(Paths.get("database"), 3
@@ -75,7 +84,7 @@ public class ServiceRequest {
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
 
         initVoice();
-        start();
+        start(cssPath);
     }
 
     public void initVoice() {

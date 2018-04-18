@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,15 +29,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.Pane?>
 <GridPane fx:id="serviceRequestPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="922.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.api.controller.page.MainPage">
-   <JFXTabPane fx:id="serviceRequestTabPane" blendMode="SRC_ATOP" stylesheets="@default.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+   <JFXTabPane fx:id="serviceRequestTabPane" blendMode="SRC_ATOP" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
       <tabs>
          <Tab closable="false" onSelectionChanged="#onCreateNewServiceRequest" text="Create Service Request">
             <content>
                <StackPane>
                   <children>
-                      <AnchorPane fx:id="securityPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f1f1f1;" styleClass="default.css">
+                      <AnchorPane fx:id="securityPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f1f1f1;">
                           <children>
                               <Text layoutX="417.0" layoutY="71.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Request" />
                               <Label layoutX="165.0" layoutY="96.0" text="Priority" />
@@ -59,7 +59,7 @@
                            <Label fx:id="securityLocationRequired" layoutX="372.0" layoutY="163.0" text="*Required Field" textFill="RED" visible="false" />
                           </children>
                       </AnchorPane>
-                      <AnchorPane fx:id="languageInterpreterPane" style="-fx-background-color: #f1f1f1;" styleClass="default.css">
+                      <AnchorPane fx:id="languageInterpreterPane" style="-fx-background-color: #f1f1f1;">
                           <children>
                               <Text layoutX="405.0" layoutY="62.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language Interpreter" />
                               <JFXTextField fx:id="languageField" layoutX="199.0" layoutY="96.0" />
@@ -81,7 +81,7 @@
                               <Label fx:id="locationRequiredLI" layoutX="351.0" layoutY="224.0" text="Required Field" textFill="RED" visible="false" />
                           </children>
                       </AnchorPane>
-                     <AnchorPane fx:id="religiousServicesPane" style="-fx-background-color: #f1f1f1;" styleClass="default.css">
+                     <AnchorPane fx:id="religiousServicesPane" style="-fx-background-color: #f1f1f1;">
                         <children>
                            <Text layoutX="414.0" layoutY="63.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Religious Services" />
                            <JFXTextField fx:id="religionField" layoutX="224.0" layoutY="92.0" />
@@ -103,7 +103,7 @@
                            <Label fx:id="locationRequiredRS" layoutX="650.0" layoutY="189.0" text="Required Field" textFill="RED" visible="false" />
                         </children>
                      </AnchorPane>
-                     <HBox fx:id="mainPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="80.0" style="-fx-background-color: #f1f1f1;" styleClass="default.css" StackPane.alignment="CENTER">
+                     <HBox fx:id="mainPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="80.0" style="-fx-background-color: #f1f1f1;" StackPane.alignment="CENTER">
                         <children>
                            <JFXButton fx:id="languageInterpreterBtn" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" prefHeight="200.0" prefWidth="200.0" ripplerFill="#58acff" style="-fx-background-color: #042E58; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-width: 5px;" text="Language&#10;Interpreter" textAlignment="CENTER" textFill="WHITE">
                               <effect>
@@ -429,12 +429,12 @@
          <Insets right="10.0" top="7.5" />
       </GridPane.margin>
    </FontAwesomeIconView>
+    <Pane fx:id="voicePane" pickOnBounds="false" prefHeight="148.0" prefWidth="600.0">
+    </Pane>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
    </rowConstraints>
-    <Pane fx:id="voicePane" pickOnBounds="false" prefHeight="148.0" prefWidth="600.0">
-    </Pane>
 </GridPane>
