@@ -549,3 +549,13 @@
     -fx-background-color: #042e58;
     -fx-text-fill: WHITE;
 }
+
+.jfx-button:focused{
+    -fx-background-color: #042e58;
+    -fx-text-fill: WHITE;
+}
+
+.jfx-button:pressed{
+    -fx-background-color: #042e58;
+    -fx-text-fill: WHITE;
+}

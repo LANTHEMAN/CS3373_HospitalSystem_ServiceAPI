@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,16 +28,28 @@ public class ServiceRequest {
         o.addObserver(VoiceLauncher.getInstance());
     }
 
-    public void start(String cssPath) {
+    public void start(int xcoord, int ycoord, String cssPath) {
         Stage primaryStage = new Stage();
 
         Group root = new Group();
 
-        int width = ServiceRequestSingleton.getInstance().getPrefWidth();
-        int height = ServiceRequestSingleton.getInstance().getPrefLength();
 
+        Scene scene;
+        int width, height;
         Application.setUserAgentStylesheet(null);
-        Scene scene = new Scene(root, width, height);
+        if(ServiceRequestSingleton.getInstance().getPrefWidth() > 0 && ServiceRequestSingleton.getInstance().getPrefLength() > 0) {
+            width = ServiceRequestSingleton.getInstance().getPrefWidth();
+            height = ServiceRequestSingleton.getInstance().getPrefLength();
+             scene = new Scene(root, width, height);
+            primaryStage.setMaxWidth(width);
+            primaryStage.setMaxHeight(height);
+        }else{
+            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+            width = gd.getDisplayMode().getWidth();
+            height = gd.getDisplayMode().getHeight();
+            scene = new Scene(root, width, height);
+            primaryStage.setMaximized(true);
+        }
         if(cssPath!= null) {
             scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
         }
@@ -50,14 +63,14 @@ public class ServiceRequest {
 
         // initial pane
         paneSwitcher.switchTo(Screens.Home);
-
-
         primaryStage.setTitle("Brigham and Women's Hospital");
-        primaryStage.setMaxWidth(width);
-        primaryStage.setMaxHeight(height);
         primaryStage.setScene(scene);
-        //primaryStage.setMaximized(true);
-        //primaryStage.setFullScreen(true);
+        if(xcoord >= 0) {
+            primaryStage.setX(xcoord);
+        }
+        if(ycoord >= 0) {
+            primaryStage.setY(ycoord);
+        }
         primaryStage.show();
     }
 
@@ -84,7 +97,7 @@ public class ServiceRequest {
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
 
         initVoice();
-        start(cssPath);
+        start(xcoord, ycoord, cssPath);
     }
 
     public void initVoice() {
