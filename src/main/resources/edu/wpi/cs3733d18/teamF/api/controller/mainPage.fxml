@@ -27,7 +27,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="serviceRequestPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.api.controller.page.MainPage">
+<GridPane fx:id="serviceRequestPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.api.controller.page.MainPage">
    <JFXTabPane fx:id="serviceRequestTabPane" blendMode="SRC_ATOP" stylesheets="@default.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
       <tabs>
          <Tab closable="false" onSelectionChanged="#onCreateNewServiceRequest" text="Create Service Request">
@@ -145,7 +145,7 @@
                   <children>
                      <AnchorPane fx:id="editRequestPane" style="-fx-background-color: #f1f1f1;">
                         <children>
-                           <GridPane layoutX="-86.0" layoutY="-85.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <GridPane layoutY="30.0" AnchorPane.bottomAnchor="-30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                               <columnConstraints>
                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.71429443359375" minWidth="10.0" prefWidth="15.0" />
                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.71429443359375" minWidth="10.0" prefWidth="278.71429443359375" />
@@ -156,8 +156,8 @@
                               <rowConstraints>
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 <RowConstraints maxHeight="184.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
+                                 <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
@@ -171,59 +171,42 @@
                                        <Font size="14.0" />
                                     </font>
                                  </Label>
-                                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <VBox prefHeight="62.0" prefWidth="470.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="TOP">
                                     <children>
-                                       <Label alignment="CENTER" text="Patient Information" underline="true">
+                                       <Label text="Special Instructions">
                                           <font>
-                                             <Font size="20.0" />
+                                             <Font size="18.0" />
                                           </font>
                                        </Label>
-                                       <Label fx:id="firstNameLabel" text="First Name: Alex">
-                                          <font>
-                                             <Font size="16.0" />
-                                          </font>
-                                       </Label>
-                                       <Label fx:id="lastNameLabel" text="Last Name: Tavares" VBox.vgrow="ALWAYS">
-                                          <font>
-                                             <Font size="16.0" />
-                                          </font>
-                                       </Label>
+                                       <JFXTextArea fx:id="instructionsTextArea" prefHeight="201.0" prefWidth="470.0" />
                                     </children>
                                  </VBox>
-                                 <VBox GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                 <VBox GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                     <children>
-                                       <Label text="Location" underline="true">
-                                          <font>
-                                             <Font size="20.0" />
-                                          </font>
-                                       </Label>
-                                       <Label fx:id="locationLabel" text="location">
-                                          <font>
-                                             <Font size="16.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </VBox>
-                                 <VBox GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                    <children>
-                                       <Label text="Status" underline="true">
-                                          <font>
-                                             <Font size="20.0" />
-                                          </font>
-                                       </Label>
-                                       <Label fx:id="statusLabel" text="status">
-                                          <font>
-                                             <Font size="16.0" />
-                                          </font>
-                                       </Label>
-                                    </children>
-                                 </VBox>
-                                 <JFXTextArea fx:id="instructionsTextArea" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-                                 <Label text="Special Instructions" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                                    <font>
-                                       <Font size="18.0" />
-                                    </font>
-                                 </Label>
+                                       <GridPane prefHeight="115.0" prefWidth="780.0">
+                                         <columnConstraints>
+                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="55.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="127.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="66.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="223.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="347.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                           <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="61.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                          <children>
+                                             <Label prefHeight="30.0" prefWidth="95.0" text="Assign to: " GridPane.columnIndex="1">
+                                                <font>
+                                                   <Font size="20.0" />
+                                                </font>
+                                             </Label>
+                                             <JFXTextField fx:id="usernameSearch" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="359.0" GridPane.columnIndex="2" GridPane.columnSpan="2" />
+                                             <JFXListView fx:id="usernameList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="281.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                                          </children>
+                                       </GridPane>
+                                    </children></VBox>
                                  <JFXButton buttonType="RAISED" onAction="#onCancelEdit" prefHeight="31.0" prefWidth="70.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Cancel" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
                                  <Label fx:id="completedByLabel" text="Completed By:" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                  <Label fx:id="usernameLabel" text="username" visible="false" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -232,14 +215,50 @@
                                     </GridPane.margin>
                                  </Label>
                                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#onSubmitEdit" prefHeight="31.0" prefWidth="70.0" ripplerFill="#11119d" style="-fx-background-color: #5264ae;" text="Submit" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                 <JFXTextField fx:id="usernameSearch" alignment="BOTTOM_LEFT" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                                 <JFXListView fx:id="usernameList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="76.0" prefWidth="239.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-                                 <Label text="Assign to: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                    <font>
-                                       <Font size="20.0" />
-                                    </font>
-                                 </Label>
                                  <JFXCheckBox fx:id="completeCheck" maxHeight="-Infinity" maxWidth="-Infinity" text="Complete" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                   <columnConstraints>
+                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                   </columnConstraints>
+                                   <rowConstraints>
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                   </rowConstraints>
+                                    <children>
+                                       <Label fx:id="statusLabel" text="requestStatus" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="locationLabel" text="location" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="fullNameLabel" text="patientName" GridPane.columnIndex="1">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <Label text="Patient Name:">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <Label text="Location:" GridPane.rowIndex="1">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                       <Label text="Request Status:" GridPane.rowIndex="2">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </GridPane>
                               </children>
                            </GridPane>
                         </children>

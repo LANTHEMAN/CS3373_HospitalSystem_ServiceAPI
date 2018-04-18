@@ -36,7 +36,7 @@ public class MainPage implements SwitchableController {
     @FXML
     public TableColumn<ServiceRequest, String> requestTypeCol, firstNameCol, lastNameCol, destinationCol, theStatusCol;
     @FXML
-    public Label typeLabel, idLabel, firstNameLabel, lastNameLabel, locationLabel, statusLabel, completedByLabel, usernameLabel;
+    public Label typeLabel, idLabel, fullNameLabel, locationLabel, statusLabel, completedByLabel, usernameLabel;
     @FXML
     public TextArea instructionsTextArea;
     PaneSwitcher switcher;
@@ -255,8 +255,7 @@ public class MainPage implements SwitchableController {
         serviceRequestPopUp = s;
         typeLabel.setText("Type: " + s.getType());
         idLabel.setText("Service Request #" + s.getId());
-        firstNameLabel.setText("First Name: " + s.getFirstName());
-        lastNameLabel.setText("Last Name: " + s.getLastName());
+        fullNameLabel.setText(s.getFirstName() + " " + s.getLastName());
         locationLabel.setText(s.getLocation());
         statusLabel.setText(s.getStatus());
         instructionsTextArea.setText(s.getDescription());
