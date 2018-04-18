@@ -83,7 +83,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     public void updateAssignedTo(ServiceRequest s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "', started = " + time + " WHERE id = " + s.getId();
+        String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "', started = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
     }
 
@@ -478,6 +478,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
             updateAssignedTo(sr);
             updateStatus(sr);
             String sql = "INSERT INTO Inbox VALUES ('" + username + "', " + sr.getId() + ")";
+            DatabaseSingleton.getInstance().getDbHandler().runAction(sql);
         }
     }
 

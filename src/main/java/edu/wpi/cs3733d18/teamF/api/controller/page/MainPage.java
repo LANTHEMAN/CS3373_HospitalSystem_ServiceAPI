@@ -459,14 +459,14 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     public void onSubmitEdit() {
+        if (usernameSearch.getText() != null && !usernameSearch.getText().trim().isEmpty()) {
+            ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestPopUp);
+        }
         if (completeCheck.isSelected() && !serviceRequestPopUp.getStatus().equalsIgnoreCase("Complete")) {
             serviceRequestPopUp.setStatus("Complete");
             serviceRequestPopUp.setCompletedBy(PermissionSingleton.getInstance().getCurrUser());
             ServiceRequestSingleton.getInstance().updateCompletedBy(serviceRequestPopUp);
             ServiceRequestSingleton.getInstance().updateStatus(serviceRequestPopUp);
-        }
-        if (usernameSearch.getText() != null && !usernameSearch.getText().trim().isEmpty()) {
-            ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestPopUp);
         }
         usernameSearch.setText("");
         editRequestPane.toBack();
