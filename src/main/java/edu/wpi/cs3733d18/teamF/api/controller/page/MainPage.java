@@ -10,13 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import java.sql.ResultSet;
@@ -115,6 +113,14 @@ public class MainPage implements SwitchableController {
 
     @FXML
     private FontAwesomeIconView closeBtn;
+    @FXML
+    private HBox mainPane;
+    @FXML
+    private JFXButton languageInterpreterBtn;
+    @FXML
+    private JFXButton religiousServicesBtn;
+    @FXML
+    private JFXButton securityRequestBtn;
 
     @Override
     public void initialize(PaneSwitcher switcher) {
@@ -122,35 +128,17 @@ public class MainPage implements SwitchableController {
 
         serviceRequestPane.setPrefSize(ServiceRequestSingleton.getInstance().getPrefWidth(), ServiceRequestSingleton.getInstance().getPrefLength());
 
-        if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "LanguageInterpreter")) {
-            JFXButton languageInterpreterBtn = new JFXButton();
-            languageInterpreterBtn.setText("Language Interpreter");
-            languageInterpreterBtn.setStyle("-fx-background-color: RED;");
-            languageInterpreterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                languageInterpreterPane.toFront();
-            });
-            masonPane.getChildren().add(languageInterpreterBtn);
-        }
+        languageInterpreterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            languageInterpreterPane.toFront();
+        });
 
-        if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "ReligiousServices")) {
-            JFXButton religiousServicesBtn = new JFXButton();
-            religiousServicesBtn.setText("Religious Services");
-            religiousServicesBtn.setStyle("-fx-background-color: RED;");
-            religiousServicesBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
-                religiousServicesPane.toFront();
-            });
-            masonPane.getChildren().add(religiousServicesBtn);
-        }
+        religiousServicesBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            religiousServicesPane.toFront();
+        });
+        securityRequestBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            securityPane.toFront();
+        });
 
-        if (!ServiceRequestSingleton.getInstance().isInTable(ServiceRequestSingleton.getInstance().getCurrUser(), "SecurityRequest")) {
-            JFXButton securityRequestBtn = new JFXButton();
-            securityRequestBtn.setText("Security Request");
-            securityRequestBtn.setStyle("-fx-background-color: RED;");
-            securityRequestBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
-                securityPane.toFront();
-            });
-            masonPane.getChildren().add(securityRequestBtn);
-        }
 
         closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
             VoiceLauncher.getInstance().terminate();
@@ -417,21 +405,21 @@ public class MainPage implements SwitchableController {
         clearLanguage();
     }
 
-    private void clearLanguage(){
+    private void clearLanguage() {
         languageField.clear();
-        if(languageRequiredLI.isVisible()) {
+        if (languageRequiredLI.isVisible()) {
             languageRequiredLI.setVisible(false);
         }
         firstNameLanguage.clear();
-        if(firstNameRequiredLI.isVisible()) {
+        if (firstNameRequiredLI.isVisible()) {
             firstNameRequiredLI.setVisible(false);
         }
         lastNameLanguage.clear();
-        if(lastNameRequiredLI.isVisible()){
+        if (lastNameRequiredLI.isVisible()) {
             lastNameRequiredLI.setVisible(false);
         }
         destinationLanguage.clear();
-        if(locationRequiredLI.isVisible()){
+        if (locationRequiredLI.isVisible()) {
             locationRequiredLI.setVisible(false);
         }
         instructionsLanguage.clear();
@@ -494,21 +482,21 @@ public class MainPage implements SwitchableController {
         clearReligious();
     }
 
-    private void clearReligious(){
+    private void clearReligious() {
         religionField.clear();
-        if(religionRequiredRS.isVisible()) {
+        if (religionRequiredRS.isVisible()) {
             religionRequiredRS.setVisible(false);
         }
         firstNameRS.clear();
-        if(firstNameRequiredRS.isVisible()) {
+        if (firstNameRequiredRS.isVisible()) {
             firstNameRequiredRS.setVisible(false);
         }
         lastNameRS.clear();
-        if(lastNameRequiredRS.isVisible()){
+        if (lastNameRequiredRS.isVisible()) {
             lastNameRequiredRS.setVisible(false);
         }
         destinationRS.clear();
-        if(locationRequiredRS.isVisible()){
+        if (locationRequiredRS.isVisible()) {
             locationRequiredRS.setVisible(false);
         }
         instructionsRS.clear();
@@ -545,22 +533,26 @@ public class MainPage implements SwitchableController {
         clearSecurity();
     }
 
-    private void clearSecurity(){
+    private void clearSecurity() {
         securityLocationField.clear();
         securityTextArea.clear();
-        if(securityLocationRequired.isVisible()){
+        if (securityLocationRequired.isVisible()) {
             securityLocationRequired.setVisible(false);
         }
     }
 
 
     @FXML
-    private void onCreateNewServiceRequest(){
-
+    private void onCreateNewServiceRequest() {
+        mainPane.toFront();
+        clearLanguage();
+        clearReligious();
+        clearSecurity();
     }
 
     @FXML
-    private void onSearchServiceRequest(){
-
+    private void onSearchServiceRequest() {
+        onClear();
+        onSearch();
     }
 }

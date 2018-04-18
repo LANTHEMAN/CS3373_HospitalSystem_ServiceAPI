@@ -6,6 +6,7 @@ import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -76,17 +77,20 @@ public class ServiceRequestSingleton implements DatabaseItem {
     }
 
     public void updateCompletedBy(ServiceRequest s) {
-        String sql = "UPDATE ServiceRequest SET completedBy = '" + s.getCompletedBy() + "' WHERE id = " + s.getId();
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        String sql = "UPDATE ServiceRequest SET completedBy = '" + s.getCompletedBy() + "', completed = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
     }
 
     public void updateAssignedTo(ServiceRequest s) {
-        String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "' WHERE id = " + s.getId();
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "', started = " + time + " WHERE id = " + s.getId();
         dbHandler.runAction(sql);
     }
 
     public void sendServiceRequest(ServiceRequest s) {
-        String sql = "INSERT INTO ServiceRequest(id, type, firstName, lastName, location, instructions, priority, status)"
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        String sql = "INSERT INTO ServiceRequest(id, type, firstName, lastName, location, instructions, priority, status, createdOn)"
                 + " VALUES (" + s.getId()
                 + ", '" + s.getType()
                 + "', '" + s.getFirstName()
@@ -94,7 +98,8 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 + "', '" + s.getLocation()
                 + "', '" + s.getDescription()
                 + "', " + s.getPriority()
-                + ", '" + s.getStatus() + "')";
+                + ", '" + s.getStatus()
+                + "', '" + time + "')";
         dbHandler.runAction(sql);
     }
 
@@ -121,10 +126,12 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     @Override
     public void initDatabase(DatabaseHandler dbHandler) {
-        dbHandler.runVerboseSQLScript("init_sr_db.sql");
-        dbHandler.runVerboseSQLScript("init_sr_li_db.sql");
-        dbHandler.runVerboseSQLScript("init_sr_rs_db.sql");
-        dbHandler.runVerboseSQLScript("init_sr_sr_db.sql");
+        dbHandler.runSQLScript("init_sr_db.sql");
+        dbHandler.runSQLScript("init_sr_li_db.sql");
+        dbHandler.runSQLScript("init_sr_rs_db.sql");
+        dbHandler.runSQLScript("init_sr_sr_db.sql");
+        dbHandler.runSQLScript("init_user_db.sql");
+        dbHandler.runSQLScript("init_user_sr_inbox_db.sql");
         if (dbHandler != DatabaseSingleton.getInstance().getDbHandler()) {
             initDatabase(DatabaseSingleton.getInstance().getDbHandler());
         }
