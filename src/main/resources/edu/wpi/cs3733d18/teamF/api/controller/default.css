@@ -31,9 +31,8 @@
 .jfx-button:hover,
 .jfx-button:focused,
 .jfx-button {
-    -fx-background-color: TRANSPARENT, TRANSPARENT, TRANSPARENT, TRANSPARENT;
-    -fx-background-radius: 3px;
-    -fx-background-insets: 0px;
+    -fx-background-color: #042e58;
+    -fx-text-fill: WHITE;
 }
 
 .jfx-check-box {
@@ -545,17 +544,3 @@
     -fx-background-color: #042e58;
 }
 
-.jfx-button{
-    -fx-background-color: #042e58;
-    -fx-text-fill: WHITE;
-}
-
-.jfx-button:focused{
-    -fx-background-color: #042e58;
-    -fx-text-fill: WHITE;
-}
-
-.jfx-button:pressed{
-    -fx-background-color: #042e58;
-    -fx-text-fill: WHITE;
-}

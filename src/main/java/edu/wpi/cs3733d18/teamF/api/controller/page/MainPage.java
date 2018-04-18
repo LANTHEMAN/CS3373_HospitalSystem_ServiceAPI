@@ -172,6 +172,8 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     private Label userORequired;
     @FXML
+    private Label usernameTaken;
+    @FXML
     private JFXButton deleteUserBtn;
 
     @Override
@@ -259,6 +261,13 @@ public class MainPage implements SwitchableController, Observer {
         } else {
             listView.setVisible(false);
         }
+    }
+
+    @FXML
+    private void setAssignTo(){
+        String selection = usernameList.getSelectionModel().getSelectedItem().toString();
+        usernameSearch.setText(selection);
+        usernameList.setVisible(false);
     }
 
     private ArrayList<User> autoCompleteUserSearch(String input) {
@@ -455,6 +464,7 @@ public class MainPage implements SwitchableController, Observer {
             e.printStackTrace();
         }
         ServiceRequestSingleton.getInstance().setSearchNull();
+        onSearch();
     }
 
     @FXML
@@ -700,26 +710,40 @@ public class MainPage implements SwitchableController, Observer {
         if (fnameField.getText() == null || fnameField.getText().trim().isEmpty()) {
             userFNameRequired.setVisible(true);
             requiredFields++;
+        }else{
+            userFNameRequired.setVisible(false);
         }
         if (lnameField.getText() == null || lnameField.getText().trim().isEmpty()) {
             userLNameRequired.setVisible(true);
             requiredFields++;
+        }else{
+            userLNameRequired.setVisible(false);
         }
         if (usernameField.getText() == null || usernameField.getText().trim().isEmpty()) {
+            usernameTaken.setVisible(false);
             userUNameRequired.setVisible(true);
             requiredFields++;
+        }else{
+            userUNameRequired.setVisible(false);
         }
         if (occupationField.getText() == null || occupationField.getText().trim().isEmpty()) {
             userORequired.setVisible(true);
             requiredFields++;
-        }
-        if(requiredFields > 0){
-            return;
+        }else{
+            userORequired.setVisible(false);
         }
         if (newUser) {
             username = usernameField.getText();
+            if(PermissionSingleton.getInstance().userExist(username)){
+                userUNameRequired.setVisible(false);
+                usernameTaken.setVisible(true);
+                return;
+            }
         } else {
             username = editedUser.getUname();
+        }
+        if(requiredFields > 0){
+            return;
         }
         String firstName = fnameField.getText();
         String lastName = lnameField.getText();
@@ -787,9 +811,9 @@ public class MainPage implements SwitchableController, Observer {
     public void onDeleteUser(){
         newUserPane.toBack();
         deleteUserBtn.setVisible(false);
+        PermissionSingleton.getInstance().removeUser(editedUser);
         onEditUsers();
         onUserManagement();
-        PermissionSingleton.getInstance().removeUser(editedUser);
         editedUser = null;
     }
 
@@ -810,6 +834,7 @@ public class MainPage implements SwitchableController, Observer {
         userLNameRequired.setVisible(false);
         userUNameRequired.setVisible(false);
         userORequired.setVisible(false);
+        usernameTaken.setVisible(false);
     }
 
     private void displayInUserTable(ArrayList<User> users) {
@@ -890,6 +915,7 @@ public class MainPage implements SwitchableController, Observer {
         userLNameRequired.setVisible(false);
         userUNameRequired.setVisible(false);
         userORequired.setVisible(false);
+        usernameTaken.setVisible(false);
         newUserPane.toFront();
         deleteUserBtn.setVisible(true);
     }

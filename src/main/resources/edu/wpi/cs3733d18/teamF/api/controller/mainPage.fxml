@@ -205,7 +205,7 @@
                                                 </font>
                                              </Label>
                                              <JFXTextField fx:id="usernameSearch" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="359.0" GridPane.columnIndex="2" GridPane.columnSpan="2" />
-                                             <JFXListView fx:id="usernameList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="39.0" prefWidth="132.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                                             <JFXListView fx:id="usernameList" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#setAssignTo" prefHeight="39.0" prefWidth="132.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
                                           </children>
                                        </GridPane>
                                     </children></VBox>
@@ -356,9 +356,9 @@
                                        <Font size="14.0" />
                                     </font>
                                  </Label>
-                                 <JFXTextField fx:id="usernameField" alignment="BOTTOM_LEFT" editable="false" layoutX="410.0" layoutY="140.0" />
                                  <JFXTextField fx:id="fnameField" alignment="BOTTOM_LEFT" layoutX="102.0" layoutY="140.0" />
                                  <JFXTextField fx:id="lnameField" alignment="BOTTOM_LEFT" layoutX="102.0" layoutY="200.0" />
+                                 <JFXTextField fx:id="usernameField" alignment="BOTTOM_LEFT" editable="false" layoutX="410.0" layoutY="140.0" />
                                  <JFXTextField fx:id="occupationField" alignment="BOTTOM_LEFT" layoutX="416.0" layoutY="200.0" />
                                  <JFXButton buttonType="RAISED" layoutX="586.0" layoutY="405.0" onAction="#onSubmitUser" text="Submit" textFill="WHITE" />
                                  <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="405.0" onAction="#onCancelUser" text="Cancel" textFill="WHITE" />
@@ -367,6 +367,7 @@
                                  <Label fx:id="userUNameRequired" layoutX="552.0" layoutY="144.0" text="*Required Field" textFill="RED" visible="false" />
                                  <Label fx:id="userORequired" layoutX="552.0" layoutY="204.0" text="*Required Field" textFill="RED" visible="false" />
                                  <JFXButton fx:id="deleteUserBtn" buttonType="RAISED" layoutX="299.0" layoutY="405.0" onAction="#onDeleteUser" style="-fx-background-color: RED;" text="Delete User" textFill="WHITE" visible="false" />
+                                 <Label fx:id="usernameTaken" layoutX="562.0" layoutY="154.0" text="*Username Taken" textFill="RED" visible="false" />
                               </children>
                            </AnchorPane>
 
