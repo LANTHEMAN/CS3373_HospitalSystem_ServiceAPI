@@ -534,3 +534,18 @@
 .jfx-tree-view-path .buttons-container{
     -fx-background-color: -fx-container-color;
 }
+
+.tab{
+    -fx-background-color: #042e58;
+    -fx-pref-width: 300;
+    -fx-pref-height: 50;
+}
+
+.jfx-tab-pane .tab-header-background{
+    -fx-background-color: #042e58;
+}
+
+.jfx-button{
+    -fx-background-color: #042e58;
+    -fx-text-fill: WHITE;
+}
