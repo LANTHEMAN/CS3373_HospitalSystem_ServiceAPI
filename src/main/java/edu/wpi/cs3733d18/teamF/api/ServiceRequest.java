@@ -14,19 +14,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.Observable;
 
 public class ServiceRequest {
-    static VoiceLauncher voiceLauncher = null;
 
     public ServiceRequest() {
     }
 
-    public void injectVoice(VoiceLauncher voice){
-        injectVoiceLauncher(voice);
-    }
-
-    public static void injectVoiceLauncher(VoiceLauncher launcher) {
-        voiceLauncher = launcher;
+    static public void injectObservable(Observable o) {
+        o.addObserver(VoiceLauncher.getInstance());
     }
 
     public void start() {
@@ -82,13 +78,11 @@ public class ServiceRequest {
 
     public void initVoice() {
         System.out.println("Initializing voice command");
-        injectVoice(voiceLauncher);
 
         try {
             Thread t = new Thread(VoiceLauncher.getInstance());
             t.start();
         } catch (Exception e) {
-            VoiceLauncher.setInstance(voiceLauncher);
             System.out.println("e.getMessage() = " + e.getMessage());
         }
     }

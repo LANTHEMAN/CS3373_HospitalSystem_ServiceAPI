@@ -10,8 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
+import java.util.Observer;
 
-public class VoiceLauncher extends Observable implements Runnable {
+public class VoiceLauncher extends Observable implements Runnable, Observer {
 
     Configuration configuration = new Configuration();
     private boolean terminate = false;
@@ -24,10 +25,6 @@ public class VoiceLauncher extends Observable implements Runnable {
 
     public static VoiceLauncher getInstance() {
         return LazyInitializer.INSTANCE;
-    }
-
-    public static void setInstance(VoiceLauncher voiceLauncher){
-        LazyInitializer.INSTANCE = voiceLauncher;
     }
 
     public void run() {
@@ -62,8 +59,13 @@ public class VoiceLauncher extends Observable implements Runnable {
         terminate = true;
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        signalClassChanged(arg);
+    }
+
     private static class LazyInitializer {
-        static VoiceLauncher INSTANCE = new VoiceLauncher();
+        static final VoiceLauncher INSTANCE = new VoiceLauncher();
     }
 }
 
