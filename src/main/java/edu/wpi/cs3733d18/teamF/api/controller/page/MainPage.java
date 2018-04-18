@@ -82,10 +82,6 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     AnchorPane securityPane;
     @FXML
-    JFXButton selectLanguage;
-    @FXML
-    JFXButton selectSecurity;
-    @FXML
     GridPane serviceRequestPane;
     @FXML
     JFXTabPane serviceRequestTabPane;
@@ -119,8 +115,6 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     private AnchorPane religiousServicesPane;
     @FXML
-    private JFXMasonryPane masonPane;
-    @FXML
     private Label securityLocationRequired;
 
     @FXML
@@ -149,7 +143,7 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     public TableColumn chooseCol;
     @FXML
-    public TableColumn<User, String> usernameCol, firstNameUserCol, lastNameUserCol, privilegeCol, occupationCol;
+    public TableColumn<User, String> usernameCol, firstNameUserCol, lastNameUserCol, occupationCol;
     @FXML
     private AnchorPane editUserPane;
     @FXML
