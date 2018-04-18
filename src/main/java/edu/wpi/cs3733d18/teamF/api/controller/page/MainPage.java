@@ -8,6 +8,8 @@ import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.controller.User;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceCommandVerification;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,13 +20,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.util.Callback;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainPage implements SwitchableController {
+public class MainPage implements SwitchableController, Observer {
     private final ObservableList<String> priority = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5");
     private final ObservableList<String> status = FXCollections.observableArrayList("Incomplete", "In Progress", "Complete");
     private final ObservableList<String> type = FXCollections.observableArrayList("Language Interpreter", "Religious Services", "Security Request");
@@ -125,6 +131,8 @@ public class MainPage implements SwitchableController {
     @FXML
     private JFXButton securityRequestBtn;
 
+    private VoiceCommandVerification voice;
+
 
     ////////////////////////
     //                    //
@@ -169,6 +177,10 @@ public class MainPage implements SwitchableController {
     public void initialize(PaneSwitcher switcher) {
         this.switcher = switcher;
 
+        VoiceCommandVerification voice = new VoiceCommandVerification();
+        voice.addObserver(this);
+        VoiceLauncher.getInstance().addObserver(voice);
+
         serviceRequestPane.setPrefSize(ServiceRequestSingleton.getInstance().getPrefWidth(), ServiceRequestSingleton.getInstance().getPrefLength());
 
         languageInterpreterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
@@ -183,8 +195,9 @@ public class MainPage implements SwitchableController {
         });
 
 
-        closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-            System.exit(0);
+        closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
+            VoiceLauncher.getInstance().terminate();
+            switcher.terminate();
         });
 
         filter = "none";
@@ -911,4 +924,30 @@ public class MainPage implements SwitchableController {
         displayInUserTable(allUsers);
     }
 
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Observer caught");
+        if (!(o instanceof VoiceCommandVerification)) {
+            return;
+        }
+        System.out.println("Observer Passed");
+        System.out.println("arg = " + arg);
+
+        if (arg instanceof String) {
+            if(arg.toString().equalsIgnoreCase("Language")){
+                languageInterpreterPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Religious")){
+                religiousServicesPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Security")){
+                securityPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Create")){
+
+            }else if(arg.toString().equalsIgnoreCase("Search")){
+
+            }else if(arg.toString().equalsIgnoreCase("User")){
+
+            }
+        }
+    }
 }

@@ -3,19 +3,24 @@ package edu.wpi.cs3733d18.teamF.api.voice;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
+import edu.wpi.cs3733d18.teamF.api.Main;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Observable;
+import java.util.Observer;
 
-public class VoiceLauncher extends Observable implements Runnable {
+public class VoiceLauncher extends Observable implements Runnable, Observer {
 
     Configuration configuration = new Configuration();
     private boolean terminate = false;
 
     private VoiceLauncher() {
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        configuration.setDictionaryPath("3075.dic");
-        configuration.setLanguageModelPath("3075.lm");
+        configuration.setDictionaryPath("sr.dic");
+        configuration.setLanguageModelPath("sr.lm");
     }
 
     public static VoiceLauncher getInstance() {
@@ -52,6 +57,11 @@ public class VoiceLauncher extends Observable implements Runnable {
 
     public void terminate() {
         terminate = true;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        signalClassChanged(arg);
     }
 
     private static class LazyInitializer {

@@ -1,0 +1,66 @@
+Language model created by QuickLM on Wed Apr 18 00:02:07 EDT 2018
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 6 sentences and 13 words
+
+\data\
+ngram 1=13
+ngram 2=17
+ngram 3=13
+
+\1-grams:
+-0.9379 </s> -0.3010
+-0.9379 <s> -0.2478
+-1.7160 CREATE -0.2840
+-1.7160 INTERPRETER -0.2478
+-1.7160 LANGUAGE -0.2926
+-1.7160 MANAGEMENT -0.2478
+-1.7160 RELIGIOUS -0.2926
+-1.2389 REQUEST -0.2478
+-1.7160 SEARCH -0.2840
+-1.7160 SECURITY -0.2752
+-1.4150 SERVICE -0.2752
+-1.7160 SERVICES -0.2478
+-1.7160 USER -0.2926
+
+\2-grams:
+-1.0792 <s> CREATE 0.0000
+-1.0792 <s> LANGUAGE 0.0000
+-1.0792 <s> RELIGIOUS 0.0000
+-1.0792 <s> SEARCH 0.0000
+-1.0792 <s> SECURITY 0.0000
+-1.0792 <s> USER 0.0000
+-0.3010 CREATE SERVICE 0.0000
+-0.3010 INTERPRETER </s> -0.3010
+-0.3010 LANGUAGE INTERPRETER 0.0000
+-0.3010 MANAGEMENT </s> -0.3010
+-0.3010 RELIGIOUS SERVICES 0.0000
+-0.3010 REQUEST </s> -0.3010
+-0.3010 SEARCH SERVICE 0.0000
+-0.3010 SECURITY REQUEST 0.0000
+-0.3010 SERVICE REQUEST 0.0000
+-0.3010 SERVICES </s> -0.3010
+-0.3010 USER MANAGEMENT 0.0000
+
+\3-grams:
+-0.3010 <s> CREATE SERVICE
+-0.3010 <s> LANGUAGE INTERPRETER
+-0.3010 <s> RELIGIOUS SERVICES
+-0.3010 <s> SEARCH SERVICE
+-0.3010 <s> SECURITY REQUEST
+-0.3010 <s> USER MANAGEMENT
+-0.3010 CREATE SERVICE REQUEST
+-0.3010 LANGUAGE INTERPRETER </s>
+-0.3010 RELIGIOUS SERVICES </s>
+-0.3010 SEARCH SERVICE REQUEST
+-0.3010 SECURITY REQUEST </s>
+-0.3010 SERVICE REQUEST </s>
+-0.3010 USER MANAGEMENT </s>
+
+\end\
