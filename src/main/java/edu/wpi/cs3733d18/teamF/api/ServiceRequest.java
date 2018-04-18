@@ -34,13 +34,14 @@ public class ServiceRequest {
         int height = ServiceRequestSingleton.getInstance().getPrefLength();
 
         Scene scene = new Scene(root, width, height);
-        PaneSwitcher paneSwitcher = new PaneSwitcher(scene);
+        PaneSwitcher paneSwitcher = new PaneSwitcher(scene, primaryStage);
 
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("BWHIcon.png").toExternalForm());
         primaryStage.getIcons().add(image);
 
         // initial pane
         paneSwitcher.switchTo(Screens.Home);
+
 
         primaryStage.setTitle("Brigham and Women's Hospital");
         primaryStage.setMaxWidth(width);

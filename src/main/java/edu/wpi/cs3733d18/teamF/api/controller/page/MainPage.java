@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.util.Callback;
 
 import java.sql.ResultSet;
@@ -152,7 +153,7 @@ public class MainPage implements SwitchableController, Observer {
 
         closeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
             VoiceLauncher.getInstance().terminate();
-            System.exit(0);
+            switcher.terminate();
         });
 
         filter = "none";

@@ -15,10 +15,12 @@ public class PaneSwitcher {
     private HashMap<String, Pane> panes;
     private Scene scene;
     private Stage popup = new Stage();
+    private Stage rootStage;
 
-    public PaneSwitcher(Scene scene) {
+    public PaneSwitcher(Scene scene, Stage stage) {
         this.scene = scene;
         panes = new HashMap<>();
+        this.rootStage = stage;
 
         popup.initModality(Modality.APPLICATION_MODAL);
     }
@@ -97,5 +99,9 @@ public class PaneSwitcher {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void terminate(){
+        rootStage.close();
     }
 }
