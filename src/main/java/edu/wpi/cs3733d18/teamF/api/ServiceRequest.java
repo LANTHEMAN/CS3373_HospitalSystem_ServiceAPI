@@ -57,14 +57,14 @@ public class ServiceRequest {
         long fileSize = 0;
         // get rid of the database folder if its empty
         try {
-            fileSize = Files.find(Paths.get("database"), 3
+            fileSize = Files.find(Paths.get("database_teamF_SR_API"), 3
                     , (p, bfa) -> bfa.isRegularFile())
                     .mapToLong(path -> path.toFile().length())
                     .sum();
 
             // delete the database if it is empty
             if (fileSize < 100) {
-                Files.walk(Paths.get("database"))
+                Files.walk(Paths.get("database_teamF_SR_API"))
                         .sorted(Comparator.reverseOrder())
                         .map(Path::toFile)
                         .forEach(File::delete);
