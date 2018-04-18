@@ -21,6 +21,10 @@ public class ServiceRequest {
     public ServiceRequest() {
     }
 
+    public void injectVoice(VoiceLauncher voice){
+        injectVoiceLauncher(voice);
+    }
+
     public static void injectVoiceLauncher(VoiceLauncher launcher) {
         voiceLauncher = launcher;
     }
@@ -78,6 +82,7 @@ public class ServiceRequest {
 
     public void initVoice() {
         System.out.println("Initializing voice command");
+        injectVoice(voiceLauncher);
 
         Thread t = new Thread(VoiceLauncher.getInstance());
         try {
