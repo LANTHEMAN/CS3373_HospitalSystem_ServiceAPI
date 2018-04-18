@@ -1,12 +1,14 @@
 package edu.wpi.cs3733d18.teamF.api.controller.page;
 
 import com.jfoenix.controls.*;
+import com.sun.speech.freetts.VoiceManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.PermissionSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.controller.User;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
+import edu.wpi.cs3733d18.teamF.api.gfx.PaneVoiceController;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceCommandVerification;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
@@ -20,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.util.Callback;
 
@@ -132,6 +135,10 @@ public class MainPage implements SwitchableController, Observer {
     private JFXButton securityRequestBtn;
 
     private VoiceCommandVerification voice;
+    private PaneVoiceController paneVoiceController;
+
+    @FXML
+    private Pane voicePane;
 
 
     ////////////////////////
@@ -176,10 +183,11 @@ public class MainPage implements SwitchableController, Observer {
     @Override
     public void initialize(PaneSwitcher switcher) {
         this.switcher = switcher;
-
         VoiceCommandVerification voice = new VoiceCommandVerification();
         voice.addObserver(this);
         VoiceLauncher.getInstance().addObserver(voice);
+
+        paneVoiceController = new PaneVoiceController(voicePane);
 
         serviceRequestPane.setPrefSize(ServiceRequestSingleton.getInstance().getPrefWidth(), ServiceRequestSingleton.getInstance().getPrefLength());
 
@@ -935,7 +943,10 @@ public class MainPage implements SwitchableController, Observer {
         System.out.println("arg = " + arg);
 
         if (arg instanceof String) {
-            if(arg.toString().equalsIgnoreCase("Language")){
+            if(arg.toString().equalsIgnoreCase("ACTIVATE")) {
+                paneVoiceController.setVisibility(true);
+            }
+            else if(arg.toString().equalsIgnoreCase("Language")){
                 languageInterpreterPane.toFront();
             }else if(arg.toString().equalsIgnoreCase("Religious")){
                 religiousServicesPane.toFront();
