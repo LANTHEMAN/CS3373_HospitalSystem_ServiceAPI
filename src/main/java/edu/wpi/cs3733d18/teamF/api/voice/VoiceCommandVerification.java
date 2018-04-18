@@ -9,7 +9,10 @@ import javafx.util.Duration;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.*;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class VoiceCommandVerification extends Observable implements Observer {
@@ -35,9 +38,25 @@ public class VoiceCommandVerification extends Observable implements Observer {
                 }
                 canSayCommand[0] = false;
 
-                if (command.equals("HELP")) {
-                    signalClassChanged("Help");
-                    voice.speak("Here is the help menu");
+
+                if (command.contains("LANGUAGE") && command.contains("INTERPRETER")) {
+                    signalClassChanged("Language");
+                    voice.speak("Here is the Language interpreter service request");
+                } else if (command.contains("RELIGIOUS") && command.contains("SERVICES")) {
+                    signalClassChanged("Religious");
+                    voice.speak("Here is the religious service service request");
+                } else if (command.contains("SECURITY") && command.contains("REQUEST")) {
+                    signalClassChanged("Security");
+                    voice.speak("Here is the security service request");
+                } else if (command.contains("CREATE") && command.contains("SERVICE")) {
+                    signalClassChanged("Create");
+                    voice.speak("Here create service request page");
+                }else if(command.contains("SEARCH") && command.contains("SERVICE")){
+                    signalClassChanged("Search");
+                    voice.speak("Here is the search service request page");
+                }else if(command.contains("USER") && command.contains("MANAGEMENT")){
+                    signalClassChanged("User");
+                    voice.speak("Here is the user management page");
                 } else if (command.contains("WEATHER")) {
                     YahooWeatherService service = null;
                     try {

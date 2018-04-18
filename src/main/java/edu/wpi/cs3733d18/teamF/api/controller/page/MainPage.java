@@ -577,7 +577,19 @@ public class MainPage implements SwitchableController, Observer {
         System.out.println("arg = " + arg);
 
         if (arg instanceof String) {
-            System.out.println(arg.toString());
+            if(arg.toString().equalsIgnoreCase("Language")){
+                languageInterpreterPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Religious")){
+                religiousServicesPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Security")){
+                securityPane.toFront();
+            }else if(arg.toString().equalsIgnoreCase("Create")){
+
+            }else if(arg.toString().equalsIgnoreCase("Search")){
+
+            }else if(arg.toString().equalsIgnoreCase("User")){
+
+            }
         }
     }
 }
