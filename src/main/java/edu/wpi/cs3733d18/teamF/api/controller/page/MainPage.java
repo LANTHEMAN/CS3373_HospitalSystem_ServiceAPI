@@ -953,11 +953,14 @@ public class MainPage implements SwitchableController, Observer {
             }else if(arg.toString().equalsIgnoreCase("Security")){
                 securityPane.toFront();
             }else if(arg.toString().equalsIgnoreCase("Create")){
-
+                SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
+                selectionModel.select(0);
             }else if(arg.toString().equalsIgnoreCase("Search")){
-
+                SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
+                selectionModel.select(1);
             }else if(arg.toString().equalsIgnoreCase("User")){
-
+                SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
+                selectionModel.select(2);
             }
         }
     }
