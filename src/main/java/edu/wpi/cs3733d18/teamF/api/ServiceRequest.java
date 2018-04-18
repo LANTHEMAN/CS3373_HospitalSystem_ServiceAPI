@@ -84,11 +84,12 @@ public class ServiceRequest {
         System.out.println("Initializing voice command");
         injectVoice(voiceLauncher);
 
-        Thread t = new Thread(VoiceLauncher.getInstance());
         try {
+            Thread t = new Thread(VoiceLauncher.getInstance());
             t.start();
         } catch (Exception e) {
             VoiceLauncher.setInstance(voiceLauncher);
+            System.out.println("e.getMessage() = " + e.getMessage());
         }
     }
 

@@ -568,9 +568,12 @@ public class MainPage implements SwitchableController, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("Observer caught")
         if (!(o instanceof VoiceCommandVerification)) {
             return;
         }
+        System.out.println("Observer Passed");
+        System.out.println("arg = " + arg);
 
         if (arg instanceof String) {
             System.out.println(arg.toString());

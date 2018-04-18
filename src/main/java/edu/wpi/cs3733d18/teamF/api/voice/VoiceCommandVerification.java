@@ -74,6 +74,7 @@ public class VoiceCommandVerification extends Observable implements Observer {
     private void signalClassChanged(Object args) {
         this.setChanged();
         this.notifyObservers(args);
+        System.out.println("args.toString() = " + args.toString());
     }
 
     @Override
