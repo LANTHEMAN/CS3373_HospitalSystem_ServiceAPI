@@ -26,6 +26,10 @@ public class VoiceLauncher extends Observable implements Runnable {
         return LazyInitializer.INSTANCE;
     }
 
+    public static void setInstance(VoiceLauncher voiceLauncher){
+        LazyInitializer.INSTANCE = voiceLauncher;
+    }
+
     public void run() {
         try {
             LiveSpeechRecognizer recognize = new LiveSpeechRecognizer(configuration);
@@ -59,7 +63,7 @@ public class VoiceLauncher extends Observable implements Runnable {
     }
 
     private static class LazyInitializer {
-        static final VoiceLauncher INSTANCE = new VoiceLauncher();
+        static VoiceLauncher INSTANCE = new VoiceLauncher();
     }
 }
 

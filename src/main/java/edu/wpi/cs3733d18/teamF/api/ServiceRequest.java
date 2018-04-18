@@ -1,14 +1,12 @@
 package edu.wpi.cs3733d18.teamF.api;
 
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
-import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
+import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +16,14 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 
 public class ServiceRequest {
-    public ServiceRequest(){}
+    static VoiceLauncher voiceLauncher = null;
+
+    public ServiceRequest() {
+    }
+
+    public static void injectVoiceLauncher(VoiceLauncher launcher) {
+        voiceLauncher = launcher;
+    }
 
     public void start() {
         Stage primaryStage = new Stage();
@@ -62,7 +67,8 @@ public class ServiceRequest {
                         .map(Path::toFile)
                         .forEach(File::delete);
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
 
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
 
@@ -74,13 +80,14 @@ public class ServiceRequest {
         System.out.println("Initializing voice command");
 
         Thread t = new Thread(VoiceLauncher.getInstance());
-
         try {
             t.start();
-        }catch(Exception e){}
+        } catch (Exception e) {
+            VoiceLauncher.setInstance(voiceLauncher);
+        }
     }
 
-    public void setCurrUser(String username){
+    public void setCurrUser(String username) {
         ServiceRequestSingleton.getInstance().setCurrUser(username);
     }
 }

@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceCommandVerification;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,8 +21,11 @@ import javafx.util.Callback;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainPage implements SwitchableController {
+public class MainPage implements SwitchableController, Observer {
     private final ObservableList<String> priority = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5");
     private final ObservableList<String> status = FXCollections.observableArrayList("Incomplete", "In Progress", "Complete");
     private final ObservableList<String> type = FXCollections.observableArrayList("Language Interpreter", "Religious Services", "Security Request");
@@ -122,9 +126,15 @@ public class MainPage implements SwitchableController {
     @FXML
     private JFXButton securityRequestBtn;
 
+    private VoiceCommandVerification voice;
+
     @Override
     public void initialize(PaneSwitcher switcher) {
         this.switcher = switcher;
+
+        VoiceCommandVerification voice = new VoiceCommandVerification();
+        voice.addObserver(this);
+        VoiceLauncher.getInstance().addObserver(voice);
 
         serviceRequestPane.setPrefSize(ServiceRequestSingleton.getInstance().getPrefWidth(), ServiceRequestSingleton.getInstance().getPrefLength());
 
@@ -554,5 +564,16 @@ public class MainPage implements SwitchableController {
     private void onSearchServiceRequest() {
         onClear();
         onSearch();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (!(o instanceof VoiceCommandVerification)) {
+            return;
+        }
+
+        if (arg instanceof String) {
+            System.out.println(arg.toString());
+        }
     }
 }
