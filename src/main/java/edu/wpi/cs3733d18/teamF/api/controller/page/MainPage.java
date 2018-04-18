@@ -189,13 +189,22 @@ public class MainPage implements SwitchableController, Observer {
 
         languageInterpreterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             languageInterpreterPane.toFront();
+            if(ServiceRequestSingleton.getInstance().getDestNodeID() != null){
+                destinationLanguage.setText(ServiceRequestSingleton.getInstance().getDestNodeID());
+            }
         });
 
         religiousServicesBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             religiousServicesPane.toFront();
+            if(ServiceRequestSingleton.getInstance().getDestNodeID() != null){
+                destinationRS.setText(ServiceRequestSingleton.getInstance().getDestNodeID());
+            }
         });
         securityRequestBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
             securityPane.toFront();
+            if(ServiceRequestSingleton.getInstance().getDestNodeID() != null){
+                securityLocationField.setText(ServiceRequestSingleton.getInstance().getDestNodeID());
+            }
         });
 
 

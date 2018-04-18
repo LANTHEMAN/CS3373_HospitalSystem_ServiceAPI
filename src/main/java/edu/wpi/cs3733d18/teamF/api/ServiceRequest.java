@@ -95,6 +95,9 @@ public class ServiceRequest {
         }
 
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
+        if(destNodeID != null) {
+            ServiceRequestSingleton.getInstance().setDestinationLocation(destNodeID);
+        }
 
         initVoice();
         start(xcoord, ycoord, cssPath);

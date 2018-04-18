@@ -24,6 +24,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
     private String lastSearch;
     private int prefWidth;
     private int prefLength;
+    private String destNodeID;
 
     private ServiceRequestSingleton() {
         // initialize this class with the database
@@ -495,5 +496,13 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     public int getPrefLength() {
         return prefLength;
+    }
+
+    public void setDestinationLocation(String destNodeID){
+        this.destNodeID = destNodeID;
+    }
+
+    public String getDestNodeID() {
+        return destNodeID;
     }
 }
