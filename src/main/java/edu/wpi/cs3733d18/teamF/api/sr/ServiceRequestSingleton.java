@@ -22,7 +22,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
     private ServiceRequest popUpRequest;
     private String lastFilter;
     private String lastSearch;
-    private String currUser = "admin";
     private int prefWidth;
     private int prefLength;
 
@@ -482,13 +481,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         }
     }
 
-    public void setCurrUser(String currUser) {
-        this.currUser = currUser;
-    }
 
-    public String getCurrUser() {
-        return currUser;
-    }
 
     public void setGridPaneDimensions(int windowWidth, int windowLength){
         this.prefWidth = windowWidth;

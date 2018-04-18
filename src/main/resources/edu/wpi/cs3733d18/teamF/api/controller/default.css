@@ -544,3 +544,8 @@
 .jfx-tab-pane .tab-header-background{
     -fx-background-color: #042e58;
 }
+
+.jfx-button{
+    -fx-background-color: #042e58;
+    -fx-text-fill: WHITE;
+}

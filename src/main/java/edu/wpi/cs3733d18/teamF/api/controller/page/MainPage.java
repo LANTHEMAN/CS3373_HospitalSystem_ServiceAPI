@@ -3,13 +3,17 @@ package edu.wpi.cs3733d18.teamF.api.controller.page;
 import com.jfoenix.controls.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
+import edu.wpi.cs3733d18.teamF.api.controller.PermissionSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
+import edu.wpi.cs3733d18.teamF.api.controller.User;
+import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -121,6 +125,46 @@ public class MainPage implements SwitchableController {
     @FXML
     private JFXButton securityRequestBtn;
 
+
+    ////////////////////////
+    //                    //
+    //   User management  //
+    //                    //
+    ////////////////////////
+    @FXML
+    public TableColumn chooseCol;
+    @FXML
+    public TableColumn<User, String> usernameCol, firstNameUserCol, lastNameUserCol, privilegeCol, occupationCol;
+    @FXML
+    private AnchorPane editUserPane;
+    @FXML
+    private GridPane newUserPane;
+    @FXML
+    private JFXTextField userTextField;
+    @FXML
+    private JFXListView usernameList;
+    @FXML
+    private TableView<User> searchUserResultTable;
+    @FXML
+    private Label userLabel;
+    @FXML
+    private JFXCheckBox languageCheck, religiousCheck, securityCheck;
+    @FXML
+    private JFXTextField usernameField, fnameField, lnameField, occupationField;
+    @FXML
+    private User editedUser;
+    private boolean newUser;
+    @FXML
+    private Label userFNameRequired;
+    @FXML
+    private Label userLNameRequired;
+    @FXML
+    private Label userUNameRequired;
+    @FXML
+    private Label userORequired;
+    @FXML
+    private JFXButton deleteUserBtn;
+
     @Override
     public void initialize(PaneSwitcher switcher) {
         this.switcher = switcher;
@@ -152,7 +196,82 @@ public class MainPage implements SwitchableController {
 
         filterType.getItems().addAll(filterOptions);
 
+        usernameSearch.setOnKeyTyped((KeyEvent e) -> {
+            String input = usernameSearch.getText();
+            input = input.concat("" + e.getCharacter());
+            autoComplete(input, usernameList, "HUser", "username");
+        });
+
+        userTextField.setOnKeyTyped((KeyEvent e) -> {
+            String input = userTextField.getText();
+            input = input.concat("" + e.getCharacter());
+            ArrayList<User> list = autoCompleteUserSearch(input);
+            displayInUserTable(list);
+        });
+
         onSearch();
+    }
+
+
+    // will filter the given ListView for the given input String
+    private void autoComplete(String input, ListView listView, String table, String field) {
+        if (input.length() > 0) {
+            String sql = "SELECT " + field + " FROM " + table;
+            ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
+            ArrayList<String> autoCompleteStrings = new ArrayList<>();
+
+            try {
+                while (resultSet.next()) {
+                    String username = resultSet.getString(1);
+                    if (username.toLowerCase().contains(input.toLowerCase())) {
+                        autoCompleteStrings.add(username);
+                    }
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (autoCompleteStrings.size() > 0) {
+                    ObservableList<String> list = FXCollections.observableArrayList(autoCompleteStrings);
+                    listView.setItems(list);
+                    listView.setVisible(true);
+                } else {
+                    listView.setVisible(false);
+                }
+            } catch (Exception anyE) {
+                anyE.printStackTrace();
+            }
+        } else {
+            listView.setVisible(false);
+        }
+    }
+
+    private ArrayList<User> autoCompleteUserSearch(String input) {
+        ArrayList<User> autoCompleteUser = new ArrayList<>();
+        if (input.length() >= 0) {
+            String sql = "SELECT * FROM HUser";
+            try {
+                ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
+                while (resultSet.next()) {
+
+                    String username = resultSet.getString(1);
+                    String firstname = resultSet.getString(2);
+                    String lastname = resultSet.getString(3);
+                    String occupation = resultSet.getString(4);
+                    User temp = new User(username, firstname, lastname, occupation);
+                    String searchString = username + firstname + lastname +  occupation;
+                    if (searchString.toLowerCase().contains(input.toLowerCase())) {
+                        autoCompleteUser.add(temp);
+                    }
+
+                }
+                resultSet.close();
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return autoCompleteUser;
     }
 
     @FXML
@@ -250,6 +369,8 @@ public class MainPage implements SwitchableController {
         ServiceRequestSingleton.getInstance().setSearch(filter, searchType);
     }
 
+
+
     public void onSelect(ServiceRequest s) {
         ServiceRequestSingleton.getInstance().setPopUpRequest(s);
         serviceRequestPopUp = s;
@@ -271,8 +392,7 @@ public class MainPage implements SwitchableController {
             usernameLabel.setVisible(true);
             usernameLabel.setText(serviceRequestPopUp.getCompletedBy());
         }
-        searchPane.setVisible(false);
-        editRequestPane.setVisible(true);
+        editRequestPane.toFront();
     }
 
     @FXML
@@ -323,16 +443,10 @@ public class MainPage implements SwitchableController {
     }
 
     @FXML
-    public void onCancelEdit() {
-        editRequestPane.setVisible(false);
-        searchPane.setVisible(true);
-    }
-
-    @FXML
     public void onSubmitEdit() {
         if (completeCheck.isSelected() && !serviceRequestPopUp.getStatus().equalsIgnoreCase("Complete")) {
             serviceRequestPopUp.setStatus("Complete");
-            serviceRequestPopUp.setCompletedBy(ServiceRequestSingleton.getInstance().getCurrUser());
+            serviceRequestPopUp.setCompletedBy(PermissionSingleton.getInstance().getCurrUser());
             ServiceRequestSingleton.getInstance().updateCompletedBy(serviceRequestPopUp);
             ServiceRequestSingleton.getInstance().updateStatus(serviceRequestPopUp);
         }
@@ -340,9 +454,13 @@ public class MainPage implements SwitchableController {
             ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestPopUp);
         }
         usernameSearch.setText("");
-        editRequestPane.setVisible(false);
-        searchPane.setVisible(true);
+        editRequestPane.toBack();
         onSearch();
+    }
+
+    @FXML
+    private void onCancelEdit(){
+        editRequestPane.toBack();
     }
 
     ////////////////////////
@@ -552,4 +670,245 @@ public class MainPage implements SwitchableController {
         onClear();
         onSearch();
     }
+
+
+    ////////////////////////
+    //                    //
+    //   User Management  //
+    //                    //
+    ////////////////////////
+
+    @FXML
+    private void onSubmitUser() {
+        String username;
+        int requiredFields = 0;
+        if (fnameField.getText() == null || fnameField.getText().trim().isEmpty()) {
+            userFNameRequired.setVisible(true);
+            requiredFields++;
+        }
+        if (lnameField.getText() == null || lnameField.getText().trim().isEmpty()) {
+            userLNameRequired.setVisible(true);
+            requiredFields++;
+        }
+        if (usernameField.getText() == null || usernameField.getText().trim().isEmpty()) {
+            userUNameRequired.setVisible(true);
+            requiredFields++;
+        }
+        if (occupationField.getText() == null || occupationField.getText().trim().isEmpty()) {
+            userORequired.setVisible(true);
+            requiredFields++;
+        }
+        if(requiredFields > 0){
+            return;
+        }
+        if (newUser) {
+            username = usernameField.getText();
+        } else {
+            username = editedUser.getUname();
+        }
+        String firstName = fnameField.getText();
+        String lastName = lnameField.getText();
+        String occupation = occupationField.getText();
+        boolean languageServices = languageCheck.isSelected();
+        boolean religiousServices = religiousCheck.isSelected();
+        boolean securityRequest = securityCheck.isSelected();
+
+        User temp = new User(username, firstName, lastName, occupation);
+        if (newUser) {
+            PermissionSingleton.getInstance().addUser(temp);
+        } else {
+            PermissionSingleton.getInstance().updateUser(temp);
+        }
+
+        if (ServiceRequestSingleton.getInstance().isInTable(username, "LanguageInterpreter")) {
+            if (!languageServices) {
+                ServiceRequestSingleton.getInstance().removeUsernameLanguageInterpreter(username);
+            }
+        } else {
+            if (languageServices) {
+                ServiceRequestSingleton.getInstance().addUsernameLanguageInterpreter(username);
+            }
+        }
+
+        if (ServiceRequestSingleton.getInstance().isInTable(username, "ReligiousServices")) {
+            if (!religiousServices) {
+                ServiceRequestSingleton.getInstance().removeUsernameReligiousServices(username);
+            }
+        } else {
+            if (religiousServices) {
+                ServiceRequestSingleton.getInstance().addUsernameReligiousServices(username);
+            }
+        }
+
+        if (ServiceRequestSingleton.getInstance().isInTable(username, "SecurityRequest")) {
+            if (!securityRequest) {
+                ServiceRequestSingleton.getInstance().removeUsernameSecurityRequest(username);
+            }
+        } else {
+            if (securityRequest) {
+                ServiceRequestSingleton.getInstance().addUsernameSecurityRequest(username);
+            }
+        }
+        newUserPane.toBack();
+        onEditUsers();
+        onUserManagement();
+        if(deleteUserBtn.isVisible()){
+            deleteUserBtn.setVisible(false);
+        }
+    }
+
+
+    @FXML
+    public void onCancelUser() {
+        newUserPane.toBack();
+        onEditUsers();
+        onUserManagement();
+        if(deleteUserBtn.isVisible()){
+            deleteUserBtn.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void onDeleteUser(){
+        newUserPane.toBack();
+        deleteUserBtn.setVisible(false);
+        onEditUsers();
+        onUserManagement();
+        PermissionSingleton.getInstance().removeUser(editedUser);
+        editedUser = null;
+    }
+
+    @FXML
+    private void onNewUserEvent() {
+        userLabel.setText("New User");
+        usernameField.setEditable(true);
+        newUser = true;
+        usernameField.clear();
+        fnameField.clear();
+        lnameField.clear();
+        occupationField.clear();
+        languageCheck.setSelected(false);
+        religiousCheck.setSelected(false);
+        securityCheck.setSelected(false);
+        newUserPane.toFront();
+        userFNameRequired.setVisible(false);
+        userLNameRequired.setVisible(false);
+        userUNameRequired.setVisible(false);
+        userORequired.setVisible(false);
+    }
+
+    private void displayInUserTable(ArrayList<User> users) {
+        if (users.size() < 1) {
+            //TODO: indicate to user that there are no results
+            return;
+        }
+
+        ObservableList<User> listUsers = FXCollections.observableArrayList(users);
+
+        searchUserResultTable.setEditable(false);
+
+        usernameCol.setCellValueFactory(new PropertyValueFactory<User, String>("uname"));
+        firstNameUserCol.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
+        lastNameUserCol.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
+        occupationCol.setCellValueFactory(new PropertyValueFactory<User, String>("occupation"));
+        chooseCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+
+        Callback<TableColumn<User, String>, TableCell<User, String>> cellFactory =
+                new Callback<TableColumn<User, String>, TableCell<User, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<User, String> param) {
+                        final TableCell<User, String> cell = new TableCell<User, String>() {
+
+                            JFXButton btn = new JFXButton("Select");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(event -> {
+                                        User e = getTableView().getItems().get(getIndex());
+                                        onSelectUser(e);
+
+                                    });
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        chooseCol.setCellFactory(cellFactory);
+
+        searchUserResultTable.setItems(listUsers);
+    }
+
+    public void onSelectUser(User e) {
+        usernameField.setEditable(false);
+        userLabel.setText("Edit User");
+        editedUser = e;
+        newUser = false;
+        usernameField.setText(e.getUname());
+        fnameField.setText(e.getFirstName());
+        lnameField.setText(e.getLastName());
+        occupationField.setText(e.getOccupation());
+        if (ServiceRequestSingleton.getInstance().isInTable(e.getUname(), "LanguageInterpreter")) {
+            languageCheck.setSelected(true);
+        } else {
+            languageCheck.setSelected(false);
+        }
+        if (ServiceRequestSingleton.getInstance().isInTable(e.getUname(), "ReligiousServices")) {
+            religiousCheck.setSelected(true);
+        } else {
+            religiousCheck.setSelected(false);
+        }
+        if (ServiceRequestSingleton.getInstance().isInTable(e.getUname(), "SecurityRequest")) {
+            securityCheck.setSelected(true);
+        } else {
+            securityCheck.setSelected(false);
+        }
+        userFNameRequired.setVisible(false);
+        userLNameRequired.setVisible(false);
+        userUNameRequired.setVisible(false);
+        userORequired.setVisible(false);
+        newUserPane.toFront();
+        deleteUserBtn.setVisible(true);
+    }
+
+
+    @FXML
+    public void onEditUsers() {
+        userTextField.clear();
+        searchUserResultTable.getItems().clear();
+    }
+
+
+    @FXML
+    public void onUserManagement(){
+        ArrayList<User> allUsers = new ArrayList<>();
+        String sql = "SELECT * FROM HUser";
+        ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
+        try {
+            while (resultSet.next()) {
+
+                String username = resultSet.getString(1);
+                String firstname = resultSet.getString(2);
+                String lastname = resultSet.getString(3);
+                String occupation = resultSet.getString(4);
+                User temp = new User(username, firstname, lastname, occupation);
+                allUsers.add(temp);
+
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        userTextField.clear();
+        displayInUserTable(allUsers);
+    }
+
 }

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733d18.teamF.api;
 
+import edu.wpi.cs3733d18.teamF.api.controller.PermissionSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
@@ -78,6 +79,6 @@ public class ServiceRequest {
     }
 
     public void setCurrUser(String username){
-        ServiceRequestSingleton.getInstance().setCurrUser(username);
+        PermissionSingleton.getInstance().setCurrUser(username);
     }
 }
