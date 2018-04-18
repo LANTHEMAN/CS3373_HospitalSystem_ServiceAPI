@@ -37,8 +37,7 @@ public class VoiceCommandVerification extends Observable implements Observer {
                     return;
                 }
                 canSayCommand[0] = false;
-
-
+                
                 if (command.contains("LANGUAGE") && command.contains("INTERPRETER")) {
                     signalClassChanged("Language");
                     voice.speak("Here is the Language interpreter service request");
