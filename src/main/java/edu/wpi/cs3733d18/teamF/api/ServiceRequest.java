@@ -1,5 +1,6 @@
 package edu.wpi.cs3733d18.teamF.api;
 
+import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
@@ -19,7 +20,7 @@ import java.util.Comparator;
 public class ServiceRequest {
     public ServiceRequest(){}
 
-    public void start() throws InterruptedException {
+    public void start() {
         Stage primaryStage = new Stage();
 
         Group root = new Group();
@@ -43,11 +44,9 @@ public class ServiceRequest {
         //primaryStage.setMaximized(true);
         //primaryStage.setFullScreen(true);
         primaryStage.show();
-
-        initVoice();
     }
 
-    public void run(int xcoord, int ycoord, int windowWidth, int windowLength, String cssPath, String destNodeID, String originNodeID) throws InterruptedException {
+    public void run(int xcoord, int ycoord, int windowWidth, int windowLength, String cssPath, String destNodeID, String originNodeID) {
         long fileSize = 0;
         // get rid of the database folder if its empty
         try {
@@ -67,6 +66,7 @@ public class ServiceRequest {
 
         ServiceRequestSingleton.getInstance().setGridPaneDimensions(windowWidth, windowLength);
 
+        initVoice();
         start();
     }
 
@@ -74,7 +74,10 @@ public class ServiceRequest {
         System.out.println("Initializing voice command");
 
         Thread t = new Thread(VoiceLauncher.getInstance());
-        t.start();
+
+        try {
+            t.start();
+        }catch(Exception e){}
     }
 
     public void setCurrUser(String username){
