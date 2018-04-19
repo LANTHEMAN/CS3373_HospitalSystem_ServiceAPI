@@ -10,17 +10,20 @@ public class TwilioHandlerSingleton {
     public static final String AUTH_TOKEN = "4db66deaa1cdfe44fb1e5a2d279c0b88";
 
     private TwilioHandlerSingleton(){
-
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     }
 
     public static TwilioHandlerSingleton getInstance(){return instance;}
 
     public void sendMessage(String messageString) {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        sendMessage("+15087622648", messageString);
 
+    }
+
+    public void sendMessage(String phoneNumber, String messageString) {
         try{
             Message message = Message.creator(
-                    new PhoneNumber("+15087622648"),
+                    new PhoneNumber(phoneNumber),
                     new PhoneNumber("+17742955624"),
                     messageString).create();
         }catch(com.twilio.exception.ApiException exception){
