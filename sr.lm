@@ -1,4 +1,4 @@
-Language model created by QuickLM on Wed Apr 18 00:02:07 EDT 2018
+Language model created by QuickLM on Thu Apr 19 15:41:08 EDT 2018
 Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
 
 The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
@@ -7,37 +7,42 @@ The code that was used to produce this language model is available in Open Sourc
 Please visit http://www.speech.cs.cmu.edu/tools/ for more information
 
 The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
-This model based on a corpus of 6 sentences and 13 words
+This model based on a corpus of 7 sentences and 15 words
 
 \data\
-ngram 1=13
-ngram 2=17
-ngram 3=13
+ngram 1=15
+ngram 2=20
+ngram 3=15
 
 \1-grams:
--0.9379 </s> -0.3010
--0.9379 <s> -0.2478
--1.7160 CREATE -0.2840
--1.7160 INTERPRETER -0.2478
--1.7160 LANGUAGE -0.2926
--1.7160 MANAGEMENT -0.2478
--1.7160 RELIGIOUS -0.2926
--1.2389 REQUEST -0.2478
--1.7160 SEARCH -0.2840
--1.7160 SECURITY -0.2752
--1.4150 SERVICE -0.2752
--1.7160 SERVICES -0.2478
--1.7160 USER -0.2926
+-0.9331 </s> -0.3010
+-0.9331 <s> -0.2472
+-1.7782 CREATE -0.2863
+-1.7782 HELLO -0.2937
+-1.7782 INTERPRETER -0.2472
+-1.7782 KIOSK -0.2472
+-1.7782 LANGUAGE -0.2937
+-1.7782 MANAGEMENT -0.2472
+-1.7782 RELIGIOUS -0.2937
+-1.3010 REQUEST -0.2472
+-1.7782 SEARCH -0.2863
+-1.7782 SECURITY -0.2788
+-1.4771 SERVICE -0.2788
+-1.7782 SERVICES -0.2472
+-1.7782 USER -0.2937
 
 \2-grams:
--1.0792 <s> CREATE 0.0000
--1.0792 <s> LANGUAGE 0.0000
--1.0792 <s> RELIGIOUS 0.0000
--1.0792 <s> SEARCH 0.0000
--1.0792 <s> SECURITY 0.0000
--1.0792 <s> USER 0.0000
+-1.1461 <s> CREATE 0.0000
+-1.1461 <s> HELLO 0.0000
+-1.1461 <s> LANGUAGE 0.0000
+-1.1461 <s> RELIGIOUS 0.0000
+-1.1461 <s> SEARCH 0.0000
+-1.1461 <s> SECURITY 0.0000
+-1.1461 <s> USER 0.0000
 -0.3010 CREATE SERVICE 0.0000
+-0.3010 HELLO KIOSK 0.0000
 -0.3010 INTERPRETER </s> -0.3010
+-0.3010 KIOSK </s> -0.3010
 -0.3010 LANGUAGE INTERPRETER 0.0000
 -0.3010 MANAGEMENT </s> -0.3010
 -0.3010 RELIGIOUS SERVICES 0.0000
@@ -50,12 +55,14 @@ ngram 3=13
 
 \3-grams:
 -0.3010 <s> CREATE SERVICE
+-0.3010 <s> HELLO KIOSK
 -0.3010 <s> LANGUAGE INTERPRETER
 -0.3010 <s> RELIGIOUS SERVICES
 -0.3010 <s> SEARCH SERVICE
 -0.3010 <s> SECURITY REQUEST
 -0.3010 <s> USER MANAGEMENT
 -0.3010 CREATE SERVICE REQUEST
+-0.3010 HELLO KIOSK </s>
 -0.3010 LANGUAGE INTERPRETER </s>
 -0.3010 RELIGIOUS SERVICES </s>
 -0.3010 SEARCH SERVICE REQUEST

@@ -4,3 +4,4 @@ Security Request
 Create Service Request
 Search Service Request
 User Management
+Hello Kiosk
