@@ -1,7 +1,7 @@
 package edu.wpi.cs3733d18.teamF.api.controller.page;
 
 import com.jfoenix.controls.*;
-import com.sun.speech.freetts.VoiceManager;
+import com.twilio.Twilio;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.PermissionSingleton;
@@ -9,6 +9,7 @@ import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
 import edu.wpi.cs3733d18.teamF.api.controller.User;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.gfx.PaneVoiceController;
+import edu.wpi.cs3733d18.teamF.api.notifications.TwilioHandlerSingleton;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceCommandVerification;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
@@ -23,13 +24,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.util.Callback;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -544,6 +543,7 @@ public class MainPage implements SwitchableController, Observer {
         ServiceRequest request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
+        TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs a " + l + " interpreter at " + location + ".\nAdditional Details: " + description);
         languageInterpreterPane.toBack();
         clearLanguage();
     }
@@ -621,6 +621,7 @@ public class MainPage implements SwitchableController, Observer {
         ServiceRequest request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
+        TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs " + r + " services at " + location + ".\nAdditional Details: " + description);
         religiousServicesPane.toBack();
         clearReligious();
     }
@@ -672,6 +673,7 @@ public class MainPage implements SwitchableController, Observer {
 
         ServiceRequestSingleton.getInstance().sendServiceRequest(sec);
         ServiceRequestSingleton.getInstance().addServiceRequest(sec);
+        TwilioHandlerSingleton.getInstance().sendMessage("\nSecurity is required at " + location + ".\nAdditional Details: " + description);
         securityPane.toBack();
         clearSecurity();
     }
