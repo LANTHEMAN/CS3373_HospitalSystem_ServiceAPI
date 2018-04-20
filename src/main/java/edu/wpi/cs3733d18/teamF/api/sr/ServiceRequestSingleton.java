@@ -131,7 +131,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
         dbHandler.runSQLScript("init_sr_rs_db.sql");
         dbHandler.runSQLScript("init_sr_sr_db.sql");
         dbHandler.runSQLScript("init_user_db.sql");
-        dbHandler.runSQLScript("init_user_sr_inbox_db.sql");
         if (dbHandler != DatabaseSingleton.getInstance().getDbHandler()) {
             initDatabase(DatabaseSingleton.getInstance().getDbHandler());
         }
