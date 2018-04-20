@@ -1,5 +1,7 @@
 package edu.wpi.cs3733d18.teamF.api.sr;
 
+import java.sql.Timestamp;
+
 public class LanguageInterpreter extends ServiceRequest {
     private String language;
 
@@ -18,8 +20,8 @@ public class LanguageInterpreter extends ServiceRequest {
         this.language = language;
     }
 
-    public LanguageInterpreter(int id, String firstName, String lastName, String location, String description, String status, int priority, String language, String assignedTo, String completedBy) {
-        super("Language Interpreter", id, firstName, lastName, location, description, status, priority, assignedTo, completedBy);
+    public LanguageInterpreter(int id, String firstName, String lastName, String location, String description, String status, int priority, String language, String assignedTo, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn) {
+        super("Language Interpreter", id, firstName, lastName, location, description, status, priority, assignedTo, completedBy, createdOn, started, completedOn);
         this.language = language;
     }
 
