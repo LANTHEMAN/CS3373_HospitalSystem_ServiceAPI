@@ -238,33 +238,7 @@ public class MainPage implements SwitchableController, Observer {
         usernameList.setVisible(false);
     }
 
-    private ArrayList<User> autoCompleteUserSearch(String input) {
-        ArrayList<User> autoCompleteUser = new ArrayList<>();
-        if (input.length() >= 0) {
-            String sql = "SELECT * FROM HUser";
-            try {
-                ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
-                while (resultSet.next()) {
-
-                    String username = resultSet.getString(1);
-                    String firstname = resultSet.getString(2);
-                    String lastname = resultSet.getString(3);
-                    String occupation = resultSet.getString(4);
-                    User temp = new User(username, firstname, lastname, occupation);
-                    String searchString = username + firstname + lastname +  occupation;
-                    if (searchString.toLowerCase().contains(input.toLowerCase())) {
-                        autoCompleteUser.add(temp);
-                    }
-
-                }
-                resultSet.close();
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-        return autoCompleteUser;
-    }
+    
 
     @FXML
     void onSearch() {
