@@ -107,11 +107,6 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
         signalClassChanged(arg);
     }
 
-    @Override
-    public void finalize() {
-        VoiceLauncher.getInstance().terminate();
-    }
-
     private static class LazyInitializer {
         static final VoiceLauncher INSTANCE = new VoiceLauncher();
     }
