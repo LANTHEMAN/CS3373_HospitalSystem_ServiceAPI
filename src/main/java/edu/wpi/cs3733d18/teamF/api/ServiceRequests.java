@@ -19,9 +19,9 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Observable;
 
-public class ServiceRequest {
+public class ServiceRequests {
 
-    public ServiceRequest() {
+    public ServiceRequests() {
     }
 
     static public void injectObservable(Observable o) {

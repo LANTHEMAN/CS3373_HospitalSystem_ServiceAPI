@@ -1,6 +1,5 @@
 package edu.wpi.cs3733d18.teamF.api;
 
-import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ServiceRequest sr = new ServiceRequest();
+        ServiceRequests sr = new ServiceRequests();
         try {
             sr.run(-1, -1, 1000, 631, null, null, null);
         } catch (Exception e) {

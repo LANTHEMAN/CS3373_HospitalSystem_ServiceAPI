@@ -6,8 +6,8 @@ import com.twilio.type.PhoneNumber;
 public class TwilioHandlerSingleton {
     // Find your Account Sid and Token at twilio.com/user/account
     private static TwilioHandlerSingleton instance = new TwilioHandlerSingleton();
-    public static final String ACCOUNT_SID = "AC41fed04d7534e89a79c20ed083bccde6";
-    public static final String AUTH_TOKEN = "4db66deaa1cdfe44fb1e5a2d279c0b88";
+    private static final String ACCOUNT_SID = "AC41fed04d7534e89a79c20ed083bccde6";
+    private static final String AUTH_TOKEN = "4db66deaa1cdfe44fb1e5a2d279c0b88";
 
     private TwilioHandlerSingleton(){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
