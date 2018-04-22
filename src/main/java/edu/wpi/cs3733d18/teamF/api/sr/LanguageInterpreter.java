@@ -2,7 +2,7 @@ package edu.wpi.cs3733d18.teamF.api.sr;
 
 import java.sql.Timestamp;
 
-public class LanguageInterpreter extends ServiceRequest {
+public class LanguageInterpreter extends ServiceRequests {
     private String language;
 
     public LanguageInterpreter(String firstName, String lastName, String location, String description, String status, int priority, String language) {

@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ServiceRequests sr = new ServiceRequests();
+        ServiceRequest sr = new ServiceRequest();
         try {
             sr.run(-1, -1, 1000, 631, null, null, null);
         } catch (Exception e) {

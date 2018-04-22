@@ -12,12 +12,13 @@ public class UserSingleton {
     DatabaseHandler dbHandler;
     private String userPrivilege;
     private String currUser;
-    public ArrayList<String> usernames;
+    private ArrayList<String> usernames;
 
     private UserSingleton() {
         this.dbHandler = DatabaseSingleton.getInstance().getDbHandler();
         userPrivilege = Privilege.STAFF;
         currUser = "staff";
+        usernames = new ArrayList<>();
 
     }
 
@@ -65,5 +66,12 @@ public class UserSingleton {
         this.currUser = currUser;
     }
 
+    public ArrayList<String> getUsernames() {
+        return usernames;
+    }
+
+    public void setUsernames(ArrayList<String> usernames) {
+        this.usernames = usernames;
+    }
 }
 
