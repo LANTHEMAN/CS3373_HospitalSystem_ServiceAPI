@@ -117,10 +117,5 @@ public class ServiceRequest {
     public void setCurrUser(String username){
         UserSingleton.getInstance().setCurrUser(username);
     }
-    
-    @Override
-    public void finalize() {
-        VoiceLauncher.getInstance().terminate();
-    }
 
 }

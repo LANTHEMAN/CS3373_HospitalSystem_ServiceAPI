@@ -110,5 +110,6 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
     private static class LazyInitializer {
         static final VoiceLauncher INSTANCE = new VoiceLauncher();
     }
+
 }
 

@@ -3,6 +3,7 @@ package edu.wpi.cs3733d18.teamF.api.controller;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseHandler;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
+import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,6 +108,11 @@ public class UserSingleton {
 
     public void setCurrUser(String currUser) {
         this.currUser = currUser;
+    }
+
+    @Override
+    public void finalize() {
+        VoiceLauncher.getInstance().terminate();
     }
 
 }
