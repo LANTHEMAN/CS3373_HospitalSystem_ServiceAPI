@@ -1,12 +1,10 @@
 package edu.wpi.cs3733d18.teamF.api.controller.page;
 
 import com.jfoenix.controls.*;
-import com.twilio.Twilio;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.UserSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
-import edu.wpi.cs3733d18.teamF.api.controller.User;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.gfx.PaneVoiceController;
 import edu.wpi.cs3733d18.teamF.api.notifications.TwilioHandlerSingleton;
@@ -133,12 +131,7 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     private Pane voicePane;
 
-
-    ////////////////////////
-    //                    //
-    //   User management  //
-    //                    //
-    ////////////////////////
+    
     @FXML
     private JFXListView usernameList;
 
@@ -238,7 +231,7 @@ public class MainPage implements SwitchableController, Observer {
         usernameList.setVisible(false);
     }
 
-    
+
 
     @FXML
     void onSearch() {
@@ -667,9 +660,6 @@ public class MainPage implements SwitchableController, Observer {
             }else if(arg.toString().equalsIgnoreCase("Search")){
                 SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
                 selectionModel.select(1);
-            }else if(arg.toString().equalsIgnoreCase("User")){
-                SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
-                selectionModel.select(2);
             }
         }
     }
