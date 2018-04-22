@@ -44,3 +44,7 @@ gradle-app.setting
 .gradletasknamecache
 
 database_teamF_SR_API/
+
+sr\.dic
+
+sr\.lm

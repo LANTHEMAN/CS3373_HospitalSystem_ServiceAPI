@@ -4,9 +4,10 @@ import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Paths;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,15 +21,8 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
         exportResource("sr.dic");
         exportResource("sr.lm");
 
-        if (Files.exists(Paths.get("sr.dic"))){
-            configuration.setDictionaryPath("sr.dic");
-            configuration.setLanguageModelPath("sr.lm");
-        }
-        else {
-            configuration.setDictionaryPath("build/classes/java/sr.dic");
-            configuration.setLanguageModelPath("build/classes/java/sr.lm");
-        }
-
+        configuration.setDictionaryPath("sr.dic");
+        configuration.setLanguageModelPath("sr.lm");
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     }
 
@@ -54,7 +48,7 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
             }
             int readBytes;
             byte[] buffer = new byte[4096];
-            jarFolder = new File(VoiceLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
+            jarFolder = Paths.get("").toAbsolutePath().toString().replace('\\', '/');
             resStreamOut = new FileOutputStream(jarFolder + "/" + resourceName);
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
@@ -111,11 +105,6 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         signalClassChanged(arg);
-    }
-
-    @Override
-    public void finalize() {
-        VoiceLauncher.getInstance().terminate();
     }
 
     private static class LazyInitializer {
