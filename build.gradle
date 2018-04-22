@@ -44,7 +44,8 @@ dependencies {
             [group: 'org.mobicents.external.freetts', name: 'cmu_time_awb', version: '1.2.2'],
             [group: 'org.mobicents.external.freetts', name: 'cmulex', version: '1.2.2'],
             [group: 'org.mobicents.external.freetts', name: 'cmutimelex', version: '1.2.2'],
-            [group: 'org.mobicents.external.freetts', name: 'cmudict04', version: '1.2.2']
+            [group: 'org.mobicents.external.freetts', name: 'cmudict04', version: '1.2.2'],
+            [group: "com.twilio.sdk", name: "twilio", version: "7.17.+"]
     )
 }
 
