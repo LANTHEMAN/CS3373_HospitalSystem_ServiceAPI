@@ -29,35 +29,19 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane fx:id="serviceRequestPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="922.0" style="-fx-background-color: e7f7fe;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733d18.teamF.api.controller.page.MainPage">
+   <FontAwesomeIconView fx:id="closeBtn" fill="WHITE" glyphName="TIMES" size="30" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <GridPane.margin>
+         <Insets right="10.0" top="7.5" />
+      </GridPane.margin>
+   </FontAwesomeIconView>
+    <Pane fx:id="voicePane" pickOnBounds="false" prefHeight="148.0" prefWidth="600.0">
+    </Pane>
    <JFXTabPane fx:id="serviceRequestTabPane" blendMode="SRC_ATOP" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
       <tabs>
          <Tab closable="false" onSelectionChanged="#onCreateNewServiceRequest" text="Create Service Request">
             <content>
                <StackPane>
                   <children>
-                      <AnchorPane fx:id="securityPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f1f1f1;">
-                          <children>
-                              <Text layoutX="417.0" layoutY="71.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Request" />
-                              <Label layoutX="165.0" layoutY="96.0" text="Priority" />
-                              <Label layoutX="165.0" layoutY="163.0" text="Location" />
-                              <Label layoutX="175.0" layoutY="209.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Special Instructions" />
-                              <JFXButton buttonType="RAISED" layoutX="174.0" layoutY="377.0" onAction="#onCancelSecurity" prefHeight="31.0" prefWidth="104.0" text="Cancel" textFill="#f5f2f2" />
-                              <JFXButton buttonType="RAISED" layoutX="653.0" layoutY="377.0" onAction="#onSubmitSecurity" prefHeight="31.0" prefWidth="104.0" text="Submit Request" textFill="#fff2f2" />
-                              <RadioButton layoutX="208.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="1">
-                                  <toggleGroup>
-                                      <ToggleGroup fx:id="securityToggle" />
-                                  </toggleGroup>
-                              </RadioButton>
-                              <RadioButton layoutX="298.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="3" toggleGroup="$securityToggle" />
-                              <RadioButton layoutX="395.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="5" toggleGroup="$securityToggle" />
-                              <RadioButton layoutX="347.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="4" toggleGroup="$securityToggle" />
-                              <RadioButton layoutX="253.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="2" toggleGroup="$securityToggle" />
-                              <RadioButton layoutX="167.0" layoutY="128.0" mnemonicParsing="false" selected="true" text="0" toggleGroup="$securityToggle" />
-                              <JFXTextField fx:id="securityLocationField" layoutX="232.0" layoutY="158.0" />
-                              <JFXTextArea fx:id="securityTextArea" layoutX="177.0" layoutY="232.0" prefHeight="132.0" prefWidth="580.0" />
-                           <Label fx:id="securityLocationRequired" layoutX="372.0" layoutY="163.0" text="*Required Field" textFill="RED" visible="false" />
-                          </children>
-                      </AnchorPane>
                       <AnchorPane fx:id="languageInterpreterPane" style="-fx-background-color: #f1f1f1;">
                           <children>
                               <Text layoutX="405.0" layoutY="62.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language Interpreter" />
@@ -136,6 +120,86 @@
                            </JFXButton>
                         </children>
                      </HBox>
+                      <AnchorPane fx:id="securityPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f1f1f1;">
+                          <children>
+                           <FontAwesomeIconView fill="#e4e4e4" glyphName="SHIELD" layoutX="514.0" layoutY="518.0" size="500" />
+                              <Text layoutX="385.0" layoutY="73.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Request">
+                              <font>
+                                 <Font name="System Bold" size="20.0" />
+                              </font>
+                           </Text>
+                              <Label layoutX="152.0" layoutY="223.0" text="Urgency">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                              <Label layoutX="509.0" layoutY="175.0" text="Location">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                              <Label layoutX="166.0" layoutY="354.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Special Instructions">
+                              <font>
+                                 <Font size="12.0" />
+                              </font>
+                           </Label>
+                              <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="468.0" onAction="#onCancelSecurity" prefHeight="31.0" prefWidth="104.0" text="Cancel" textFill="#f5f2f2" />
+                              <JFXButton buttonType="RAISED" layoutX="644.0" layoutY="468.0" onAction="#onSubmitSecurity" prefHeight="31.0" prefWidth="104.0" text="Submit Request" textFill="#fff2f2" />
+                           <HBox layoutX="255.0" layoutY="223.0" prefHeight="18.0" prefWidth="202.0" spacing="10.0">
+                              <children>
+                                    <RadioButton mnemonicParsing="false" selected="true" text="0">
+                                    <toggleGroup>
+                                            <ToggleGroup fx:id="securityToggle" />
+                                    </toggleGroup>
+                                 </RadioButton>
+                                    <RadioButton mnemonicParsing="false" selected="true" text="1" toggleGroup="$securityToggle" />
+                                    <RadioButton mnemonicParsing="false" selected="true" text="2" toggleGroup="$securityToggle" />
+                                    <RadioButton mnemonicParsing="false" selected="true" text="3" toggleGroup="$securityToggle" />
+                                    <RadioButton mnemonicParsing="false" selected="true" text="4" toggleGroup="$securityToggle" />
+                                    <RadioButton mnemonicParsing="false" selected="true" text="5" toggleGroup="$securityToggle" />
+                              </children>
+                           </HBox>
+                              <JFXTextField fx:id="securityLocationField" layoutX="581.0" layoutY="163.0" prefHeight="27.0" prefWidth="160.0" />
+                              <JFXTextArea fx:id="securityTextArea" layoutX="155.0" layoutY="368.0" prefHeight="90.0" prefWidth="591.0" />
+                           <Label fx:id="securityLocationRequired" layoutX="372.0" layoutY="163.0" text="*Required Field" textFill="RED" visible="false" />
+                           <Label layoutX="151.0" layoutY="170.0" text="Request Title">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <JFXTextField layoutX="255.0" layoutY="159.0" prefHeight="27.0" prefWidth="160.0" />
+                           <Label fx:id="securityLocationRequired1" layoutX="741.0" layoutY="172.0" text="*Required Field" textFill="RED" visible="false" />
+                           <Label layoutX="149.0" layoutY="114.0" text="Required Information">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                           <Label layoutX="150.0" layoutY="312.0" text="Additional Information">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                           <Label layoutX="152.0" layoutY="266.0" text="Staff Needed">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <HBox layoutX="255.0" layoutY="266.0" prefHeight="18.0" prefWidth="258.0" spacing="10.0">
+                              <children>
+                                 <RadioButton mnemonicParsing="false" selected="true" text="1">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="securityToggle1" />
+                                    </toggleGroup>
+                                 </RadioButton>
+                                 <RadioButton mnemonicParsing="false" selected="true" text="2" toggleGroup="$securityToggle1" />
+                                 <RadioButton mnemonicParsing="false" selected="true" text="3" toggleGroup="$securityToggle1" />
+                                 <RadioButton mnemonicParsing="false" selected="true" text="4" toggleGroup="$securityToggle1" />
+                                 <RadioButton mnemonicParsing="false" selected="true" text="4" toggleGroup="$securityToggle1" />
+                                 <RadioButton mnemonicParsing="false" selected="true" text="5 +" toggleGroup="$securityToggle1" />
+                              </children>
+                           </HBox>
+                          </children>
+                      </AnchorPane>
                   </children>
                </StackPane>
             </content>
@@ -308,13 +372,6 @@
          </Tab>
       </tabs>
    </JFXTabPane>
-   <FontAwesomeIconView fx:id="closeBtn" fill="WHITE" glyphName="TIMES" size="30" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-      <GridPane.margin>
-         <Insets right="10.0" top="7.5" />
-      </GridPane.margin>
-   </FontAwesomeIconView>
-    <Pane fx:id="voicePane" pickOnBounds="false" prefHeight="148.0" prefWidth="600.0">
-    </Pane>
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
