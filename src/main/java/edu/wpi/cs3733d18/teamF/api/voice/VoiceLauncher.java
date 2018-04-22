@@ -5,6 +5,9 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,16 +17,19 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
     private boolean terminate = false;
 
     private VoiceLauncher() {
-        try{
-            exportResource("sr.dic");
-            exportResource("sr.lm");
+        exportResource("sr.dic");
+        exportResource("sr.lm");
+
+        if (Files.exists(Paths.get("sr.dic"))){
+            configuration.setDictionaryPath("sr.dic");
+            configuration.setLanguageModelPath("sr.lm");
         }
-        catch (Exception e){e.printStackTrace();
+        else {
+            configuration.setDictionaryPath("build/classes/java/sr.dic");
+            configuration.setLanguageModelPath("build/classes/java/sr.lm");
         }
 
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        configuration.setDictionaryPath("sr.dic");
-        configuration.setLanguageModelPath("sr.lm");
     }
 
     public static VoiceLauncher getInstance() {
@@ -37,16 +43,15 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
      * @return The path to the exported resource
      * @throws Exception
      */
-    static private String exportResource(String resourceName) throws Exception {
+    static private String exportResource(String resourceName) {
         InputStream stream = null;
         OutputStream resStreamOut = null;
-        String jarFolder;
+        String jarFolder = "";
         try {
-            stream = VoiceLauncher.class.getResourceAsStream(resourceName);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
+            stream = VoiceLauncher.class.getResourceAsStream(resourceName);
             if (stream == null) {
                 throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
             }
-
             int readBytes;
             byte[] buffer = new byte[4096];
             jarFolder = new File(VoiceLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
@@ -54,13 +59,20 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
             }
-        } catch (Exception ex) {
-            throw ex;
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            stream.close();
-            resStreamOut.close();
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+                if (resStreamOut != null) {
+                    resStreamOut.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
         return jarFolder + resourceName;
     }
 
@@ -101,13 +113,13 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
         signalClassChanged(arg);
     }
 
-    private static class LazyInitializer {
-        static final VoiceLauncher INSTANCE = new VoiceLauncher();
-    }
-
     @Override
     public void finalize() {
         VoiceLauncher.getInstance().terminate();
+    }
+
+    private static class LazyInitializer {
+        static final VoiceLauncher INSTANCE = new VoiceLauncher();
     }
 }
 
