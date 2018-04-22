@@ -7,46 +7,27 @@ import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PermissionSingleton {
+public class UserSingleton {
     DatabaseHandler dbHandler;
-    String userPrivilege;
-    String currUser;
+    private String userPrivilege;
+    private String currUser;
 
-    private PermissionSingleton() {
+    private UserSingleton() {
         this.dbHandler = DatabaseSingleton.getInstance().getDbHandler();
-        userPrivilege = Privilege.GUEST;
-        currUser = "admin";
-
-        if (!userExist("admin")) {
-            addUser(new User("admin", "Admin", "Default", "Admin"));
-            if (!ServiceRequestSingleton.getInstance().isInTable("admin", "LanguageInterpreter")) {
-                ServiceRequestSingleton.getInstance().addUsernameLanguageInterpreter("admin");
-                ServiceRequestSingleton.getInstance().addUsernameReligiousServices("admin");
-                ServiceRequestSingleton.getInstance().addUsernameSecurityRequest("admin");
-            }
-        }
-
-        if (!userExist("staff")) {
-            addUser(new User("staff", "Staff", "Member", "Nurse"));
-            if (!ServiceRequestSingleton.getInstance().isInTable("staff", "LanguageInterpreter")) {
-                ServiceRequestSingleton.getInstance().addUsernameLanguageInterpreter("staff");
-                ServiceRequestSingleton.getInstance().addUsernameReligiousServices("staff");
-            }
-        }
+        userPrivilege = Privilege.STAFF;
+        currUser = "staff";
 
     }
 
-    public static PermissionSingleton getInstance() {
+    public static UserSingleton getInstance() {
         return loginHelper.INSTANCE;
     }
 
     private static String getPrivilege(String type) {
         if (type.equals("Admin")) {
             return Privilege.ADMIN;
-        } else if (type.equals("Staff")) {
-            return Privilege.STAFF;
         } else {
-            return Privilege.GUEST;
+            return Privilege.STAFF;
         }
     }
 
@@ -57,6 +38,12 @@ public class PermissionSingleton {
 
     public String getCurrUser() {
         return currUser;
+    }
+
+
+    public void setCurrUser(String username, String privilege){
+        this.currUser = username;
+        this.userPrivilege = privilege;
     }
 
     public void addUser(User u) {
@@ -73,7 +60,7 @@ public class PermissionSingleton {
         String sql = "DELETE FROM HUser WHERE username = '" + u.getUname() + "'";
         dbHandler.runAction(sql);
         sql = "SELECT * FROM HUser";
-        ResultSet resultSet = PermissionSingleton.getInstance().dbHandler.runQuery(sql);
+        ResultSet resultSet = UserSingleton.getInstance().dbHandler.runQuery(sql);
     }
 
     public void updateUser(User u) {
@@ -83,7 +70,7 @@ public class PermissionSingleton {
                 + "' WHERE username = '" + u.getUname() + "'";
         dbHandler.runAction(sql);
         sql = "SELECT * FROM HUser";
-        ResultSet resultSet = PermissionSingleton.getInstance().dbHandler.runQuery(sql);
+        ResultSet resultSet = UserSingleton.getInstance().dbHandler.runQuery(sql);
     }
 
     public boolean userExist(String username) {
@@ -110,11 +97,10 @@ public class PermissionSingleton {
     }
 
     private static class loginHelper {
-        static final PermissionSingleton INSTANCE = new PermissionSingleton();
+        static final UserSingleton INSTANCE = new UserSingleton();
     }
 
     public static class Privilege {
-        public static final String GUEST = "Guest";
         public static final String ADMIN = "Admin";
         public static final String STAFF = "Staff";
     }

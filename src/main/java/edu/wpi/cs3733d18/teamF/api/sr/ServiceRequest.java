@@ -1,6 +1,7 @@
 package edu.wpi.cs3733d18.teamF.api.sr;
 
 
+import java.sql.Timestamp;
 
 public abstract class ServiceRequest {
     private String type;
@@ -13,6 +14,9 @@ public abstract class ServiceRequest {
     private int priority;
     private String completedBy;
     private String assignedTo;
+    private Timestamp createdOn;
+    private Timestamp started;
+    private Timestamp completedOn;
 
 
     public ServiceRequest(String type, String firstName, String lastName, String location, String description, String status, int priority) {
@@ -49,7 +53,7 @@ public abstract class ServiceRequest {
         this.assignedTo = assignedTo;
     }
 
-    public ServiceRequest(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo, String completedBy){
+    public ServiceRequest(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -60,6 +64,9 @@ public abstract class ServiceRequest {
         this.priority = priority;
         this.assignedTo = assignedTo;
         this.completedBy = completedBy;
+        this.createdOn = createdOn;
+        this.started = started;
+        this.completedOn= completedOn;
     }
 
     public String getFirstName() {

@@ -131,7 +131,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
         dbHandler.runSQLScript("init_sr_rs_db.sql");
         dbHandler.runSQLScript("init_sr_sr_db.sql");
         dbHandler.runSQLScript("init_user_db.sql");
-        dbHandler.runSQLScript("init_user_sr_inbox_db.sql");
         if (dbHandler != DatabaseSingleton.getInstance().getDbHandler()) {
             initDatabase(DatabaseSingleton.getInstance().getDbHandler());
         }
@@ -157,6 +156,37 @@ public class ServiceRequestSingleton implements DatabaseItem {
                     String status = resultSet.getString(8);
                     String assignedTo = null;
                     String completedBy = null;
+                    Timestamp createdOn = null;
+                    Timestamp started = null;
+                    Timestamp completed = null;
+                    String destNodeID = null;
+                    String sourceNodeID = null;
+                    try {
+                        createdOn = resultSet.getTimestamp(11);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        started = resultSet.getTimestamp(12);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        completed = resultSet.getTimestamp(13);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        destNodeID = resultSet.getString(14);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        sourceNodeID = resultSet.getString(15);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
                     if (status.equals("Complete")) {
                         try {
                             assignedTo = resultSet.getString(9);
@@ -188,33 +218,15 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
                     switch (type) {
                         case "Religious Services":
-                            if (completedBy != null) {
-                                s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy);
-                            } else if (assignedTo != null) {
-                                s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo);
-                            } else {
-                                s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special);
-                            }
+                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
                             break;
 
                         case "Language Interpreter":
-                            if (completedBy != null) {
-                                s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy);
-                            } else if (assignedTo != null) {
-                                s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo);
-                            } else {
-                                s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special);
-                            }
+                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
                             break;
 
                         case "Security Request":
-                            if (completedBy != null) {
-                                s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy);
-                            } else if (assignedTo != null) {
-                                s = new SecurityRequest(id, location, description, status, priority, assignedTo);
-                            } else {
-                                s = new SecurityRequest(id, location, description, status, priority);
-                            }
+                            s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy, createdOn, started, completed);
                             break;
 
                         default:
@@ -304,6 +316,37 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 String status = resultSet.getString(8);
                 String assignedTo = null;
                 String completedBy = null;
+                Timestamp createdOn = null;
+                Timestamp started = null;
+                Timestamp completed = null;
+                String destNodeID = null;
+                String sourceNodeID = null;
+                try {
+                    createdOn = resultSet.getTimestamp(11);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    started = resultSet.getTimestamp(12);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    completed = resultSet.getTimestamp(13);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    destNodeID = resultSet.getString(14);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    sourceNodeID = resultSet.getString(15);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
                 if (status.equals("Complete")) {
                     try {
                         assignedTo = resultSet.getString(9);
@@ -335,33 +378,15 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
                 switch (type) {
                     case "Religious Services":
-                        if (completedBy != null) {
-                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy);
-                        } else if (assignedTo != null) {
-                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo);
-                        } else {
-                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special);
-                        }
+                        s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
                         break;
 
                     case "Language Interpreter":
-                        if (completedBy != null) {
-                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy);
-                        } else if (assignedTo != null) {
-                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo);
-                        } else {
-                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special);
-                        }
+                        s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
                         break;
 
                     case "Security Request":
-                        if (completedBy != null) {
-                            s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy);
-                        } else if (assignedTo != null) {
-                            s = new SecurityRequest(id, location, description, status, priority, assignedTo);
-                        } else {
-                            s = new SecurityRequest(id, location, description, status, priority);
-                        }
+                        s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy, createdOn, started, completed);
                         break;
 
                     default:
@@ -377,12 +402,12 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return requests;
     }
 
-    public void setPopUpRequest(ServiceRequest popUpRequest) {
-        this.popUpRequest = popUpRequest;
-    }
-
     public ServiceRequest getPopUpRequest() {
         return popUpRequest;
+    }
+
+    public void setPopUpRequest(ServiceRequest popUpRequest) {
+        this.popUpRequest = popUpRequest;
     }
 
     public String getLastFilter() {
@@ -437,7 +462,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
     public boolean isInTable(String username, String table) {
         ResultSet rs;
         String sql;
-        switch (table){
+        switch (table) {
             case "HUser":
                 sql = "SELECT * FROM HUser WHERE username = '" + username + "'";
                 break;
@@ -484,8 +509,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
     }
 
 
-
-    public void setGridPaneDimensions(int windowWidth, int windowLength){
+    public void setGridPaneDimensions(int windowWidth, int windowLength) {
         this.prefWidth = windowWidth;
         this.prefLength = windowLength;
     }
@@ -498,11 +522,24 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return prefLength;
     }
 
-    public void setDestinationLocation(String destNodeID){
+    public void setDestinationLocation(String destNodeID) {
         this.destNodeID = destNodeID;
     }
 
     public String getDestNodeID() {
         return destNodeID;
+    }
+
+
+    public ArrayList<ServiceRequest> getServiceRequests() {
+        ArrayList<ServiceRequest> list = new ArrayList<>();
+        String sql = "SELECT * FROM ServiceRequest";
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        list = resultSetToServiceRequest(resultSet);
+        return list;
+    }
+
+    public void markAsComplete(int srID) {
+
     }
 }

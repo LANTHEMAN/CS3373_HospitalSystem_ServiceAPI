@@ -1,5 +1,7 @@
 package edu.wpi.cs3733d18.teamF.api.sr;
 
+import java.sql.Timestamp;
+
 public class ReligiousServices extends ServiceRequest{
     private String religion;
 
@@ -18,8 +20,8 @@ public class ReligiousServices extends ServiceRequest{
         this.religion = religion;
     }
 
-    public ReligiousServices(int id, String firstName, String lastName, String location, String description, String status, int priority, String religion, String assignedTo, String completeBy) {
-        super("Religious Services", id, firstName, lastName, location, description, status, priority, assignedTo, completeBy);
+    public ReligiousServices(int id, String firstName, String lastName, String location, String description, String status, int priority, String religion, String assignedTo, String completeBy, Timestamp createdOn, Timestamp started, Timestamp completedOn) {
+        super("Religious Services", id, firstName, lastName, location, description, status, priority, assignedTo, completeBy, createdOn, started, completedOn);
         this.religion = religion;
     }
 
