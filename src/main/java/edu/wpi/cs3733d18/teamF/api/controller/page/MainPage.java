@@ -549,34 +549,34 @@ public class MainPage implements SwitchableController, Observer {
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
         TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs " + r + " services at " + location + ".\nAdditional Details: " + description);
         religiousServicesPane.toBack();
-        clearReligious();
+        //clearReligious();
     }
 
     @FXML
     void onCancelRS() {
         religiousServicesPane.toBack();
-        clearReligious();
+        //clearReligious();
     }
 
-    private void clearReligious() {
-        religionField.clear();
-        if (religionRequiredRS.isVisible()) {
-            religionRequiredRS.setVisible(false);
-        }
-        firstNameRS.clear();
-        if (firstNameRequiredRS.isVisible()) {
-            firstNameRequiredRS.setVisible(false);
-        }
-        lastNameRS.clear();
-        if (lastNameRequiredRS.isVisible()) {
-            lastNameRequiredRS.setVisible(false);
-        }
-        destinationRS.clear();
-        if (locationRequiredRS.isVisible()) {
-            locationRequiredRS.setVisible(false);
-        }
-        instructionsRS.clear();
-    }
+//    private void clearReligious() {
+//        religionField.clear();
+//        if (religionRequiredRS.isVisible()) {
+//            religionRequiredRS.setVisible(false);
+//        }
+//        firstNameRS.clear();
+//        if (firstNameRequiredRS.isVisible()) {
+//            firstNameRequiredRS.setVisible(false);
+//        }
+//        lastNameRS.clear();
+//        if (lastNameRequiredRS.isVisible()) {
+//            lastNameRequiredRS.setVisible(false);
+//        }
+//        destinationRS.clear();
+//        if (locationRequiredRS.isVisible()) {
+//            locationRequiredRS.setVisible(false);
+//        }
+//        instructionsRS.clear();
+//    }
 
     ////////////////////////
     //                    //
@@ -623,7 +623,7 @@ public class MainPage implements SwitchableController, Observer {
     private void onCreateNewServiceRequest() {
         mainPane.toFront();
         clearLanguage();
-        clearReligious();
+        //clearReligious();
         clearSecurity();
     }
 
