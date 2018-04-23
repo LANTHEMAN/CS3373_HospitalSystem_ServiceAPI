@@ -18,11 +18,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.util.Callback;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -116,9 +114,11 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     private AnchorPane religiousServicesPane;
     @FXML
+    private AnchorPane sanitationPane;
+    @FXML
     private FontAwesomeIconView closeBtn;
     @FXML
-    private HBox mainPane;
+    private StackPane mainPane;
     @FXML
     private JFXButton languageInterpreterBtn;
     @FXML
@@ -272,10 +272,9 @@ public class MainPage implements SwitchableController, Observer {
             e.printStackTrace();
         }
 
-        //TODO: put result of search into table
+        
         ObservableList<ServiceRequests> listRequests;
         if (requests.size() < 1) {
-            //TODO: indicate to user that there are no results
             return;
         } else {
             listRequests = FXCollections.observableArrayList(requests);
@@ -640,6 +639,13 @@ public class MainPage implements SwitchableController, Observer {
             securityLocationRequired.setVisible(false);
         }
     }
+
+    //////////////////////
+    //                  //
+    //   Sanitation     //
+    //                  //
+    //////////////////////
+
 
 
     @FXML
