@@ -10,6 +10,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
@@ -213,7 +214,16 @@
                            <JFXComboBox fx:id="religionField1" layoutX="241.0" layoutY="251.0" prefHeight="27.0" prefWidth="160.0" promptText="Select Service Needed" />
                         </children>
                      </AnchorPane>
-                     <HBox fx:id="mainPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="80.0" style="-fx-background-color: #f1f1f1;" StackPane.alignment="CENTER">
+                     <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f1f1f1;" />
+                     <ImageView blendMode="LIGHTEN" fitHeight="612.0" fitWidth="646.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                        <image>
+                           <Image url="@../BWHIcon.png" />
+                        </image>
+                        <cursor>
+                           <Cursor fx:constant="NONE" />
+                        </cursor>
+                     </ImageView>
+                     <HBox fx:id="mainPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="80.0" StackPane.alignment="CENTER">
                         <children>
                            <JFXButton fx:id="languageInterpreterBtn" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" prefHeight="200.0" prefWidth="200.0" ripplerFill="#58acff" style="-fx-background-radius: 100; -fx-border-radius: 100;" text="Language&#10;Interpreter" textAlignment="CENTER" textFill="WHITE">
                               <effect>
@@ -247,11 +257,6 @@
                            </JFXButton>
                         </children>
                      </HBox>
-                     <ImageView blendMode="LIGHTEN" fitHeight="443.0" fitWidth="444.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
-                        <image>
-                           <Image url="@../../../../../../../../../../../Downloads/bwh_favicon-01.png" />
-                        </image>
-                     </ImageView>
                   </children>
                </StackPane>
             </content>
@@ -421,6 +426,15 @@
                   </children>
                </StackPane>
             </content>
+         </Tab>
+         <Tab text="Statistics">
+           <content>
+               <StackPane>
+                  <children>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </children>
+               </StackPane>
+           </content>
          </Tab>
       </tabs>
    </JFXTabPane>
