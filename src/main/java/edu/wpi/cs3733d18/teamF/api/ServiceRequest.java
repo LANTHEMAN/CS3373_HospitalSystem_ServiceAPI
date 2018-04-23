@@ -137,6 +137,30 @@ public class ServiceRequest {
         return ServiceRequestSingleton.getInstance().getInbox(username);
     }
 
+    public void addUsernameLanguageInterpreter(String username) {
+        ServiceRequestSingleton.getInstance().addUsernameLanguageInterpreter(username);
+    }
+
+    public void addUsernameReligiousServices(String username) {
+        ServiceRequestSingleton.getInstance().addUsernameReligiousServices(username);
+    }
+
+    public void addUsernameSecurityRequest(String username) {
+        ServiceRequestSingleton.getInstance().addUsernameSecurityRequest(username);
+    }
+
+    public void removeUsernameLanguageInterpreter(String username) {
+        ServiceRequestSingleton.getInstance().removeUsernameLanguageInterpreter(username);
+    }
+
+    public void removeUsernameReligiousServices(String username) {
+        ServiceRequestSingleton.getInstance().removeUsernameReligiousServices(username);
+    }
+
+    public void removeUsernameSecurityRequest(String username) {
+        ServiceRequestSingleton.getInstance().removeUsernameSecurityRequest(username);
+    }
+
 
 
 }
