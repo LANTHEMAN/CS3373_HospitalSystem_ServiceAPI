@@ -398,6 +398,17 @@
                                        <FontAwesomeIconView fill="WHITE" glyphName="SHIELD" size="50" />
                                     </graphic>
                                  </JFXButton>
+                                 <JFXButton fx:id="sanitationServicesBtn" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" prefHeight="200.0" prefWidth="200.0" ripplerFill="#58acff" style="-fx-background-radius: 100; -fx-border-radius: 100;" text="Sanitation&#10;Services" textAlignment="CENTER" textFill="WHITE">
+                                    <effect>
+                                       <DropShadow height="100.0" radius="49.5" spread="0.71" width="100.0" />
+                                    </effect>
+                                    <font>
+                                       <Font name="Arial Bold" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                       <FontAwesomeIconView fill="WHITE" glyphName="PAINT_BRUSH" size="50" />
+                                    </graphic>
+                                 </JFXButton>
                               </children>
                            </HBox>
                         </children>
