@@ -13,7 +13,6 @@ public abstract class ServiceRequests {
     private String status;
     private int priority;
     private String completedBy;
-    private String assignedTo;
     private Timestamp createdOn;
     private Timestamp started;
     private Timestamp completedOn;
@@ -41,7 +40,7 @@ public abstract class ServiceRequests {
         this.priority = priority;
     }
 
-    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -50,19 +49,6 @@ public abstract class ServiceRequests {
         this.description = description;
         this.status = status;
         this.priority = priority;
-        this.assignedTo = assignedTo;
-    }
-
-    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
-        this.type = type;
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.location = location;
-        this.description = description;
-        this.status = status;
-        this.priority = priority;
-        this.assignedTo = assignedTo;
         this.completedBy = completedBy;
         this.createdOn = createdOn;
         this.started = started;
@@ -135,13 +121,5 @@ public abstract class ServiceRequests {
 
     public void setCompletedBy(String completedBy) {
         this.completedBy = completedBy;
-    }
-
-    public String getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
     }
 }

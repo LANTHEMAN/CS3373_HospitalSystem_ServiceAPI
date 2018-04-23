@@ -2,11 +2,11 @@ package edu.wpi.cs3733d18.teamF.api.controller;
 
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseHandler;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
-import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 public class UserSingleton {
     DatabaseHandler dbHandler;
@@ -72,6 +72,17 @@ public class UserSingleton {
 
     public void setUsernames(ArrayList<String> usernames) {
         this.usernames = usernames;
+    }
+
+    public boolean isValidUsername(String username){
+        Predicate<String> p = e -> e == username;
+        for(String s:this.usernames){
+            if(Objects.equals(username, s)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

@@ -184,29 +184,28 @@ public class MainPage implements SwitchableController, Observer {
         usernameSearch.setOnKeyTyped((KeyEvent e) -> {
             String input = usernameSearch.getText();
             input = input.concat("" + e.getCharacter());
-            autoComplete(input, usernameList, "HUser", "username");
+            autoComplete(input, usernameList);
         });
 
         onSearch();
+
+        ArrayList<String> usernameList = new ArrayList<>();
+        usernameList.add("staff");
+        usernameList.add("admin");
+        usernameList.add("amtavares");
+        UserSingleton.getInstance().setUsernames(usernameList);
     }
 
 
     // will filter the given ListView for the given input String
-    private void autoComplete(String input, ListView listView, String table, String field) {
+    private void autoComplete(String input, ListView listView) {
         if (input.length() > 0) {
-            String sql = "SELECT " + field + " FROM " + table;
-            ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
             ArrayList<String> autoCompleteStrings = new ArrayList<>();
 
-            try {
-                while (resultSet.next()) {
-                    String username = resultSet.getString(1);
-                    if (username.toLowerCase().contains(input.toLowerCase())) {
-                        autoCompleteStrings.add(username);
-                    }
+            for(String username: UserSingleton.getInstance().getUsernames()){
+                if(username.contains(input)){
+                    autoCompleteStrings.add(username);
                 }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
             }
             try {
                 if (autoCompleteStrings.size() > 0) {
