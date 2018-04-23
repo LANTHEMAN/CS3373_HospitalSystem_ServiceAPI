@@ -71,9 +71,11 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     Label locationRequiredLI;
     @FXML
-    ToggleGroup securityToggle;
+    ToggleGroup securityToggle, staffToggle, staffToggleSR, securityToggleSR;
     @FXML
-    JFXTextField securityLocationField;
+    JFXTextField securityLocationField, requestTitleField;
+    @FXML
+    Label securityLocationRequired, requestTitleRequired;
     @FXML
     JFXTextArea securityTextArea;
     @FXML
@@ -83,11 +85,13 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     JFXTabPane serviceRequestTabPane;
     @FXML
-    TextField religionField, firstNameRS, lastNameRS, destinationRS;
+    TextField firstNameRS, lastNameRS, destinationRS;
+    @FXML
+    JFXComboBox occasionBoxRS, religionSelect;
     @FXML
     TextArea instructionsRS;
     @FXML
-    Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS;
+    Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS, occasionRequiredRS;
     String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
     String lastFilter = ServiceRequestSingleton.getInstance().getLastFilter();
     /////////////////////////////////////////
@@ -111,9 +115,6 @@ public class MainPage implements SwitchableController, Observer {
     private JFXCheckBox completeCheck;
     @FXML
     private AnchorPane religiousServicesPane;
-    @FXML
-    private Label securityLocationRequired;
-
     @FXML
     private FontAwesomeIconView closeBtn;
     @FXML
@@ -514,8 +515,13 @@ public class MainPage implements SwitchableController, Observer {
         String last_name;
         String location;
         String description;
-        if (religionField.getText() == null || religionField.getText().trim().isEmpty()) {
+        String occasion;
+        if (religionSelect.getSelectionModel().isEmpty()) {
             religionRequiredRS.setVisible(true);
+            requiredFieldsEmpty++;
+        }
+        if (occasionBoxRS.getSelectionModel().isEmpty()){
+            occasionRequiredRS.setVisible(true);
             requiredFieldsEmpty++;
         }
         if (firstNameRS.getText() == null || firstNameRS.getText().trim().isEmpty()) {
@@ -539,44 +545,49 @@ public class MainPage implements SwitchableController, Observer {
         } else {
             description = instructionsRS.getText();
         }
-        r = religionField.getText();
+        r = religionSelect.getSelectionModel().getSelectedItem().toString();
+        occasion = occasionBoxRS.getSelectionModel().getSelectedItem().toString();
         first_name = firstNameRS.getText();
         last_name = lastNameRS.getText();
         location = destinationRS.getText();
-        String new_description = r + "/////" + description + "\n";
+        String new_description = r + "/////" + occasion + "/////" + description + "\n";
         ServiceRequests request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
         TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs " + r + " services at " + location + ".\nAdditional Details: " + description);
         religiousServicesPane.toBack();
-        //clearReligious();
+        clearReligious();
     }
 
     @FXML
     void onCancelRS() {
         religiousServicesPane.toBack();
-        //clearReligious();
+        clearReligious();
     }
 
-//    private void clearReligious() {
-//        religionField.clear();
-//        if (religionRequiredRS.isVisible()) {
-//            religionRequiredRS.setVisible(false);
-//        }
-//        firstNameRS.clear();
-//        if (firstNameRequiredRS.isVisible()) {
-//            firstNameRequiredRS.setVisible(false);
-//        }
-//        lastNameRS.clear();
-//        if (lastNameRequiredRS.isVisible()) {
-//            lastNameRequiredRS.setVisible(false);
-//        }
-//        destinationRS.clear();
-//        if (locationRequiredRS.isVisible()) {
-//            locationRequiredRS.setVisible(false);
-//        }
-//        instructionsRS.clear();
-//    }
+    private void clearReligious() {
+        religionSelect.getSelectionModel().clearSelection();
+        if (religionRequiredRS.isVisible()) {
+            religionRequiredRS.setVisible(false);
+        }
+        occasionBoxRS.getSelectionModel().clearSelection();
+        if(occasionRequiredRS.isVisible()){
+            occasionRequiredRS.setVisible(false);
+        }
+        firstNameRS.clear();
+        if (firstNameRequiredRS.isVisible()) {
+            firstNameRequiredRS.setVisible(false);
+        }
+        lastNameRS.clear();
+        if (lastNameRequiredRS.isVisible()) {
+            lastNameRequiredRS.setVisible(false);
+        }
+        destinationRS.clear();
+        if (locationRequiredRS.isVisible()) {
+            locationRequiredRS.setVisible(false);
+        }
+        instructionsRS.clear();
+    }
 
     ////////////////////////
     //                    //
