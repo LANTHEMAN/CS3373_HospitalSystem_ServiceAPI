@@ -15,13 +15,9 @@ public class ReligiousServices extends ServiceRequests {
         this.religion = religion;
     }
 
-    public ReligiousServices(int id, String firstName, String lastName, String location, String description, String status, int priority, String religion, String assignedTo) {
-        super("Religious Services", id, firstName, lastName, location, description, status, priority, assignedTo);
-        this.religion = religion;
-    }
 
-    public ReligiousServices(int id, String firstName, String lastName, String location, String description, String status, int priority, String religion, String assignedTo, String completeBy, Timestamp createdOn, Timestamp started, Timestamp completedOn) {
-        super("Religious Services", id, firstName, lastName, location, description, status, priority, assignedTo, completeBy, createdOn, started, completedOn);
+    public ReligiousServices(int id, String firstName, String lastName, String location, String description, String status, int priority, String religion, String completeBy, Timestamp createdOn, Timestamp started, Timestamp completedOn) {
+        super("Religious Services", id, firstName, lastName, location, description, status, priority, completeBy, createdOn, started, completedOn);
         this.religion = religion;
     }
 

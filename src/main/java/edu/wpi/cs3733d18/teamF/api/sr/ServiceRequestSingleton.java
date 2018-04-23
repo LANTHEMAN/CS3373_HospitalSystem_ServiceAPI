@@ -1,5 +1,6 @@
 package edu.wpi.cs3733d18.teamF.api.sr;
 
+import edu.wpi.cs3733d18.teamF.api.controller.UserSingleton;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseHandler;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseItem;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
@@ -71,7 +72,18 @@ public class ServiceRequestSingleton implements DatabaseItem {
     public void updateStatus(ServiceRequests s) {
         String sql = "UPDATE ServiceRequest SET status = '" + s.getStatus() + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
-        sql = "SELECT * FROM ServiceRequest";
+        updateLocal();
+    }
+
+    public void markAsComplete(String username, int srID){
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        String sql = "UPDATE ServiceRequest SET status = Complete, completedBy= '" + username + "', completed = '" + time + "' WHERE id = " + srID;
+        dbHandler.runAction(sql);
+        updateLocal();
+    }
+
+    public void updateLocal(){
+        String sql = "SELECT * FROM ServiceRequest";
         ResultSet rs = dbHandler.runQuery(sql);
         syncLocalFromDB("ServiceRequest", rs);
     }
@@ -80,12 +92,14 @@ public class ServiceRequestSingleton implements DatabaseItem {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         String sql = "UPDATE ServiceRequest SET completedBy = '" + s.getCompletedBy() + "', completed = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
+        updateLocal();
     }
 
     public void updateAssignedTo(ServiceRequests s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "', started = '" + time + "' WHERE id = " + s.getId();
+        String sql = "UPDATE ServiceRequest SET started = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
+        updateLocal();
     }
 
     public void sendServiceRequest(ServiceRequests s) {
@@ -101,6 +115,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 + ", '" + s.getStatus()
                 + "', '" + time + "')";
         dbHandler.runAction(sql);
+        updateLocal();
     }
 
     public ResultSet getRequests() {
@@ -130,7 +145,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         dbHandler.runSQLScript("init_sr_li_db.sql");
         dbHandler.runSQLScript("init_sr_rs_db.sql");
         dbHandler.runSQLScript("init_sr_sr_db.sql");
-        dbHandler.runSQLScript("init_user_db.sql");
+        dbHandler.runSQLScript("init_sr_inbox_db.sql");
         if (dbHandler != DatabaseSingleton.getInstance().getDbHandler()) {
             initDatabase(DatabaseSingleton.getInstance().getDbHandler());
         }
@@ -154,7 +169,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
                     String instructions = resultSet.getString(6);
                     int priority = resultSet.getInt(7);
                     String status = resultSet.getString(8);
-                    String assignedTo = null;
                     String completedBy = null;
                     Timestamp createdOn = null;
                     Timestamp started = null;
@@ -162,46 +176,37 @@ public class ServiceRequestSingleton implements DatabaseItem {
                     String destNodeID = null;
                     String sourceNodeID = null;
                     try {
-                        createdOn = resultSet.getTimestamp(11);
+                        createdOn = resultSet.getTimestamp(10);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        started = resultSet.getTimestamp(12);
+                        started = resultSet.getTimestamp(11);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        completed = resultSet.getTimestamp(13);
+                        completed = resultSet.getTimestamp(12);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        destNodeID = resultSet.getString(14);
+                        destNodeID = resultSet.getString(13);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        sourceNodeID = resultSet.getString(15);
+                        sourceNodeID = resultSet.getString(14);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
 
                     if (status.equals("Complete")) {
                         try {
-                            assignedTo = resultSet.getString(9);
-                            completedBy = resultSet.getString(10);
+                            completedBy = resultSet.getString(9);
                         } catch (SQLException e) {
                             e.printStackTrace();
-                            assignedTo = null;
                             completedBy = null;
-                        }
-                    } else if (status.equals("In Progress")) {
-                        try {
-                            assignedTo = resultSet.getString(9);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                            assignedTo = null;
                         }
                     }
 
@@ -218,19 +223,19 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
                     switch (type) {
                         case "Religious Services":
-                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
+                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
                             break;
 
                         case "Language Interpreter":
-                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
+                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
                             break;
 
                         case "Security Request":
-                            s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy, createdOn, started, completed);
+                            s = new SecurityRequests(id, location, description, status, priority, completedBy, createdOn, started, completed);
                             break;
 
                         default:
-                            s = new SecurityRequest(id, location, description, status, priority);
+                            s = new SecurityRequests(id, location, description, status, priority);
                             break;
                     }
 
@@ -314,7 +319,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 String instructions = resultSet.getString(6);
                 int priority = resultSet.getInt(7);
                 String status = resultSet.getString(8);
-                String assignedTo = null;
                 String completedBy = null;
                 Timestamp createdOn = null;
                 Timestamp started = null;
@@ -322,46 +326,37 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 String destNodeID = null;
                 String sourceNodeID = null;
                 try {
-                    createdOn = resultSet.getTimestamp(11);
+                    createdOn = resultSet.getTimestamp(10);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 try {
-                    started = resultSet.getTimestamp(12);
+                    started = resultSet.getTimestamp(11);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 try {
-                    completed = resultSet.getTimestamp(13);
+                    completed = resultSet.getTimestamp(12);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 try {
-                    destNodeID = resultSet.getString(14);
+                    destNodeID = resultSet.getString(13);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 try {
-                    sourceNodeID = resultSet.getString(15);
+                    sourceNodeID = resultSet.getString(14);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
                 if (status.equals("Complete")) {
                     try {
-                        assignedTo = resultSet.getString(9);
-                        completedBy = resultSet.getString(10);
+                        completedBy = resultSet.getString(9);
                     } catch (SQLException e) {
                         e.printStackTrace();
-                        assignedTo = null;
                         completedBy = null;
-                    }
-                } else if (status.equals("In Progress")) {
-                    try {
-                        assignedTo = resultSet.getString(9);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        assignedTo = null;
                     }
                 }
 
@@ -378,19 +373,19 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
                 switch (type) {
                     case "Religious Services":
-                        s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
+                        s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
                         break;
 
                     case "Language Interpreter":
-                        s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, assignedTo, completedBy, createdOn, started, completed);
+                        s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
                         break;
 
                     case "Security Request":
-                        s = new SecurityRequest(id, location, description, status, priority, assignedTo, completedBy, createdOn, started, completed);
+                        s = new SecurityRequests(id, location, description, status, priority, completedBy, createdOn, started, completed);
                         break;
 
                     default:
-                        s = new SecurityRequest(id, location, description, status, priority);
+                        s = new SecurityRequests(id, location, description, status, priority);
                         break;
                 }
 
@@ -463,9 +458,6 @@ public class ServiceRequestSingleton implements DatabaseItem {
         ResultSet rs;
         String sql;
         switch (table) {
-            case "HUser":
-                sql = "SELECT * FROM HUser WHERE username = '" + username + "'";
-                break;
             case "LanguageInterpreter":
                 sql = "SELECT * FROM LanguageInterpreter WHERE username = '" + username + "'";
                 break;
@@ -498,14 +490,14 @@ public class ServiceRequestSingleton implements DatabaseItem {
     }
 
     public void assignTo(String username, ServiceRequests sr) {
-        if (isInTable(username, "HUser")) {
-            sr.setAssignedTo(username);
+        if (UserSingleton.getInstance().isValidUsername(username)) {
             sr.setStatus("In Progress");
             updateAssignedTo(sr);
             updateStatus(sr);
             String sql = "INSERT INTO Inbox VALUES ('" + username + "', " + sr.getId() + ")";
             DatabaseSingleton.getInstance().getDbHandler().runAction(sql);
         }
+        updateLocal();
     }
 
 
@@ -539,7 +531,11 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return list;
     }
 
-    public void markAsComplete(int srID) {
-
+    public ArrayList<ServiceRequests> getInbox(String username){
+        ArrayList<ServiceRequests> inbox;
+        String sql = "SELECT S.* FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE I.username = '" + username + "'";
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        inbox = resultSetToServiceRequest(resultSet);
+        return inbox;
     }
 }

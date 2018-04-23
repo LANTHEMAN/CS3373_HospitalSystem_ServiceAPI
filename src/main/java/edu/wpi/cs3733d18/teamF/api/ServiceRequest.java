@@ -4,6 +4,7 @@ import edu.wpi.cs3733d18.teamF.api.controller.UserSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.Screens;
 import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
+import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequests;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -124,16 +125,16 @@ public class ServiceRequest {
         VoiceLauncher.getInstance().terminate();
     }
 
-    public void setUsers(ArrayList<String> usernames){
-        UserSingleton.getInstance().setUsernames(usernames);
+    public void setUsers(ArrayList<String> listUserNames){
+        UserSingleton.getInstance().setUsernames(listUserNames);
     }
 
     public void markAsComplete(String username, int serviceRequestID){
-
+        ServiceRequestSingleton.getInstance().markAsComplete(username, serviceRequestID);
     }
 
-    public ArrayList<String> checkInbox(String username){
-        return new ArrayList<>();
+    public ArrayList<ServiceRequests> checkInbox(String username){
+        return ServiceRequestSingleton.getInstance().getInbox(username);
     }
 
 
