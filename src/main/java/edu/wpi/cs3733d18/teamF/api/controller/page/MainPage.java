@@ -5,9 +5,9 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import edu.wpi.cs3733d18.teamF.api.controller.PaneSwitcher;
 import edu.wpi.cs3733d18.teamF.api.controller.UserSingleton;
 import edu.wpi.cs3733d18.teamF.api.controller.SwitchableController;
-import edu.wpi.cs3733d18.teamF.api.controller.User;
 import edu.wpi.cs3733d18.teamF.api.db.DatabaseSingleton;
 import edu.wpi.cs3733d18.teamF.api.gfx.PaneVoiceController;
+import edu.wpi.cs3733d18.teamF.api.notifications.TwilioHandlerSingleton;
 import edu.wpi.cs3733d18.teamF.api.sr.*;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceCommandVerification;
 import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
@@ -38,13 +38,13 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     public ComboBox filterType, availableTypes;
     @FXML
-    public TableView<ServiceRequest> searchResultTable;
+    public TableView<ServiceRequests> searchResultTable;
     @FXML
     public TableColumn btnsCol;
     @FXML
-    public TableColumn<ServiceRequest, Integer> idNumberCol, requestPriorityCol;
+    public TableColumn<ServiceRequests, Integer> idNumberCol, requestPriorityCol;
     @FXML
-    public TableColumn<ServiceRequest, String> requestTypeCol, firstNameCol, lastNameCol, destinationCol, theStatusCol;
+    public TableColumn<ServiceRequests, String> requestTypeCol, firstNameCol, lastNameCol, destinationCol, theStatusCol;
     @FXML
     public Label typeLabel, idLabel, fullNameLabel, locationLabel, statusLabel, completedByLabel, usernameLabel;
     @FXML
@@ -95,7 +95,7 @@ public class MainPage implements SwitchableController, Observer {
     //           Service Request           //
     //                                     //
     /////////////////////////////////////////
-    private ServiceRequest serviceRequestPopUp;
+    private ServiceRequests serviceRequestsPopUp;
     @FXML
     private AnchorPane editRequestPane;
     /////////////////////////////////
@@ -132,11 +132,6 @@ public class MainPage implements SwitchableController, Observer {
     private Pane voicePane;
 
 
-    ////////////////////////
-    //                    //
-    //   User management  //
-    //                    //
-    ////////////////////////
     @FXML
     private JFXListView usernameList;
 
@@ -236,37 +231,11 @@ public class MainPage implements SwitchableController, Observer {
         usernameList.setVisible(false);
     }
 
-    private ArrayList<User> autoCompleteUserSearch(String input) {
-        ArrayList<User> autoCompleteUser = new ArrayList<>();
-        if (input.length() >= 0) {
-            String sql = "SELECT * FROM HUser";
-            try {
-                ResultSet resultSet = DatabaseSingleton.getInstance().getDbHandler().runQuery(sql);
-                while (resultSet.next()) {
 
-                    String username = resultSet.getString(1);
-                    String firstname = resultSet.getString(2);
-                    String lastname = resultSet.getString(3);
-                    String occupation = resultSet.getString(4);
-                    User temp = new User(username, firstname, lastname, occupation);
-                    String searchString = username + firstname + lastname +  occupation;
-                    if (searchString.toLowerCase().contains(input.toLowerCase())) {
-                        autoCompleteUser.add(temp);
-                    }
-
-                }
-                resultSet.close();
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-        return autoCompleteUser;
-    }
 
     @FXML
     void onSearch() {
-        ArrayList<ServiceRequest> requests = new ArrayList<>();
+        ArrayList<ServiceRequests> requests = new ArrayList<>();
         try {
             if (filter.equalsIgnoreCase("none")) {
                 ResultSet all = ServiceRequestSingleton.getInstance().getRequests();
@@ -304,7 +273,7 @@ public class MainPage implements SwitchableController, Observer {
         }
 
         //TODO: put result of search into table
-        ObservableList<ServiceRequest> listRequests;
+        ObservableList<ServiceRequests> listRequests;
         if (requests.size() < 1) {
             //TODO: indicate to user that there are no results
             return;
@@ -314,21 +283,21 @@ public class MainPage implements SwitchableController, Observer {
 
         searchResultTable.setEditable(false);
 
-        idNumberCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Integer>("id"));
-        requestTypeCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("type"));
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("lastName"));
-        destinationCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("location"));
-        requestPriorityCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Integer>("priority"));
-        theStatusCol.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("status"));
+        idNumberCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, Integer>("id"));
+        requestTypeCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, String>("type"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, String>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, String>("lastName"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, String>("location"));
+        requestPriorityCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, Integer>("priority"));
+        theStatusCol.setCellValueFactory(new PropertyValueFactory<ServiceRequests, String>("status"));
         btnsCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
 
-        Callback<TableColumn<ServiceRequest, String>, TableCell<ServiceRequest, String>> cellFactory
+        Callback<TableColumn<ServiceRequests, String>, TableCell<ServiceRequests, String>> cellFactory
                 = //
-                new Callback<TableColumn<ServiceRequest, String>, TableCell<ServiceRequest, String>>() {
+                new Callback<TableColumn<ServiceRequests, String>, TableCell<ServiceRequests, String>>() {
                     @Override
-                    public TableCell call(final TableColumn<ServiceRequest, String> param) {
-                        final TableCell<ServiceRequest, String> cell = new TableCell<ServiceRequest, String>() {
+                    public TableCell call(final TableColumn<ServiceRequests, String> param) {
+                        final TableCell<ServiceRequests, String> cell = new TableCell<ServiceRequests, String>() {
 
                             JFXButton btn = new JFXButton("Select");
 
@@ -340,7 +309,7 @@ public class MainPage implements SwitchableController, Observer {
                                     setText(null);
                                 } else {
                                     btn.setOnAction(event -> {
-                                        ServiceRequest s = getTableView().getItems().get(getIndex());
+                                        ServiceRequests s = getTableView().getItems().get(getIndex());
                                         onSelect(s);
                                     });
                                     setGraphic(btn);
@@ -361,9 +330,9 @@ public class MainPage implements SwitchableController, Observer {
 
 
 
-    public void onSelect(ServiceRequest s) {
+    public void onSelect(ServiceRequests s) {
         ServiceRequestSingleton.getInstance().setPopUpRequest(s);
-        serviceRequestPopUp = s;
+        serviceRequestsPopUp = s;
         typeLabel.setText("Type: " + s.getType());
         idLabel.setText("Service Request #" + s.getId());
         fullNameLabel.setText(s.getFirstName() + " " + s.getLastName());
@@ -377,10 +346,10 @@ public class MainPage implements SwitchableController, Observer {
             completeCheck.setSelected(false);
         }
 
-        if (serviceRequestPopUp.getStatus().equals("Complete")) {
+        if (serviceRequestsPopUp.getStatus().equals("Complete")) {
             completedByLabel.setVisible(true);
             usernameLabel.setVisible(true);
-            usernameLabel.setText(serviceRequestPopUp.getCompletedBy());
+            usernameLabel.setText(serviceRequestsPopUp.getCompletedBy());
         }
         editRequestPane.toFront();
     }
@@ -436,13 +405,13 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     public void onSubmitEdit() {
         if (usernameSearch.getText() != null && !usernameSearch.getText().trim().isEmpty()) {
-            ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestPopUp);
+            ServiceRequestSingleton.getInstance().assignTo(usernameSearch.getText(), serviceRequestsPopUp);
         }
-        if (completeCheck.isSelected() && !serviceRequestPopUp.getStatus().equalsIgnoreCase("Complete")) {
-            serviceRequestPopUp.setStatus("Complete");
-            serviceRequestPopUp.setCompletedBy(UserSingleton.getInstance().getCurrUser());
-            ServiceRequestSingleton.getInstance().updateCompletedBy(serviceRequestPopUp);
-            ServiceRequestSingleton.getInstance().updateStatus(serviceRequestPopUp);
+        if (completeCheck.isSelected() && !serviceRequestsPopUp.getStatus().equalsIgnoreCase("Complete")) {
+            serviceRequestsPopUp.setStatus("Complete");
+            serviceRequestsPopUp.setCompletedBy(UserSingleton.getInstance().getCurrUser());
+            ServiceRequestSingleton.getInstance().updateCompletedBy(serviceRequestsPopUp);
+            ServiceRequestSingleton.getInstance().updateStatus(serviceRequestsPopUp);
         }
         usernameSearch.setText("");
         editRequestPane.toBack();
@@ -498,9 +467,10 @@ public class MainPage implements SwitchableController, Observer {
         last_name = lastNameLanguage.getText();
         location = destinationLanguage.getText();
         String new_description = l + "/////" + description;
-        ServiceRequest request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l);
+        ServiceRequests request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
+        TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs a " + l + " interpreter at " + location + ".\nAdditional Details: " + description);
         languageInterpreterPane.toBack();
         clearLanguage();
     }
@@ -575,9 +545,10 @@ public class MainPage implements SwitchableController, Observer {
         last_name = lastNameRS.getText();
         location = destinationRS.getText();
         String new_description = r + "/////" + description + "\n";
-        ServiceRequest request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
+        ServiceRequests request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
+        TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs " + r + " services at " + location + ".\nAdditional Details: " + description);
         religiousServicesPane.toBack();
         clearReligious();
     }
@@ -625,10 +596,11 @@ public class MainPage implements SwitchableController, Observer {
         String status = "Incomplete";
         RadioButton selected = (RadioButton) securityToggle.getSelectedToggle();
         int priority = Integer.parseInt(selected.getText());
-        SecurityRequest sec = new SecurityRequest(location, description, status, priority);
+        SecurityRequests sec = new SecurityRequests(location, description, status, priority);
 
         ServiceRequestSingleton.getInstance().sendServiceRequest(sec);
         ServiceRequestSingleton.getInstance().addServiceRequest(sec);
+        TwilioHandlerSingleton.getInstance().sendMessage("\nSecurity is required at " + location + ".\nAdditional Details: " + description);
         securityPane.toBack();
         clearSecurity();
     }
@@ -688,9 +660,6 @@ public class MainPage implements SwitchableController, Observer {
             }else if(arg.toString().equalsIgnoreCase("Search")){
                 SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
                 selectionModel.select(1);
-            }else if(arg.toString().equalsIgnoreCase("User")){
-                SingleSelectionModel<Tab> selectionModel = serviceRequestTabPane.getSelectionModel();
-                selectionModel.select(2);
             }
         }
     }

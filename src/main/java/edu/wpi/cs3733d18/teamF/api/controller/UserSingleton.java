@@ -6,16 +6,19 @@ import edu.wpi.cs3733d18.teamF.api.sr.ServiceRequestSingleton;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserSingleton {
     DatabaseHandler dbHandler;
     private String userPrivilege;
     private String currUser;
+    private ArrayList<String> usernames;
 
     private UserSingleton() {
         this.dbHandler = DatabaseSingleton.getInstance().getDbHandler();
         userPrivilege = Privilege.STAFF;
         currUser = "staff";
+        usernames = new ArrayList<>();
 
     }
 
@@ -46,52 +49,6 @@ public class UserSingleton {
         this.userPrivilege = privilege;
     }
 
-    public void addUser(User u) {
-        String sql = "INSERT INTO HUser"
-                + " VALUES ('" + u.getUname()
-                + "', '" + u.getFirstName()
-                + "', '" + u.getLastName()
-                + "', '" + u.getOccupation()
-                + "')";
-        dbHandler.runAction(sql);
-    }
-
-    public void removeUser(User u) {
-        String sql = "DELETE FROM HUser WHERE username = '" + u.getUname() + "'";
-        dbHandler.runAction(sql);
-        sql = "SELECT * FROM HUser";
-        ResultSet resultSet = UserSingleton.getInstance().dbHandler.runQuery(sql);
-    }
-
-    public void updateUser(User u) {
-        String sql = "UPDATE HUser SET firstName = '" + u.getFirstName()
-                + "', lastName = '" + u.getLastName()
-                + "', occupation = '" + u.getOccupation()
-                + "' WHERE username = '" + u.getUname() + "'";
-        dbHandler.runAction(sql);
-        sql = "SELECT * FROM HUser";
-        ResultSet resultSet = UserSingleton.getInstance().dbHandler.runQuery(sql);
-    }
-
-    public boolean userExist(String username) {
-        ResultSet rs;
-        String sql = "SELECT * FROM HUser WHERE username = '" + username + "'";
-        try {
-            rs = dbHandler.runQuery(sql);
-
-            if (!rs.next()) {
-                rs.close();
-                return false;
-            } else {
-                rs.close();
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public String getUserPrivilege() {
         return userPrivilege;
     }
@@ -109,5 +66,12 @@ public class UserSingleton {
         this.currUser = currUser;
     }
 
+    public ArrayList<String> getUsernames() {
+        return usernames;
+    }
+
+    public void setUsernames(ArrayList<String> usernames) {
+        this.usernames = usernames;
+    }
 }
 

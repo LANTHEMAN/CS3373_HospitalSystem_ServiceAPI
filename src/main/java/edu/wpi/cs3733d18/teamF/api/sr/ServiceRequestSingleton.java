@@ -17,9 +17,9 @@ public class ServiceRequestSingleton implements DatabaseItem {
     // just for testing
     private static HashMap<DatabaseHandler, ServiceRequestSingleton> testDatabases = new HashMap<>();
     private DatabaseHandler dbHandler;
-    private ArrayList<ServiceRequest> listOfRequests = new ArrayList<>();
+    private ArrayList<ServiceRequests> listOfRequests = new ArrayList<>();
     private int id = 0;
-    private ServiceRequest popUpRequest;
+    private ServiceRequests popUpRequest;
     private String lastFilter;
     private String lastSearch;
     private int prefWidth;
@@ -68,7 +68,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return id++;
     }
 
-    public void updateStatus(ServiceRequest s) {
+    public void updateStatus(ServiceRequests s) {
         String sql = "UPDATE ServiceRequest SET status = '" + s.getStatus() + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
         sql = "SELECT * FROM ServiceRequest";
@@ -76,19 +76,19 @@ public class ServiceRequestSingleton implements DatabaseItem {
         syncLocalFromDB("ServiceRequest", rs);
     }
 
-    public void updateCompletedBy(ServiceRequest s) {
+    public void updateCompletedBy(ServiceRequests s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         String sql = "UPDATE ServiceRequest SET completedBy = '" + s.getCompletedBy() + "', completed = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
     }
 
-    public void updateAssignedTo(ServiceRequest s) {
+    public void updateAssignedTo(ServiceRequests s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         String sql = "UPDATE ServiceRequest SET assignedTo = '" + s.getAssignedTo() + "', started = '" + time + "' WHERE id = " + s.getId();
         dbHandler.runAction(sql);
     }
 
-    public void sendServiceRequest(ServiceRequest s) {
+    public void sendServiceRequest(ServiceRequests s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         String sql = "INSERT INTO ServiceRequest(id, type, firstName, lastName, location, instructions, priority, status, createdOn)"
                 + " VALUES (" + s.getId()
@@ -206,7 +206,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
                     }
 
 
-                    ServiceRequest s;
+                    ServiceRequests s;
                     String[] parts;
                     String special = "";
                     String description = "";
@@ -248,22 +248,22 @@ public class ServiceRequestSingleton implements DatabaseItem {
         // intentionally left empty
     }
 
-    public ArrayList<ServiceRequest> getListOfRequests() {
+    public ArrayList<ServiceRequests> getListOfRequests() {
         return listOfRequests;
     }
 
-    private void setListOfRequests(ArrayList<ServiceRequest> listOfRequests) {
+    private void setListOfRequests(ArrayList<ServiceRequests> listOfRequests) {
         this.listOfRequests = listOfRequests;
     }
 
-    public void addServiceRequest(ServiceRequest s) {
+    public void addServiceRequest(ServiceRequests s) {
         int listSize = this.listOfRequests.size();
         int flag = 0;
-        ArrayList<ServiceRequest> newList = new ArrayList<>();
+        ArrayList<ServiceRequests> newList = new ArrayList<>();
         if (listSize == 0) {
             newList.add(0, s);
         } else {
-            for (ServiceRequest i : this.listOfRequests) {
+            for (ServiceRequests i : this.listOfRequests) {
                 if (i.getId() > s.getId() && flag == 0) {
                     newList.add(s);
                     flag++;
@@ -279,14 +279,14 @@ public class ServiceRequestSingleton implements DatabaseItem {
         this.setListOfRequests(newList);
     }
 
-    public ArrayList<ServiceRequest> addServiceRequest(ServiceRequest s, ArrayList<ServiceRequest> listReq) {
+    public ArrayList<ServiceRequests> addServiceRequest(ServiceRequests s, ArrayList<ServiceRequests> listReq) {
         int listSize = listReq.size();
         int flag = 0;
-        ArrayList<ServiceRequest> newList = new ArrayList<>();
+        ArrayList<ServiceRequests> newList = new ArrayList<>();
         if (listSize == 0) {
             newList.add(0, s);
         } else {
-            for (ServiceRequest i : listReq) {
+            for (ServiceRequests i : listReq) {
                 if (i.getId() > s.getId() && flag == 0) {
                     newList.add(s);
                     flag++;
@@ -302,8 +302,8 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return newList;
     }
 
-    public ArrayList<ServiceRequest> resultSetToServiceRequest(ResultSet resultSet) {
-        ArrayList<ServiceRequest> requests = new ArrayList<>();
+    public ArrayList<ServiceRequests> resultSetToServiceRequest(ResultSet resultSet) {
+        ArrayList<ServiceRequests> requests = new ArrayList<>();
         try {
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -366,7 +366,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 }
 
 
-                ServiceRequest s;
+                ServiceRequests s;
                 String[] parts;
                 String special = "";
                 String description = "";
@@ -402,11 +402,11 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return requests;
     }
 
-    public ServiceRequest getPopUpRequest() {
+    public ServiceRequests getPopUpRequest() {
         return popUpRequest;
     }
 
-    public void setPopUpRequest(ServiceRequest popUpRequest) {
+    public void setPopUpRequest(ServiceRequests popUpRequest) {
         this.popUpRequest = popUpRequest;
     }
 
@@ -497,7 +497,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return false;
     }
 
-    public void assignTo(String username, ServiceRequest sr) {
+    public void assignTo(String username, ServiceRequests sr) {
         if (isInTable(username, "HUser")) {
             sr.setAssignedTo(username);
             sr.setStatus("In Progress");
@@ -531,8 +531,8 @@ public class ServiceRequestSingleton implements DatabaseItem {
     }
 
 
-    public ArrayList<ServiceRequest> getServiceRequests() {
-        ArrayList<ServiceRequest> list = new ArrayList<>();
+    public ArrayList<ServiceRequests> getServiceRequests() {
+        ArrayList<ServiceRequests> list = new ArrayList<>();
         String sql = "SELECT * FROM ServiceRequest";
         ResultSet resultSet = dbHandler.runQuery(sql);
         list = resultSetToServiceRequest(resultSet);

@@ -3,12 +3,12 @@ package edu.wpi.cs3733d18.teamF.api.voice;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import edu.wpi.cs3733d18.teamF.api.Main;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,13 +18,56 @@ public class VoiceLauncher extends Observable implements Runnable, Observer {
     private boolean terminate = false;
 
     private VoiceLauncher() {
-        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        exportResource("sr.dic");
+        exportResource("sr.lm");
+
         configuration.setDictionaryPath("sr.dic");
         configuration.setLanguageModelPath("sr.lm");
+        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     }
 
     public static VoiceLauncher getInstance() {
         return LazyInitializer.INSTANCE;
+    }
+
+    /**
+     * Export a resource embedded into a Jar file to the local file path.
+     *
+     * @param resourceName ie.: "/SmartLibrary.dll"
+     * @return The path to the exported resource
+     * @throws Exception
+     */
+    static private String exportResource(String resourceName) {
+        InputStream stream = null;
+        OutputStream resStreamOut = null;
+        String jarFolder = "";
+        try {
+            stream = VoiceLauncher.class.getResourceAsStream(resourceName);
+            if (stream == null) {
+                throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+            }
+            int readBytes;
+            byte[] buffer = new byte[4096];
+            jarFolder = Paths.get("").toAbsolutePath().toString().replace('\\', '/');
+            resStreamOut = new FileOutputStream(jarFolder + "/" + resourceName);
+            while ((readBytes = stream.read(buffer)) > 0) {
+                resStreamOut.write(buffer, 0, readBytes);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+                if (resStreamOut != null) {
+                    resStreamOut.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return jarFolder + resourceName;
     }
 
     public void run() {

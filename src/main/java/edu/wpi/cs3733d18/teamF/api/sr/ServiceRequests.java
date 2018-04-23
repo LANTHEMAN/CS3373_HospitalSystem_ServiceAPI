@@ -3,7 +3,7 @@ package edu.wpi.cs3733d18.teamF.api.sr;
 
 import java.sql.Timestamp;
 
-public abstract class ServiceRequest {
+public abstract class ServiceRequests {
     private String type;
     private Integer id;
     private String firstName;
@@ -19,7 +19,7 @@ public abstract class ServiceRequest {
     private Timestamp completedOn;
 
 
-    public ServiceRequest(String type, String firstName, String lastName, String location, String description, String status, int priority) {
+    public ServiceRequests(String type, String firstName, String lastName, String location, String description, String status, int priority) {
         this.type = type;
         this.id = ServiceRequestSingleton.getInstance().generateNewID();
         this.firstName = firstName;
@@ -30,7 +30,7 @@ public abstract class ServiceRequest {
         this.priority = priority;
     }
 
-    public ServiceRequest(String type, int id, String firstName, String lastName, String location, String description, String status, int priority){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -41,7 +41,7 @@ public abstract class ServiceRequest {
         this.priority = priority;
     }
 
-    public ServiceRequest(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -53,7 +53,7 @@ public abstract class ServiceRequest {
         this.assignedTo = assignedTo;
     }
 
-    public ServiceRequest(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String assignedTo, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
         this.type = type;
         this.id = id;
         this.firstName = firstName;

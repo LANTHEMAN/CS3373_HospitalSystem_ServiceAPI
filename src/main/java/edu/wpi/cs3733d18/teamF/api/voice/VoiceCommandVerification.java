@@ -53,10 +53,7 @@ public class VoiceCommandVerification extends Observable implements Observer {
                 }else if(command.contains("SEARCH") && command.contains("SERVICE")){
                     signalClassChanged("Search");
                     voice.speak("Here is the search service request page");
-                }else if(command.contains("USER") && command.contains("MANAGEMENT")){
-                    signalClassChanged("User");
-                    voice.speak("Here is the user management page");
-                } else if (command.contains("WEATHER")) {
+                }else if (command.contains("WEATHER")) {
                     YahooWeatherService service = null;
                     try {
                         service = new YahooWeatherService();

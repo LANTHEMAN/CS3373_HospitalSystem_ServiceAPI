@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Observable;
 
@@ -117,4 +118,24 @@ public class ServiceRequest {
     public void setCurrUser(String username){
         UserSingleton.getInstance().setCurrUser(username);
     }
+    
+    @Override
+    public void finalize() {
+        VoiceLauncher.getInstance().terminate();
+    }
+
+    public void setUsers(ArrayList<String> usernames){
+        UserSingleton.getInstance().setUsernames(usernames);
+    }
+
+    public void markAsComplete(String username, int serviceRequestID){
+
+    }
+
+    public ArrayList<String> checkInbox(String username){
+        return new ArrayList<>();
+    }
+
+
+
 }
