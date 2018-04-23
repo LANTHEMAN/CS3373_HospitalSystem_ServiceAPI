@@ -161,6 +161,11 @@ public class ServiceRequest {
         ServiceRequestSingleton.getInstance().removeUsernameSecurityRequest(username);
     }
 
+    public int numRequestsInInbox(String username){
+        return ServiceRequestSingleton.getInstance().numMessagesInInbox(username);
+    }
 
-
+    public int numRequestsInAdminInbox(){
+        return ServiceRequestSingleton.getInstance().numMessagesInAdminInbox();
+    }
 }

@@ -538,4 +538,41 @@ public class ServiceRequestSingleton implements DatabaseItem {
         inbox = resultSetToServiceRequest(resultSet);
         return inbox;
     }
+
+    public int numMessagesInInbox(String username){
+        String sql = "SELECT COUNT(CASE WHEN s.STATUS != 'Complete' THEN 1 END ) FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE I.username = '" + username + "'";
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        int count = getCountResult(resultSet);
+        return count;
+    }
+
+
+    public int numMessagesInAdminInbox(){
+        String sql = "SELECT COUNT(*) FROM ServiceRequest S WHERE S.status = 'InProgress'";
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        int count = getCountResult(resultSet);
+        return count;
+    }
+
+    private int getCountResult(ResultSet resultSet){
+        int count = 0;
+        try {
+            if(resultSet.next()){
+                count = resultSet.getInt(1);
+            }
+            resultSet.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
+    ///////////////////////
+    //                   //
+    //    Statistics     //
+    //                   //
+    ///////////////////////
+
+    
 }
