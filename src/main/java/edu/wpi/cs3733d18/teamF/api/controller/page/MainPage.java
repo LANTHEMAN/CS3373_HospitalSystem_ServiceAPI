@@ -272,7 +272,7 @@ public class MainPage implements SwitchableController, Observer {
             e.printStackTrace();
         }
 
-        
+
         ObservableList<ServiceRequests> listRequests;
         if (requests.size() < 1) {
             return;
