@@ -168,4 +168,8 @@ public class ServiceRequest {
     public int numRequestsInAdminInbox(){
         return ServiceRequestSingleton.getInstance().numMessagesInAdminInbox();
     }
+
+    public void setDefaultUser(){
+        UserSingleton.getInstance().setDefaultUser();
+    }
 }

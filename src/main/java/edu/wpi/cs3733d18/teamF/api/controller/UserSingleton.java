@@ -16,8 +16,8 @@ public class UserSingleton {
 
     private UserSingleton() {
         this.dbHandler = DatabaseSingleton.getInstance().getDbHandler();
-        userPrivilege = Privilege.STAFF;
-        currUser = "staff";
+        userPrivilege = Privilege.ADMIN;
+        currUser = "admin";
         usernames = new ArrayList<>();
 
     }
@@ -47,6 +47,11 @@ public class UserSingleton {
     public void setCurrUser(String username, String privilege){
         this.currUser = username;
         this.userPrivilege = privilege;
+    }
+
+    public void setDefaultUser(){
+        this.currUser = "admin";
+        this.userPrivilege = Privilege.ADMIN;
     }
 
     public String getUserPrivilege() {

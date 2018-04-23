@@ -573,6 +573,139 @@ public class ServiceRequestSingleton implements DatabaseItem {
     //    Statistics     //
     //                   //
     ///////////////////////
+    //if type equals null is counts all types of requests
+    public int numRequestsAll(String type){
+        if(type == null){
+            type =  "all";
+        }
+        String sql;
+        switch (type){
+            case "all":
+                sql = "SELECT COUNT(*) FROM ServiceRequest";
+                break;
+            case "LanguageInterpreter":
+                sql = "SELECT COUNT(*) FROM  WHERE type = 'LanguageInterpreter'";
+                break;
+            case "ReligiousServices":
+                sql = "SELECT COUNT(*) FROM  WHERE type = 'ReligiousServices'";
+                break;
+            case "SecurityRequest":
+                sql = "SELECT COUNT(*) FROM  WHERE type = 'SecurityRequest'";
+                break;
+            default:
+                sql = "SELECT COUNT(*) FROM ServiceRequest";
+                break;
+        }
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        int count = getCountResult(resultSet);
+        return count;
+    }
+
+    public double avgCompletionTimeAll(String type){
+        if(type == null){
+            type =  "all";
+        }
+        String sql;
+        switch (type){
+            case "all":
+                sql = "SELECT S.createdOn, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete'";
+                break;
+            case "LanguageInterpreter":
+                sql = "SELECT S.createdOn, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'LanguageInterpreter'";
+                break;
+            case "ReligiousServices":
+                sql = "SELECT S.createdOn, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'ReligiousServices'";
+                break;
+            case "SecurityRequest":
+                sql = "SELECT S.createdOn, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'SecurityRequest'";
+                break;
+            default:
+                sql = "SELECT S.createdOn, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete'";
+                break;
+        }
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        double avgTime = getAverageTime(resultSet);
+        return avgTime;
+    }
+
+    public long getAverageTime(ResultSet resultSet){
+        long avgTime;
+        long completionTimeSum = 0;
+        int numTimes = 0;
+        try {
+            while(resultSet.next()){
+                Timestamp started = resultSet.getTimestamp(1);
+                Timestamp completed = resultSet.getTimestamp(2);
+
+                long start = started.getTime();
+                long end = completed.getTime();
+
+                completionTimeSum += end-start;
+                numTimes++;
+            }
+            resultSet.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        avgTime = completionTimeSum/numTimes;
+        return avgTime;
+    }
+
+    public double avgCompletionTimeByEmployee(String type, String username){
+        if(type == null){
+            type =  "all";
+        }
+        String sql;
+        switch (type){
+            case "all":
+                sql = "SELECT S.started, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND I.username = '" + username + "'";
+                break;
+            case "LanguageInterpreter":
+                sql = "SELECT S.started, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'LanguageInterpreter' AND I.username = '" + username + "'";
+                break;
+            case "ReligiousServices":
+                sql = "SELECT S.started, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'ReligiousServices' AND I.username = '" + username + "'";
+                break;
+            case "SecurityRequest":
+                sql = "SELECT S.started, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND type = 'SecurityRequest' AND I.username = '" + username + "'";
+                break;
+            default:
+                sql = "SELECT S.started, S.completed FROM Inbox I INNER JOIN ServiceRequest S ON I.requestID = S.id WHERE S.status = 'Complete' AND I.username = '" + username + "'";
+                break;
+        }
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        double avgTime = getAverageTime(resultSet);
+        return avgTime;
+    }
+
+    public int numRequestsByEmployee(String type, String username){
+        if(type == null){
+            type =  "all";
+        }
+        String sql;
+        switch (type){
+            case "all":
+                sql = "SELECT COUNT(*) FROM ServiceRequest WHERE completedBy = '" + username + "'";
+                break;
+            case "LanguageInterpreter":
+                sql = "SELECT COUNT(*) FROM ServiceRequest WHERE type = 'LanguageInterpreter' AND completedBy = '" + username + "'";
+                break;
+            case "ReligiousServices":
+                sql = "SELECT COUNT(*) FROM ServiceRequest WHERE type = 'ReligiousServices' AND completedBy = '" + username + "'";
+                break;
+            case "SecurityRequest":
+                sql = "SELECT COUNT(*) FROM ServiceRequest WHERE type = 'SecurityRequest' AND completedBy = '" + username + "'";
+                break;
+            default:
+                sql = "SELECT COUNT(*) FROM ServiceRequest WHERE completedBy = '" + username + "'";
+                break;
+        }
+        ResultSet resultSet = dbHandler.runQuery(sql);
+        int count = getCountResult(resultSet);
+        return count;
+    }
+
 
     
 }
