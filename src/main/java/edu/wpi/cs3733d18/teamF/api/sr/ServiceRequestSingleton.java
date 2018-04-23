@@ -104,7 +104,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     public void sendServiceRequest(ServiceRequests s) {
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        String sql = "INSERT INTO ServiceRequest(id, type, firstName, lastName, location, instructions, priority, status, createdOn)"
+        String sql = "INSERT INTO ServiceRequest(id, type, firstName, lastName, location, instructions, priority, status, createdOn, staffNeeded)"
                 + " VALUES (" + s.getId()
                 + ", '" + s.getType()
                 + "', '" + s.getFirstName()
@@ -113,7 +113,8 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 + "', '" + s.getDescription()
                 + "', " + s.getPriority()
                 + ", '" + s.getStatus()
-                + "', '" + time + "')";
+                + "', '" + time
+                + "', '" + s.getStaffNeeded() + "')";
         dbHandler.runAction(sql);
         updateLocal();
     }
@@ -158,92 +159,11 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
     @Override
     public void syncLocalFromDB(String tableName, ResultSet resultSet) {
-        try {
-            if (tableName.equals("ServiceRequest")) {
-                while (resultSet.next()) {
-                    int id = resultSet.getInt(1);
-                    String type = resultSet.getString(2);
-                    String firstName = resultSet.getString(3);
-                    String lastName = resultSet.getString(4);
-                    String location = resultSet.getString(5);
-                    String instructions = resultSet.getString(6);
-                    int priority = resultSet.getInt(7);
-                    String status = resultSet.getString(8);
-                    String completedBy = null;
-                    Timestamp createdOn = null;
-                    Timestamp started = null;
-                    Timestamp completed = null;
-                    String destNodeID = null;
-                    String sourceNodeID = null;
-                    try {
-                        createdOn = resultSet.getTimestamp(10);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        started = resultSet.getTimestamp(11);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        completed = resultSet.getTimestamp(12);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        destNodeID = resultSet.getString(13);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        sourceNodeID = resultSet.getString(14);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-                    if (status.equals("Complete")) {
-                        try {
-                            completedBy = resultSet.getString(9);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                            completedBy = null;
-                        }
-                    }
-
-
-                    ServiceRequests s;
-                    String[] parts;
-                    String special = "";
-                    String description = "";
-                    if (!type.equals("Security Request")) {
-                        parts = instructions.split("/////", 2);
-                        special = parts[0];
-                        description = parts[1];
-                    }
-
-                    switch (type) {
-                        case "Religious Services":
-                            s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
-                            break;
-
-                        case "Language Interpreter":
-                            s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
-                            break;
-
-                        case "Security Request":
-                            s = new SecurityRequests(id, location, description, status, priority, completedBy, createdOn, started, completed);
-                            break;
-
-                        default:
-                            s = new SecurityRequests(id, location, description, status, priority);
-                            break;
-                    }
-
-                    this.addServiceRequest(s);
-                }
+        if(tableName.equals("ServiceRequest")) {
+            ArrayList<ServiceRequests> requests = this.resultSetToServiceRequest(resultSet);
+            for (ServiceRequests s : requests) {
+                addServiceRequest(s);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -325,6 +245,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 Timestamp completed = null;
                 String destNodeID = null;
                 String sourceNodeID = null;
+                String staffNeeded = resultSet.getString(15);
                 try {
                     createdOn = resultSet.getTimestamp(10);
                 } catch (SQLException e) {
@@ -373,19 +294,19 @@ public class ServiceRequestSingleton implements DatabaseItem {
 
                 switch (type) {
                     case "Religious Services":
-                        s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
+                        s = new ReligiousServices(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed, staffNeeded);
                         break;
 
                     case "Language Interpreter":
-                        s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed);
+                        s = new LanguageInterpreter(id, firstName, lastName, location, description, status, priority, special, completedBy, createdOn, started, completed, staffNeeded);
                         break;
 
                     case "Security Request":
-                        s = new SecurityRequests(id, location, description, status, priority, completedBy, createdOn, started, completed);
+                        s = new SecurityRequests(id, location, description, status, priority, completedBy, createdOn, started, completed, staffNeeded);
                         break;
 
                     default:
-                        s = new SecurityRequests(id, location, description, status, priority);
+                        s = new SecurityRequests(id, location, description, status, priority, staffNeeded);
                         break;
                 }
 
