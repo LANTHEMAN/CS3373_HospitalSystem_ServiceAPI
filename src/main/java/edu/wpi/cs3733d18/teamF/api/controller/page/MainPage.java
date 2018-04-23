@@ -467,7 +467,7 @@ public class MainPage implements SwitchableController, Observer {
         last_name = lastNameLanguage.getText();
         location = destinationLanguage.getText();
         String new_description = l + "/////" + description;
-        ServiceRequests request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l);
+        ServiceRequests request = new LanguageInterpreter(first_name, last_name, location, new_description, "Incomplete", 1, l, "replaceWithCorrectValue");
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
         TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs a " + l + " interpreter at " + location + ".\nAdditional Details: " + description);
@@ -551,7 +551,8 @@ public class MainPage implements SwitchableController, Observer {
         last_name = lastNameRS.getText();
         location = destinationRS.getText();
         String new_description = r + "/////" + occasion + "/////" + description + "\n";
-        ServiceRequests request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r);
+        String staffNeeded = staffToggle.getSelectedToggle().toString();
+        ServiceRequests request = new ReligiousServices(first_name, last_name, location, new_description, "Incomplete", 1, r, staffNeeded);
         ServiceRequestSingleton.getInstance().sendServiceRequest(request);
         ServiceRequestSingleton.getInstance().addServiceRequest(request);
         TwilioHandlerSingleton.getInstance().sendMessage("\n" + first_name + " " + last_name + " needs " + r + " services at " + location + ".\nAdditional Details: " + description);
@@ -597,16 +598,27 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onSubmitSecurity() {
+        int requiredFields = 0;
         if (securityLocationField.getText() == null || securityLocationField.getText().trim().isEmpty()) {
             securityLocationRequired.setVisible(true);
+            requiredFields++;
+        }
+        if(requestTitleField.getText() == null || requestTitleField.getText().trim().isEmpty()){
+            requestTitleRequired.setVisible(true);
+            requiredFields++;
+        }
+        if(requiredFields > 0){
             return;
         }
         String location = securityLocationField.getText();
         String description = securityTextArea.getText();
+        String requestTitle = requestTitleField.getText();
         String status = "Incomplete";
         RadioButton selected = (RadioButton) securityToggle.getSelectedToggle();
         int priority = Integer.parseInt(selected.getText());
-        SecurityRequests sec = new SecurityRequests(location, description, status, priority);
+        String staffNeeded = staffToggleSR.getSelectedToggle().toString();
+        description = requestTitle + "/////" + description;
+        SecurityRequests sec = new SecurityRequests(location, description, status, priority, staffNeeded);
 
         ServiceRequestSingleton.getInstance().sendServiceRequest(sec);
         ServiceRequestSingleton.getInstance().addServiceRequest(sec);

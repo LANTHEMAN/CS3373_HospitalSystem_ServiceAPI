@@ -16,9 +16,10 @@ public abstract class ServiceRequests {
     private Timestamp createdOn;
     private Timestamp started;
     private Timestamp completedOn;
+    private String staffNeeded;
 
 
-    public ServiceRequests(String type, String firstName, String lastName, String location, String description, String status, int priority) {
+    public ServiceRequests(String type, String firstName, String lastName, String location, String description, String status, int priority, String staffNeeded) {
         this.type = type;
         this.id = ServiceRequestSingleton.getInstance().generateNewID();
         this.firstName = firstName;
@@ -27,9 +28,10 @@ public abstract class ServiceRequests {
         this.description = description;
         this.status = status;
         this.priority = priority;
+        this.staffNeeded = staffNeeded;
     }
 
-    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String staffNeeded){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -38,9 +40,10 @@ public abstract class ServiceRequests {
         this.description = description;
         this.status = status;
         this.priority = priority;
+        this.staffNeeded = staffNeeded;
     }
 
-    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn){
+    public ServiceRequests(String type, int id, String firstName, String lastName, String location, String description, String status, int priority, String completedBy, Timestamp createdOn, Timestamp started, Timestamp completedOn, String staffNeeded){
         this.type = type;
         this.id = id;
         this.firstName = firstName;
@@ -53,6 +56,8 @@ public abstract class ServiceRequests {
         this.createdOn = createdOn;
         this.started = started;
         this.completedOn= completedOn;
+        this.staffNeeded = staffNeeded;
+
     }
 
     public String getFirstName() {
@@ -121,5 +126,13 @@ public abstract class ServiceRequests {
 
     public void setCompletedBy(String completedBy) {
         this.completedBy = completedBy;
+    }
+
+    public String getStaffNeeded() {
+        return staffNeeded;
+    }
+
+    public void setStaffNeeded(String staffNeeded) {
+        this.staffNeeded = staffNeeded;
     }
 }
