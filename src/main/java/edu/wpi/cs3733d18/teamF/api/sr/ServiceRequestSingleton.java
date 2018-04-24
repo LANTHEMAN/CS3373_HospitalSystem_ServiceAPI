@@ -574,7 +574,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return avgTime;
     }
 
-    public double avgCompletionTimeByEmployee(String type, String username){
+    public int avgCompletionTimeByEmployee(String type, String username){
         if(type == null){
             type =  "all";
         }
@@ -597,7 +597,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 break;
         }
         ResultSet resultSet = dbHandler.runQuery(sql);
-        double avgTime = getAverageTime(resultSet);
+        int avgTime = (int)getAverageTime(resultSet);
         return avgTime;
     }
 

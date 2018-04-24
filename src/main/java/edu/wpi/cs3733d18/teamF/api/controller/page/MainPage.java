@@ -94,12 +94,17 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS, occasionRequiredRS;
     @FXML
-    BarChart<String,Integer> AvgTimeEmployeePie;
+    BarChart<String,Integer> AvgTimeServiceType;
+    BarChart<String,Integer> AvgTimeEmployee;
 
     @FXML
-    private CategoryAxis xAxis;
+    private CategoryAxis xAxisEmployee;
 
-    private ObservableList<String> requestType = FXCollections.observableArrayList();
+    @FXML
+    private CategoryAxis xAxisType;
+
+    private ObservableList<String> requestTypeT = FXCollections.observableArrayList();
+    private ObservableList<String> requestTypeE = FXCollections.observableArrayList();
 
 
     String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
@@ -203,11 +208,17 @@ public class MainPage implements SwitchableController, Observer {
 
         onSearch();
 
-        requestType.add("LanguageInterpreter");
-        requestType.add("ReligiousServices");
-        requestType.add("SecurityRequest");
+        requestTypeT.add("LanguageInterpreter");
+        requestTypeT.add("ReligiousServices");
+        requestTypeT.add("SecurityRequest");
 
-        xAxis.setCategories(requestType);
+        xAxisType.setCategories(requestTypeT);
+
+        requestTypeE.add("LanguageInterpreter");
+        requestTypeE.add("ReligiousServices");
+        requestTypeE.add("SecurityRequest");
+
+        xAxisEmployee.setCategories(requestTypeE);
 
         ArrayList<String> usernameList = new ArrayList<>();
         usernameList.add("staff");
@@ -671,7 +682,7 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onCreateNewServiceRequest() {
-        AvgTimeEmployeePie.getData().clear();
+        AvgTimeServiceType.getData().clear();
         mainPane.toFront();
         clearLanguage();
         //clearReligious();
@@ -680,7 +691,7 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onSearchServiceRequest() {
-        AvgTimeEmployeePie.getData().clear();
+        AvgTimeServiceType.getData().clear();
         onClear();
         onSearch();
     }
@@ -688,18 +699,25 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onStats(){
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        for (int i = 0; i < requestType.size();i++){
-            int time = ServiceRequestSingleton.getInstance().avgCompletionTimeAll(requestType.get(i));
-            series.getData().add(new XYChart.Data<>(requestType.get(i),time));
+        XYChart.Series<String, Integer> seriesT = new XYChart.Series<>();
+        for (int i = 0; i < requestTypeT.size();i++){
+            int time = ServiceRequestSingleton.getInstance().avgCompletionTimeAll(requestTypeT.get(i));
+            seriesT.getData().add(new XYChart.Data<>(requestTypeT.get(i),time));
         }
-        AvgTimeEmployeePie.getData().add(series);
+        AvgTimeServiceType.getData().add(seriesT);
+
+        XYChart.Series<String, Integer> seriesE = new XYChart.Series<>();
+        for (int i = 0; i < requestTypeE.size();i++){
+            int time = ServiceRequestSingleton.getInstance().avgCompletionTimeByEmployee(null,requestTypeE.get(i));
+            seriesE.getData().add(new XYChart.Data<>(requestTypeE.get(i),time));
+        }
+        AvgTimeEmployee.getData().add(seriesE);
 
     }
 
     @FXML
     private void onStatsExit(){
-        AvgTimeEmployeePie.getData().clear();
+        AvgTimeServiceType.getData().clear();
     }
 
 

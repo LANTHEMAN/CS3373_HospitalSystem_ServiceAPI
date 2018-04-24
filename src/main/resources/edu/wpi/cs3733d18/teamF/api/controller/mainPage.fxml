@@ -617,16 +617,32 @@
                      <AnchorPane fx:id="religiousServicesPane1" style="-fx-background-color: #f1f1f1;">
                         <children>
                            <FontAwesomeIconView fill="#e4e4e4" glyphName="BAR_CHART" layoutX="418.0" layoutY="531.0" size="400" />
-                           <Text layoutX="392.0" layoutY="52.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Statistics: Employee">
+                           <Text layoutX="375.0" layoutY="233.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Statistics:">
                               <font>
                                  <Font size="15.0" />
                               </font>
                            </Text>
+                           <Text layoutX="347.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by: ">
+                              <font>
+                                 <Font size="19.0" />
+                              </font>
+                           </Text>
+                           <JFXComboBox layoutX="461.0" layoutY="275.0" prefHeight="27.0" prefWidth="160.0" promptText="Select Search Type" />
+                        </children>
+                     </AnchorPane>
+                     <AnchorPane fx:id="religiousServicesPane1" style="-fx-background-color: #f1f1f1;">
+                        <children>
+                           <FontAwesomeIconView fill="#e4e4e4" glyphName="BAR_CHART" layoutX="418.0" layoutY="531.0" size="400" />
+                           <Text layoutX="392.0" layoutY="52.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Statistics: Employee">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                                     </Text>
                            <HBox layoutX="25.0" layoutY="118.0" prefHeight="389.0" prefWidth="868.0">
                               <children>
-                                 <BarChart prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
+                                 <BarChart fx:id="AvgTimeEmployee" prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
                                    <xAxis>
-                                     <CategoryAxis label="Employee" side="BOTTOM" />
+                                     <CategoryAxis label="Employee" side="BOTTOM" fx:id="xAxisEmployee" />
                                    </xAxis>
                                    <yAxis>
                                      <NumberAxis label="Average Time" side="LEFT" />
@@ -647,9 +663,9 @@
                            </Text>
                            <HBox layoutX="25.0" layoutY="118.0" prefHeight="389.0" prefWidth="868.0">
                               <children>
-                                 <BarChart fx:id="AvgTimeEmployeePie" prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
+                                 <BarChart fx:id="AvgTimeServiceType" prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
                                     <xAxis>
-                                       <CategoryAxis label="Type of Request" side="BOTTOM" fx:id="xAxis" />
+                                       <CategoryAxis label="Type of Request" side="BOTTOM" fx:id="xAxisType" />
                                     </xAxis>
                                     <yAxis>
                                        <NumberAxis label="Average Time" side="LEFT" />
