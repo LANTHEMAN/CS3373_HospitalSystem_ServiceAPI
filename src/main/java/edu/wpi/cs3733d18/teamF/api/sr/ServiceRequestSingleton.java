@@ -522,7 +522,7 @@ public class ServiceRequestSingleton implements DatabaseItem {
         return count;
     }
 
-    public double avgCompletionTimeAll(String type){
+    public Integer avgCompletionTimeAll(String type){
         if(type == null){
             type =  "all";
         }
@@ -545,12 +545,12 @@ public class ServiceRequestSingleton implements DatabaseItem {
                 break;
         }
         ResultSet resultSet = dbHandler.runQuery(sql);
-        double avgTime = getAverageTime(resultSet);
+        int avgTime = (int)getAverageTime(resultSet);
         return avgTime;
     }
 
     public long getAverageTime(ResultSet resultSet){
-        long avgTime;
+        long avgTime = 0;
         long completionTimeSum = 0;
         int numTimes = 0;
         try {
@@ -568,8 +568,9 @@ public class ServiceRequestSingleton implements DatabaseItem {
         }catch (SQLException e){
             e.printStackTrace();
         }
-
-        avgTime = completionTimeSum/numTimes;
+        if (numTimes != 0){
+            avgTime = completionTimeSum/numTimes;
+        }
         return avgTime;
     }
 

@@ -21,6 +21,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Callback;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.CategoryAxis;
 
 
 import java.sql.ResultSet;
@@ -92,7 +94,12 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS, occasionRequiredRS;
     @FXML
-    BarChart AvgTimeEmployeePie;
+    BarChart<String,Integer> AvgTimeEmployeePie;
+
+    @FXML
+    private CategoryAxis xAxis;
+
+    private ObservableList<String> requestType = FXCollections.observableArrayList();
 
 
     String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
@@ -170,6 +177,7 @@ public class MainPage implements SwitchableController, Observer {
             if(ServiceRequestSingleton.getInstance().getDestNodeID() != null){
                 securityLocationField.setText(ServiceRequestSingleton.getInstance().getDestNodeID());
             }
+
         });
 
 
@@ -194,6 +202,12 @@ public class MainPage implements SwitchableController, Observer {
         });
 
         onSearch();
+
+        requestType.add("LanguageInterpreter");
+        requestType.add("ReligiousServices");
+        requestType.add("SecurityRequest");
+
+        xAxis.setCategories(requestType);
 
         ArrayList<String> usernameList = new ArrayList<>();
         usernameList.add("staff");
@@ -425,6 +439,8 @@ public class MainPage implements SwitchableController, Observer {
     @FXML
     private void onCancelEdit(){
         editRequestPane.toBack();
+
+
     }
 
     ////////////////////////
@@ -655,6 +671,7 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onCreateNewServiceRequest() {
+        AvgTimeEmployeePie.getData().clear();
         mainPane.toFront();
         clearLanguage();
         //clearReligious();
@@ -663,8 +680,26 @@ public class MainPage implements SwitchableController, Observer {
 
     @FXML
     private void onSearchServiceRequest() {
+        AvgTimeEmployeePie.getData().clear();
         onClear();
         onSearch();
+    }
+
+
+    @FXML
+    private void onStats(){
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        for (int i = 0; i < requestType.size();i++){
+            int time = ServiceRequestSingleton.getInstance().avgCompletionTimeAll(requestType.get(i));
+            series.getData().add(new XYChart.Data<>(requestType.get(i),time));
+        }
+        AvgTimeEmployeePie.getData().add(series);
+
+    }
+
+    @FXML
+    private void onStatsExit(){
+        AvgTimeEmployeePie.getData().clear();
     }
 
 
