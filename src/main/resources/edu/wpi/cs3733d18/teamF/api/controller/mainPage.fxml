@@ -622,17 +622,40 @@
                                  <Font size="15.0" />
                               </font>
                            </Text>
-                           <HBox layoutX="25.0" layoutY="118.0" prefHeight="417.0" prefWidth="868.0">
+                           <HBox layoutX="25.0" layoutY="118.0" prefHeight="389.0" prefWidth="868.0">
                               <children>
-                                 <BarChart prefHeight="331.0" prefWidth="356.0">
+                                 <BarChart prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
                                    <xAxis>
                                      <CategoryAxis label="Employee" side="BOTTOM" />
                                    </xAxis>
                                    <yAxis>
-                                     <NumberAxis side="LEFT" />
+                                     <NumberAxis label="Average Time" side="LEFT" />
                                    </yAxis>
                                  </BarChart>
-                                 <PieChart prefHeight="354.0" prefWidth="429.0" />
+                                 <PieChart prefHeight="354.0" prefWidth="429.0" title="Number of Request Completed" />
+                              </children>
+                           </HBox>
+                        </children>
+                     </AnchorPane>
+                     <AnchorPane fx:id="religiousServicesPane1" style="-fx-background-color: #f1f1f1;">
+                        <children>
+                           <FontAwesomeIconView fill="#e4e4e4" glyphName="BAR_CHART" layoutX="418.0" layoutY="531.0" size="400" />
+                           <Text layoutX="316.0" layoutY="53.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Statistics: Service Type">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Text>
+                           <HBox layoutX="25.0" layoutY="118.0" prefHeight="389.0" prefWidth="868.0">
+                              <children>
+                                 <BarChart fx:id="AvgTimeEmployeePie" prefHeight="417.0" prefWidth="528.0" title="Average Request Complete Time">
+                                    <xAxis>
+                                       <CategoryAxis label="Type of Request" side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                       <NumberAxis label="Average Time" side="LEFT" />
+                                    </yAxis>
+                                 </BarChart>
+                                 <PieChart prefHeight="354.0" prefWidth="429.0" title="Number of Request by Catagory" />
                               </children>
                            </HBox>
                         </children>

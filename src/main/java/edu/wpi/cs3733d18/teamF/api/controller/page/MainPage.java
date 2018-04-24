@@ -14,6 +14,7 @@ import edu.wpi.cs3733d18.teamF.api.voice.VoiceLauncher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -90,6 +91,10 @@ public class MainPage implements SwitchableController, Observer {
     TextArea instructionsRS;
     @FXML
     Label religionRequiredRS, firstNameRequiredRS, lastNameRequiredRS, locationRequiredRS, occasionRequiredRS;
+    @FXML
+    BarChart AvgTimeEmployeePie;
+
+
     String lastSearch = ServiceRequestSingleton.getInstance().getLastSearch();
     String lastFilter = ServiceRequestSingleton.getInstance().getLastFilter();
     /////////////////////////////////////////
